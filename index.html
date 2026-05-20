@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ho'oponopono — Ebook Completo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3EC;
+    --deep: #1A1208;
+    --gold: #B8922A;
+    --gold-light: #D4AF5A;
+    --brown: #5C3D1E;
+    --warm: #E8DCC8;
+    --text: #2D1F0E;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; overflow:hidden; background:var(--deep); font-family:'Lato',sans-serif; }
+
+  .shell { display:flex; height:100vh; overflow:hidden; }
+
+  /* HAMBURGER BUTTON (mobile only) */
+  .hamburger {
+    display:none;
+    position:fixed; top:14px; left:14px; z-index:200;
+    background:rgba(14,10,4,0.92); border:1px solid rgba(184,146,42,0.4);
+    color:var(--gold); cursor:pointer;
+    width:42px; height:42px;
+    align-items:center; justify-content:center;
+    font-size:20px; border-radius:4px;
+  }
+
+  /* SIDEBAR OVERLAY (mobile) */
+  .sidebar-overlay {
+    display:none;
+    position:fixed; inset:0; z-index:150;
+    background:rgba(0,0,0,0.55);
+  }
+  .sidebar-overlay.open { display:block; }
+
+  /* SIDEBAR */
+  .sidebar {
+    width:260px; min-width:260px;
+    background:#0E0A04;
+    border-right:1px solid rgba(184,146,42,0.18);
+    display:flex; flex-direction:column; overflow:hidden;
+    z-index:160; position:relative;
+    transition:transform 0.3s ease;
+  }
+  .sidebar-logo {
+    padding:32px 24px 24px;
+    border-bottom:1px solid rgba(184,146,42,0.12);
+    text-align:center;
+  }
+  .sidebar-logo .sym {
+    font-family:'Cinzel',serif; font-size:22px;
+    color:var(--gold); letter-spacing:4px;
+    display:block; margin-bottom:6px;
+  }
+  .sidebar-logo span.sub {
+    font-family:'Cormorant Garamond',serif;
+    font-size:10px; color:rgba(184,146,42,0.5);
+    letter-spacing:3px; text-transform:uppercase;
+  }
+  .nav-list { list-style:none; padding:16px 0; flex:1; overflow-y:auto; }
+  .nav-list li button {
+    width:100%; background:none; border:none;
+    border-left:2px solid transparent; cursor:pointer;
+    display:flex; align-items:center; gap:10px;
+    padding:11px 22px;
+    color:rgba(231,219,197,0.45);
+    font-family:'Lato',sans-serif; font-size:10.5px;
+    letter-spacing:1.4px; text-transform:uppercase;
+    text-align:left; transition:all 0.25s;
+  }
+  .nav-list li button:hover {
+    color:var(--gold-light);
+    background:rgba(184,146,42,0.05);
+    border-left-color:rgba(184,146,42,0.4);
+  }
+  .nav-list li button.active {
+    color:var(--gold-light);
+    border-left-color:var(--gold);
+    background:rgba(184,146,42,0.08);
+  }
+  .nav-num {
+    font-family:'Cinzel',serif; font-size:9px;
+    color:var(--gold); opacity:0.55; min-width:16px;
+  }
+  .sidebar-footer {
+    padding:20px 24px;
+    border-top:1px solid rgba(184,146,42,0.1);
+  }
+  .progress-label {
+    font-family:'Cinzel',serif; font-size:9px;
+    color:rgba(184,146,42,0.45); letter-spacing:2px;
+    text-transform:uppercase; margin-bottom:8px;
+  }
+  .progress-bar { height:2px; background:rgba(184,146,42,0.15); border-radius:2px; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--gold); transition:width 0.4s ease; }
+
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 700px) {
+    .hamburger { display:flex; }
+
+    .sidebar {
+      position:fixed; top:0; left:0; height:100%;
+      transform:translateX(-100%);
+      z-index:160;
+    }
+    .sidebar.open {
+      transform:translateX(0);
+    }
+
+    .chapter {
+      padding:70px 22px 140px !important;
+    }
+    .bottom-nav {
+      padding:14px 18px !important;
+    }
+    .two-col {
+      grid-template-columns:1fr !important;
+      gap:28px !important;
+    }
+    .cards-grid {
+      grid-template-columns:1fr !important;
+    }
+    .ch-title {
+      font-size:clamp(28px,8vw,42px) !important;
+    }
+    .ch-sub {
+      font-size:15px !important;
+      word-break:normal !important;
+      overflow-wrap:break-word !important;
+      white-space:normal !important;
+    }
+    .body-text { font-size:17px !important; }
+    .big-quote { font-size:18px !important; padding-left:24px !important; }
+    .callout p { font-size:18px !important; }
+    .download-section { padding:22px 20px !important; }
+    .btn-download { font-size:9px !important; padding:12px 18px !important; }
+  }
+
+  /* CONTENT */
+  .content-area { flex:1; display:flex; flex-direction:column; overflow:hidden; position:relative; }
+
+  .chapter {
+    display:none; flex:1; overflow-y:auto;
+    padding:60px 72px 140px;
+    animation:fadeUp 0.45s ease forwards;
+  }
+  .chapter.active { display:block; }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .chapter.light { background:#FFFDF8; color:var(--text); }
+  .chapter.dark  { background:#1A1208; color:var(--cream); }
+
+  /* TYPOGRAPHY */
+  .ch-eyebrow {
+    font-family:'Cinzel',serif; font-size:9.5px;
+    letter-spacing:5px; color:var(--gold);
+    text-transform:uppercase; margin-bottom:14px; display:block;
+  }
+  .ch-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(36px,4.5vw,58px); font-weight:400;
+    line-height:1.08; letter-spacing:-0.5px; max-width:720px;
+  }
+  .light .ch-title { color:var(--brown); }
+  .dark  .ch-title { color:var(--cream); }
+  .ch-sub {
+    font-family:'Cormorant Garamond',serif;
+    font-size:17px; font-style:italic; margin-top:10px;
+  }
+  .light .ch-sub { color:var(--gold); }
+  .dark  .ch-sub { color:rgba(212,175,90,0.7); }
+  .ch-divider { width:48px; height:2px; background:var(--gold); margin:22px 0 36px; }
+
+  .body-text {
+    font-family:'Cormorant Garamond',serif;
+    font-size:19px; line-height:1.85;
+    max-width:700px; margin-bottom:22px;
+  }
+  .light .body-text { color:var(--text); }
+  .dark  .body-text { color:rgba(247,243,236,0.72); }
+  .body-text strong { color:var(--brown); }
+  .dark .body-text strong { color:var(--gold-light); }
+
+  .callout {
+    border-left:3px solid var(--gold);
+    padding:22px 28px; margin:28px 0; max-width:680px;
+  }
+  .light .callout { background:rgba(184,146,42,0.06); }
+  .dark  .callout { background:rgba(184,146,42,0.09); }
+  .callout p {
+    font-family:'Cormorant Garamond',serif;
+    font-size:21px; font-style:italic; line-height:1.6;
+  }
+  .light .callout p { color:var(--brown); }
+  .dark  .callout p { color:var(--gold-light); }
+
+  .cards-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:18px; margin:28px 0; max-width:860px;
+  }
+  .card {
+    padding:24px 22px; border:1px solid rgba(184,146,42,0.2);
+    position:relative; transition:transform 0.2s,box-shadow 0.2s;
+  }
+  .card:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.08); }
+  .light .card { background:#fff; }
+  .dark  .card { background:rgba(255,255,255,0.04); }
+  .card::before {
+    content:''; position:absolute; left:0; top:0;
+    width:3px; height:100%; background:var(--gold); opacity:0.35;
+  }
+  .card-title {
+    font-family:'Cinzel',serif; font-size:12px;
+    letter-spacing:1px; margin-bottom:10px;
+  }
+  .light .card-title { color:var(--brown); }
+  .dark  .card-title { color:var(--gold-light); }
+  .card p { font-family:'Cormorant Garamond',serif; font-size:16.5px; line-height:1.65; }
+  .light .card p { color:var(--text); }
+  .dark  .card p { color:rgba(247,243,236,0.65); }
+
+  .phrase-item {
+    display:flex; gap:22px; align-items:flex-start;
+    padding:24px 0; border-bottom:1px solid rgba(184,146,42,0.15);
+    max-width:680px;
+  }
+  .phrase-item:last-child { border-bottom:none; }
+  .phrase-num {
+    font-family:'Cormorant Garamond',serif;
+    font-size:44px; font-weight:300; line-height:1;
+    color:rgba(184,146,42,0.2); min-width:36px;
+  }
+  .phrase-main {
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px; font-weight:500; display:block; margin-bottom:4px;
+  }
+  .light .phrase-main { color:var(--brown); }
+  .dark  .phrase-main { color:var(--gold-light); }
+  .phrase-tag {
+    font-family:'Lato',sans-serif; font-size:10px;
+    letter-spacing:2px; text-transform:uppercase; color:var(--gold);
+  }
+  .phrase-desc {
+    font-family:'Cormorant Garamond',serif;
+    font-size:16.5px; line-height:1.7; margin-top:8px;
+  }
+  .light .phrase-desc { color:var(--text); opacity:0.8; }
+  .dark  .phrase-desc { color:rgba(247,243,236,0.65); }
+
+  .step {
+    display:flex; gap:24px;
+    padding-left:18px; border-left:1px solid rgba(184,146,42,0.22);
+    margin-bottom:34px; position:relative; max-width:700px;
+  }
+  .step::before {
+    content:''; position:absolute; left:-4px; top:6px;
+    width:7px; height:7px; background:var(--gold); border-radius:50%;
+  }
+  .step-num {
+    font-family:'Cinzel',serif; font-size:10px;
+    color:var(--gold); letter-spacing:2px; min-width:28px; padding-top:3px;
+  }
+  .step-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px; font-weight:500; margin-bottom:8px;
+  }
+  .light .step-title { color:var(--brown); }
+  .dark  .step-title { color:var(--gold-light); }
+  .step-text {
+    font-family:'Cormorant Garamond',serif;
+    font-size:17px; line-height:1.75;
+  }
+  .light .step-text { color:var(--text); opacity:0.85; }
+  .dark  .step-text { color:rgba(247,243,236,0.65); }
+
+  .big-quote {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(20px,2.5vw,28px); font-style:italic;
+    line-height:1.6; padding:36px 0 36px 36px;
+    border-top:1px solid rgba(184,146,42,0.2);
+    border-bottom:1px solid rgba(184,146,42,0.2);
+    max-width:680px; margin:40px 0; position:relative;
+  }
+  .big-quote::before {
+    content:'"'; position:absolute; left:0; top:16px;
+    font-size:70px; color:var(--gold); opacity:0.18;
+    line-height:1; font-style:normal;
+  }
+  .light .big-quote { color:var(--brown); }
+  .dark  .big-quote { color:var(--gold-light); }
+
+  .tags { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0; }
+  .tag {
+    font-family:'Cinzel',serif; font-size:10px;
+    letter-spacing:2px; padding:7px 16px;
+    border:1px solid rgba(184,146,42,0.35);
+    background:rgba(184,146,42,0.05);
+  }
+  .light .tag { color:var(--brown); }
+  .dark  .tag { color:var(--gold-light); }
+
+  .pbox {
+    padding:30px 34px; margin:28px 0;
+    max-width:680px; position:relative;
+  }
+  .light .pbox { background:linear-gradient(135deg,#F0E8D5,#E8DCC8); border:1px solid rgba(184,146,42,0.3); }
+  .dark  .pbox { background:rgba(184,146,42,0.07); border:1px solid rgba(184,146,42,0.22); }
+  .pbox-label {
+    font-family:'Cinzel',serif; font-size:9px;
+    letter-spacing:4px; color:var(--gold);
+    text-transform:uppercase; margin-bottom:14px;
+  }
+  .pbox p { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; line-height:1.7; }
+  .light .pbox p { color:var(--brown); }
+  .dark  .pbox p { color:var(--cream); }
+
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:50px; max-width:860px; margin:28px 0; }
+
+  /* SECTION HEADINGS inside chapters */
+  .section-heading {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(24px,2.8vw,34px); font-weight:500;
+    margin:48px 0 18px; max-width:680px;
+  }
+  .light .section-heading { color:var(--brown); }
+  .dark  .section-heading  { color:var(--gold-light); }
+
+  .section-divider {
+    width:100%; max-width:700px;
+    height:1px; background:rgba(184,146,42,0.18);
+    margin:50px 0 40px;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    padding:22px 28px; margin:24px 0; max-width:680px;
+    border:1px solid rgba(184,146,42,0.3);
+  }
+  .light .highlight-box { background:#FFF8EE; }
+  .dark  .highlight-box { background:rgba(184,146,42,0.05); }
+  .highlight-box p {
+    font-family:'Cormorant Garamond',serif;
+    font-size:17px; line-height:1.75;
+  }
+  .light .highlight-box p { color:var(--text); }
+  .dark  .highlight-box p { color:rgba(247,243,236,0.75); }
+
+  /* LIST */
+  .content-list {
+    list-style:none; padding:0; margin:20px 0; max-width:680px;
+  }
+  .content-list li {
+    font-family:'Cormorant Garamond',serif;
+    font-size:17px; line-height:1.7;
+    padding:10px 0 10px 28px;
+    border-bottom:1px solid rgba(184,146,42,0.1);
+    position:relative;
+  }
+  .content-list li::before {
+    content:'→'; position:absolute; left:0;
+    color:var(--gold); font-style:normal;
+  }
+  .light .content-list li { color:var(--text); }
+  .dark  .content-list li { color:rgba(247,243,236,0.72); }
+
+  /* COVER */
+  #ch-cover {
+    background:radial-gradient(ellipse at 30% 50%,#2A1A06,#0E0A04);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+  }
+  .cover-inner { max-width:640px; }
+  .cover-eyebrow {
+    font-family:'Cinzel',serif; font-size:10px;
+    letter-spacing:6px; color:var(--gold);
+    text-transform:uppercase; margin-bottom:28px; opacity:0.8;
+  }
+  .cover-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(56px,9vw,96px); font-weight:300;
+    color:var(--cream); line-height:1; letter-spacing:-1px;
+  }
+  .cover-title em { font-style:italic; color:var(--gold-light); }
+  .cover-rule { width:52px; height:1px; background:var(--gold); margin:28px auto; opacity:0.45; }
+  .cover-desc {
+    font-family:'Cormorant Garamond',serif;
+    font-size:19px; font-style:italic;
+    color:rgba(231,219,197,0.6); line-height:1.75;
+  }
+  .cover-meta {
+    margin-top:52px; font-family:'Cinzel',serif;
+    font-size:9px; letter-spacing:4px;
+    color:rgba(184,146,42,0.35); text-transform:uppercase;
+  }
+
+  /* DOWNLOAD BUTTON */
+  .download-section {
+    margin:50px 0 20px; padding:32px 34px;
+    max-width:680px;
+    border:1px solid rgba(184,146,42,0.35);
+    position:relative;
+  }
+  .light .download-section { background:linear-gradient(135deg,#FBF6EC,#F0E8D5); }
+  .dark  .download-section { background:rgba(184,146,42,0.06); }
+  .download-section::before {
+    content:''; position:absolute;
+    left:0; top:0; width:4px; height:100%;
+    background:var(--gold);
+  }
+  .download-label {
+    font-family:'Cinzel',serif; font-size:9px;
+    letter-spacing:4px; color:var(--gold);
+    text-transform:uppercase; margin-bottom:14px; display:block;
+  }
+  .download-desc {
+    font-family:'Cormorant Garamond',serif;
+    font-size:16px; line-height:1.7; margin-bottom:20px;
+  }
+  .light .download-desc { color:var(--brown); }
+  .dark  .download-desc  { color:rgba(247,243,236,0.65); }
+  .btn-download {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Cinzel',serif; font-size:10px;
+    letter-spacing:3px; text-transform:uppercase;
+    padding:14px 28px; cursor:pointer;
+    background:var(--gold); color:#0E0A04;
+    border:none; text-decoration:none;
+    transition:background 0.25s,transform 0.15s;
+  }
+  .btn-download:hover { background:var(--gold-light); transform:translateY(-2px); }
+  .btn-download svg { flex-shrink:0; }
+
+  /* BOTTOM NAV */
+  .bottom-nav {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 72px;
+    border-top:1px solid rgba(184,146,42,0.1);
+    background:rgba(26,18,8,0.95); backdrop-filter:blur(8px);
+    position:sticky; bottom:0; z-index:10;
+  }
+  .btn-nav {
+    font-family:'Cinzel',serif; font-size:10px;
+    letter-spacing:3px; text-transform:uppercase;
+    padding:12px 22px; cursor:pointer;
+    border:1px solid rgba(184,146,42,0.35);
+    color:rgba(212,175,90,0.7); background:transparent;
+    transition:all 0.25s; display:flex; align-items:center; gap:8px;
+  }
+  .btn-nav:hover:not(:disabled) {
+    color:var(--gold-light);
+    border-color:var(--gold);
+    background:rgba(184,146,42,0.06);
+  }
+  .btn-nav:disabled { opacity:0.25; cursor:default; }
+  .arrow { font-size:16px; }
+  .page-counter {
+    font-family:'Cinzel',serif; font-size:10px;
+    letter-spacing:3px; color:rgba(184,146,42,0.4);
+  }
+</style>
+
+<style>
+/* ============================================================
+   AUTH OVERLAY  
+   ============================================================ */
+#auth-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #0E0A04;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Lato', sans-serif;
+}
+#auth-overlay.hidden { display: none; }
+
+.auth-card {
+  background: #1A1208;
+  border: 1px solid rgba(184,146,42,0.25);
+  padding: 48px 40px;
+  width: 100%; max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 80px rgba(184,146,42,0.06);
+}
+.auth-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 20px; letter-spacing: 6px;
+  color: #B8922A; margin-bottom: 6px;
+}
+.auth-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; letter-spacing: 3px;
+  color: rgba(184,146,42,0.4);
+  text-transform: uppercase; margin-bottom: 36px;
+}
+.auth-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; letter-spacing: 3px;
+  color: rgba(212,175,90,0.6);
+  text-transform: uppercase; margin-bottom: 28px;
+}
+.auth-field {
+  margin-bottom: 16px; text-align: left;
+}
+.auth-field label {
+  display: block;
+  font-size: 9px; letter-spacing: 2px;
+  color: rgba(184,146,42,0.5);
+  text-transform: uppercase; margin-bottom: 6px;
+  font-family: 'Cinzel', serif;
+}
+.auth-field input {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(184,146,42,0.2);
+  color: #F7F3EC;
+  font-family: 'Lato', sans-serif; font-size: 14px;
+  padding: 12px 14px;
+  outline: none; transition: border-color 0.2s;
+}
+.auth-field input:focus { border-color: rgba(184,146,42,0.6); }
+.auth-btn {
+  width: 100%; margin-top: 8px;
+  background: #B8922A; color: #0E0A04;
+  border: none; cursor: pointer;
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 14px; transition: background 0.2s;
+}
+.auth-btn:hover { background: #D4AF5A; }
+.auth-error {
+  color: #c0392b; font-size: 12px;
+  margin-top: 14px; min-height: 18px;
+  font-family: 'Lato', sans-serif;
+}
+.auth-info {
+  color: rgba(184,146,42,0.5); font-size: 11px;
+  margin-top: 14px; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; line-height: 1.5;
+}
+.auth-loading {
+  color: rgba(184,146,42,0.6); font-size: 12px;
+  margin-top: 14px; font-family: 'Lato', sans-serif;
+}
+
+/* ============================================================
+   ADMIN PANEL  
+   ============================================================ */
+#admin-panel {
+  position: fixed; inset: 0; z-index: 9998;
+  background: #0E0A04;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 40px 20px; overflow-y: auto;
+}
+#admin-panel.hidden { display: none; }
+
+.admin-card {
+  background: #1A1208;
+  border: 1px solid rgba(184,146,42,0.25);
+  width: 100%; max-width: 700px;
+  padding: 40px;
+}
+.admin-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(184,146,42,0.15);
+}
+.admin-header h1 {
+  font-family: 'Cinzel', serif; font-size: 13px;
+  letter-spacing: 4px; color: #B8922A;
+  text-transform: uppercase;
+}
+.admin-logout {
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 2px; color: rgba(184,146,42,0.5);
+  background: none; border: 1px solid rgba(184,146,42,0.2);
+  padding: 8px 16px; cursor: pointer;
+  text-transform: uppercase; transition: all 0.2s;
+}
+.admin-logout:hover { color: #B8922A; border-color: rgba(184,146,42,0.5); }
+
+.admin-section { margin-bottom: 36px; }
+.admin-section h2 {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 3px; color: rgba(184,146,42,0.6);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+
+.add-user-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.add-user-form input {
+  flex: 1; min-width: 120px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(184,146,42,0.2);
+  color: #F7F3EC; font-size: 13px;
+  padding: 10px 12px; outline: none;
+  font-family: 'Lato', sans-serif;
+  transition: border-color 0.2s;
+}
+.add-user-form input:focus { border-color: rgba(184,146,42,0.5); }
+.add-user-form button {
+  background: #B8922A; color: #0E0A04;
+  border: none; cursor: pointer;
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 10px 20px; white-space: nowrap;
+  transition: background 0.2s;
+}
+.add-user-form button:hover { background: #D4AF5A; }
+
+.users-table { width: 100%; border-collapse: collapse; }
+.users-table th {
+  font-family: 'Cinzel', serif; font-size: 8px;
+  letter-spacing: 2px; color: rgba(184,146,42,0.45);
+  text-transform: uppercase; text-align: left;
+  padding: 8px 10px; border-bottom: 1px solid rgba(184,146,42,0.12);
+}
+.users-table td {
+  padding: 10px 10px; border-bottom: 1px solid rgba(184,146,42,0.07);
+  color: rgba(247,243,236,0.7); font-size: 13px;
+  font-family: 'Lato', sans-serif;
+}
+.users-table td.status { font-size: 10px; letter-spacing: 1px; }
+.status-pending { color: #e67e22; }
+.status-active  { color: #2ecc71; }
+.btn-del {
+  background: none; border: 1px solid rgba(192,57,43,0.3);
+  color: rgba(192,57,43,0.6); cursor: pointer;
+  font-size: 10px; padding: 4px 10px;
+  transition: all 0.2s; font-family: 'Cinzel', serif; letter-spacing: 1px;
+}
+.btn-del:hover { background: rgba(192,57,43,0.1); color: #c0392b; border-color: #c0392b; }
+.btn-reset {
+  background: none; border: 1px solid rgba(184,146,42,0.25);
+  color: rgba(184,146,42,0.5); cursor: pointer;
+  font-size: 10px; padding: 4px 10px; margin-right: 6px;
+  transition: all 0.2s; font-family: 'Cinzel', serif; letter-spacing: 1px;
+}
+.btn-reset:hover { color: #B8922A; border-color: #B8922A; }
+.admin-msg {
+  color: #2ecc71; font-size: 12px; margin-top: 10px;
+  font-family: 'Lato', sans-serif; min-height: 18px;
+}
+.admin-enter-ebook {
+  display: inline-block; margin-top: 8px;
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 12px 24px; cursor: pointer;
+  background: transparent; color: #B8922A;
+  border: 1px solid rgba(184,146,42,0.4);
+  transition: all 0.2s;
+}
+.admin-enter-ebook:hover { background: rgba(184,146,42,0.08); border-color: #B8922A; }
+</style>
+</head>
+
+
+<!-- AUTH OVERLAY -->
+<div id='auth-overlay'></div>
+
+<!-- ADMIN PANEL -->
+<div id='admin-panel' class='hidden'></div>
+
+
+<div class="shell">
+
+  <!-- HAMBURGER -->
+  <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+  <div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="sym">ʻOHANA</span>
+      <span class="sub">Ho'oponopono</span>
+    </div>
+    <ul class="nav-list">
+      <li><button onclick="goTo(0);closeSidebar()" class="active"><span class="nav-num">◈</span> Capa</button></li>
+      <li><button onclick="goTo(1);closeSidebar()"><span class="nav-num">01</span> Morrnah Simeona</button></li>
+      <li><button onclick="goTo(2);closeSidebar()"><span class="nav-num">02</span> Dr. Hew Len</button></li>
+      <li><button onclick="goTo(3);closeSidebar()"><span class="nav-num">03</span> Joe Vitale</button></li>
+      <li><button onclick="goTo(4);closeSidebar()"><span class="nav-num">04</span> Os 4 Gatilhos</button></li>
+      <li><button onclick="goTo(5);closeSidebar()"><span class="nav-num">05</span> Relacionamentos</button></li>
+      <li><button onclick="goTo(6);closeSidebar()"><span class="nav-num">06</span> Prosperidade</button></li>
+    </ul>
+    <div class="sidebar-footer">
+      <div class="progress-label">Progresso</div>
+      <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content-area">
+
+    <!-- CAPA -->
+    <div class="chapter dark active" id="ch-0">
+      <div class="cover-inner">
+        <p class="cover-eyebrow">Ebook Completo</p>
+        <h1 class="cover-title">Ho'opo<em>nopono</em></h1>
+        <div class="cover-rule"></div>
+        <p class="cover-desc">A sabedoria ancestral havaiana que transforma memórias de dor em limpeza interior, abrindo caminho para paz, prosperidade e amor verdadeiro.</p>
+        <p class="cover-meta">Sinto Muito · Me Perdoe · Te Amo · Sou Grato</p>
+      </div>
+    </div>
+
+    <!-- CAPÍTULO 1: MORRNAH -->
+    <div class="chapter light" id="ch-1">
+      <span class="ch-eyebrow">Capítulo 01</span>
+      <h2 class="ch-title">Morrnah Nalamaku Simeona</h2>
+      <p class="ch-sub">A mulher que transformou uma tradição ancestral havaiana em um método moderno de autocura para almas aflitas</p>
+      <div class="ch-divider"></div>
+
+      <p class="body-text">Antes de Ho'oponopono alcançar o mundo moderno como prática de limpeza interior, existia uma mulher que escolheu preservar, aprofundar e transformar uma sabedoria ancestral em algo acessível a pessoas comuns.</p>
+
+      <p class="body-text">Nascida no Havaí em 1913, Morrnah veio de uma linhagem profundamente conectada às tradições espirituais havaianas. Ela não surgiu apenas como estudiosa — mas como <strong>guardiã</strong>. Em uma época de mudanças culturais intensas, muitas tradições ancestrais corriam o risco de se perder, ser reduzidas ou mal interpretadas.</p>
+
+      <div class="callout">
+        <p>"A humanidade moderna estava adoecendo emocionalmente… e precisava desesperadamente de ferramentas espirituais de cura."</p>
+      </div>
+
+      <p class="body-text">Ela viu o que poucos conseguiam enxergar: que a sabedoria ancestral poderia ser o remédio para as feridas do mundo contemporâneo.</p>
+
+      <h3 class="section-heading">As Raízes Espirituais Havaianas</h3>
+
+      <p class="body-text">Originalmente, Ho'oponopono era uma prática comunitária e familiar — conduzida para restaurar harmonia entre pessoas, resolver conflitos e limpar desequilíbrios emocionais ou espirituais dentro de grupos.</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">A Prática Tradicional</div>
+          <p>O processo tradicional envolvia mediação, arrependimento, perdão e reconciliação. Sua essência era simples e profunda: <strong>Corrigir o que estava desalinhado.</strong></p>
+        </div>
+        <div class="card">
+          <div class="card-title">O Sofrimento Moderno</div>
+          <p>Morrnah compreendeu que o sofrimento humano moderno havia se tornado mais individualizado, psicológico e silencioso. As pessoas carregavam dores internas profundas, muitas vezes sem sequer compartilhar com outros.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">A Nova Necessidade</div>
+          <p>Ela percebeu que a limpeza precisava também acontecer <strong>dentro do indivíduo</strong>. A cura não poderia depender apenas de rituais coletivos — precisava ser acessível a cada alma em sofrimento.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">A Modernização do Método</h3>
+
+      <p class="body-text">Morrnah realizou algo extraordinário. Ela adaptou Ho'oponopono para um processo de autocura pessoal, tornando possível que qualquer pessoa pudesse praticar limpeza interior sem depender exclusivamente de rituais familiares tradicionais.</p>
+
+      <div class="pbox">
+        <div class="pbox-label">Self-I-Dentity through Ho'oponopono®</div>
+        <p>A essência permanecia espiritual, mas a aplicação se expandia. Agora, uma pessoa aflita poderia olhar para sua própria dor, suas memórias, seus padrões e começar um processo pessoal de purificação.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Tradição Preservada</div>
+          <p>A sabedoria ancestral havaiana manteve sua essência espiritual profunda.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Acesso Expandido</div>
+          <p>Qualquer pessoa, em qualquer lugar, poderia praticar a limpeza interior.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Cura Ativa</div>
+          <p>O indivíduo em sofrimento passa a participar ativamente da própria cura.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">A Visão Profunda de Morrnah</h3>
+
+      <p class="body-text">Morrnah ensinava que muitos problemas humanos podem estar ligados a <strong>memórias, programas e padrões repetitivos</strong> armazenados no subconsciente. Em vez de lutar apenas contra sintomas externos, sua proposta era limpar a origem energética e emocional desses padrões.</p>
+
+      <p class="body-text">Não se tratava apenas de "resolver problemas"… mas de <strong>purificar aquilo que os alimenta dentro de você.</strong></p>
+
+      <div class="tags">
+        <span class="tag">Medos</span><span class="tag">Traumas</span>
+        <span class="tag">Escassez</span><span class="tag">Rejeição</span>
+        <span class="tag">Culpa</span><span class="tag">Dor Emocional</span>
+      </div>
+
+      <h3 class="section-heading">Responsabilidade como Caminho de Poder</h3>
+
+      <p class="body-text">Um dos maiores legados de Morrnah foi ampliar o entendimento sobre responsabilidade interior. Não como culpa destrutiva… mas como <strong>participação consciente na limpeza.</strong></p>
+
+      <div class="callout">
+        <p>"O que em mim precisa ser purificado para que eu experimente mais paz?"</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">1 — Reação ao Caos</div>
+          <p>Viver apenas respondendo ao que acontece ao redor, sem autoridade interna.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">2 — Consciência Interior</div>
+          <p>Reconhecer que existe algo em mim que pode ser trabalhado e purificado.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">3 — Autoridade Espiritual</div>
+          <p>Restaurar o poder interno e participar ativamente da própria transformação.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Uma Curadora à Frente de Seu Tempo</h3>
+
+      <p class="body-text">Morrnah foi reconhecida por seu trabalho espiritual e por sua dedicação em levar esse processo de cura a diferentes partes do mundo, alcançando pessoas de culturas diversas. Ela ensinou que a limpeza interior poderia beneficiar não apenas o indivíduo, mas também famílias, ambientes e até padrões coletivos.</p>
+
+      <p class="body-text">Sua visão era ampla: ela não via cura apenas como alívio momentâneo — via como <strong>restauração profunda</strong>, abrindo caminho para que Ho'oponopono alcançasse pessoas modernas vivendo dores modernas.</p>
+
+      <h3 class="section-heading">O Legado que Continua Vivo</h3>
+
+      <p class="body-text">Sem Morrnah, talvez milhões de pessoas nunca tivessem conhecido Ho'oponopono como ferramenta de autocura. Ela construiu a ponte entre tradição e aplicação contemporânea.</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Preservação</div>
+          <p>Sua coragem preservou a essência de uma sabedoria ancestral que poderia ter se perdido.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Evolução</div>
+          <p>Ao mesmo tempo, permitiu que a tradição evoluísse para atender às necessidades do mundo moderno.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Alcance Global</div>
+          <p>Hoje, quando alguém pratica limpeza interior diante de ansiedade, sofrimento ou escassez, existe um eco desse legado.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Transformação</div>
+          <p>Sua contribuição não foi apenas histórica — foi transformacional, tocando almas em todos os continentes.</p>
+        </div>
+      </div>
+
+      <div class="big-quote">Morrnah não apenas preservou uma tradição — ela abriu um caminho para que milhões pudessem transformar dor em limpeza interior.</div>
+
+      <!-- DOWNLOAD -->
+      <div class="download-section">
+        <span class="download-label">Material do Capítulo 01</span>
+        <p class="download-desc">Baixe o PDF completo de Morrnah Nalamaku Simeona com todos os detalhes, imagens e conteúdo deste capítulo.</p>
+        <a class="btn-download" href="Morrnah-Nalamaku-Simeona.pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF — Capítulo 01
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPÍTULO 2: HEW LEN -->
+    <div class="chapter dark" id="ch-2">
+      <span class="ch-eyebrow">Capítulo 02</span>
+      <h2 class="ch-title">Dr. Ihaleakalá Hew Len</h2>
+      <p class="ch-sub">O homem que revelou ao mundo como a limpeza interior pode transformar dores profundas, padrões extremos e realidades aparentemente impossíveis</p>
+      <div class="ch-divider"></div>
+
+      <p class="body-text">Algumas histórias atravessam fronteiras porque desafiam tudo o que acreditamos ser possível. A trajetória de Dr. Ihaleakalá Hew Len é uma delas. Discípulo direto de Morrnah Nalamaku Simeona, Dr. Hew Len aprofundou e viveu os princípios do Ho'oponopono de forma tão radical que sua história se tornou mundialmente conhecida.</p>
+
+      <p class="body-text">Ele não ficou apenas na teoria. <strong>Ele aplicou. Observou. Persistiu.</strong> E sua jornada se tornou símbolo de uma pergunta poderosa:</p>
+
+      <div class="callout">
+        <p>"Até onde a limpeza interior pode impactar a realidade?"</p>
+      </div>
+
+      <h3 class="section-heading">O Contexto: Dor Extrema e Sofrimento Humano</h3>
+
+      <p class="body-text">A história que tornou Dr. Hew Len conhecido internacionalmente está ligada ao período em que trabalhou em um ambiente psiquiátrico de segurança máxima no Havaí, onde pacientes considerados altamente perigosos viviam em sofrimento psicológico intenso.</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">O Ambiente</div>
+          <p>O local era descrito como pesado, emocionalmente desafiador e marcado por medo. Profissionais frequentemente enfrentavam exaustão e tensão constante.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">A Abordagem Incomum</div>
+          <p>Ao invés de focar apenas em "consertar externamente", Dr. Hew Len aprofundou a prática de olhar para dentro e limpar o que, em sua percepção espiritual, estava sendo apresentado à sua consciência.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">A Notoriedade</div>
+          <p>Essa abordagem chamou atenção justamente por sua profundidade incomum — uma forma radical de responsabilidade que poucos haviam considerado possível.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">A Pergunta que Muda Tudo</h3>
+
+      <p class="body-text">Ao conhecer sua abordagem, muitas pessoas pensam: "Como alguém pode contribuir para mudança sem controlar diretamente o outro?" A resposta central está em um princípio transformador:</p>
+
+      <div class="callout">
+        <p>Se algo está aparecendo em sua realidade e provocando sofrimento, existe uma oportunidade de limpeza em você.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="step-title">O que isso significa na prática</div>
+          <p class="body-text" style="font-size:17px; margin-top:12px;">Essa visão não significa aceitar abusos ou negar responsabilidades externas. Mas propõe que sua transformação interior pode alterar sua relação com experiências e padrões.</p>
+          <p class="body-text" style="font-size:17px;">Dr. Hew Len praticava continuamente limpeza diante do que percebia. Não era passividade. Era <strong>responsabilidade espiritual profunda.</strong></p>
+        </div>
+        <div>
+          <div class="step-title">Responsabilidade ≠ Culpa</div>
+          <p class="body-text" style="font-size:17px; margin-top:12px;">Não é dizer: "Tudo é minha culpa." É dizer: <strong>"Existe algo em mim que posso purificar agora."</strong></p>
+          <p class="body-text" style="font-size:17px;">Essa mudança pode devolver senso de direção a pessoas que se sentiam totalmente presas. Porque, mesmo em meio ao caos, ainda pode existir um próximo passo: limpar.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">O Método Aplicado à Própria Dor</h3>
+
+      <p class="body-text">Aqui está uma das maiores lições de sua história para qualquer pessoa aflita: <strong>Você não precisa esperar que todos mudem para começar seu processo de cura.</strong></p>
+
+      <p class="body-text">Se você vive uma relação tóxica, medo ou sofrimento emocional, a pergunta não é apenas: "Como faço isso desaparecer?" — mas também: <strong>"O que esta dor ativa em mim que precisa ser limpo?"</strong></p>
+
+      <div class="cards-grid">
+        <div class="card"><div class="card-title">Rejeição</div><p>Limpe a memória de não ser escolhido e restaure sua autoestima.</p></div>
+        <div class="card"><div class="card-title">Abandono</div><p>Dissolva o medo de ser deixado e reconecte-se com sua completude.</p></div>
+        <div class="card"><div class="card-title">Culpa</div><p>Libere o peso de carregar responsabilidades que drenam sua energia emocional.</p></div>
+        <div class="card"><div class="card-title">Escassez</div><p>Limpe as memórias que associam sofrimento à falta de abundância.</p></div>
+        <div class="card"><div class="card-title">Raiva</div><p>Transforme a raiva em intenção de purificação ao invés de combustível para o ciclo.</p></div>
+      </div>
+
+      <h3 class="section-heading">As 4 Frases como Ferramenta Viva</h3>
+
+      <p class="body-text">A prática de Dr. Hew Len tornou mundialmente conhecidas as quatro frases. Mas a profundidade não estava apenas nas palavras — estava na <strong>intenção.</strong></p>
+
+      <div class="phrase-item">
+        <div class="phrase-num">01</div>
+        <div>
+          <span class="phrase-main">Sinto Muito</span>
+          <span class="phrase-tag">Reconheço a Dor</span>
+          <p class="phrase-desc">Interromper o automático e reconhecer que existe uma memória pedindo cura.</p>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-num">02</div>
+        <div>
+          <span class="phrase-main">Me Perdoe</span>
+          <span class="phrase-tag">Libero o Peso</span>
+          <p class="phrase-desc">A escolha de não continuar emocionalmente acorrentado a padrões que drenam energia.</p>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-num">03</div>
+        <div>
+          <span class="phrase-main">Te Amo</span>
+          <span class="phrase-tag">Transmuto</span>
+          <p class="phrase-desc">Energia restauradora — levando presença curativa à memória, à dor, à criança interior ferida.</p>
+        </div>
+      </div>
+      <div class="phrase-item">
+        <div class="phrase-num">04</div>
+        <div>
+          <span class="phrase-main">Sou Grato</span>
+          <span class="phrase-tag">Confio na Limpeza</span>
+          <p class="phrase-desc">Gratidão como confiança durante o processo — mesmo antes de ver o resultado.</p>
+        </div>
+      </div>
+
+      <div class="pbox" style="margin-top:36px;">
+        <div class="pbox-label">Como Aplicar às Situações Reais</div>
+        <p>Rejeição amorosa: "Divindade, limpe em mim a memória de rejeição e não merecimento." • Dívidas: "Divindade, limpe em mim as memórias de escassez e medo." • Ansiedade: "Divindade, limpe em mim tudo o que alimenta esse sofrimento." A prática muda sua posição emocional — você passa a <strong style="color:var(--gold-light)">participar da purificação da dor.</strong></p>
+      </div>
+
+      <h3 class="section-heading">O Legado de Dr. Hew Len para Sua Vida</h3>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Sua ansiedade pode se tornar prática</div>
+          <p>Cada momento de angústia é uma oportunidade de limpeza, não apenas de sofrimento.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Sua dor pode se tornar oração</div>
+          <p>O que dói pode ser transformado em intenção de purificação profunda.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Seu medo pode se tornar entrega</div>
+          <p>Confiar no processo de limpeza é um ato de coragem espiritual.</p>
+        </div>
+      </div>
+
+      <div class="big-quote">Dr. Hew Len mostrou ao mundo que, quando você limpa dentro, sua relação com o impossível pode começar a mudar.</div>
+
+      <!-- DOWNLOAD -->
+      <div class="download-section">
+        <span class="download-label">Material do Capítulo 02</span>
+        <p class="download-desc">Baixe o PDF completo sobre Dr. Ihaleakalá Hew Len com todos os detalhes e conteúdo deste capítulo.</p>
+        <a class="btn-download" href="Dr-Ihaleakala-Hew-Len.pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF — Capítulo 02
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPÍTULO 3: JOE VITALE -->
+    <div class="chapter light" id="ch-3">
+      <span class="ch-eyebrow">Capítulo 03</span>
+      <h2 class="ch-title">Joe Vitale e a Expansão Mundial</h2>
+      <p class="ch-sub">Como uma sabedoria ancestral havaiana atravessou fronteiras e alcançou milhões de pessoas aflitas, desesperadas e em busca de cura</p>
+      <div class="ch-divider"></div>
+
+      <p class="body-text">Ao longo da história, muitas verdades profundas permaneceram restritas a poucos. Não porque não fossem poderosas — mas porque ainda não haviam encontrado uma ponte capaz de traduzi-las para o mundo moderno.</p>
+
+      <p class="body-text">Morrnah preservou e modernizou. Dr. Ihaleakalá Hew Len aprofundou e viveu. Mas foi <strong>Joe Vitale</strong> quem ajudou a amplificar essa sabedoria para uma audiência global, levando seus princípios a milhões de pessoas emocionalmente feridas, financeiramente aflitas e espiritualmente cansadas.</p>
+
+      <div class="cards-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card">
+          <div class="card-title">Comunicador</div>
+          <p>Traduziu conceitos espirituais profundos para linguagem acessível a qualquer pessoa no mundo.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Tradutor</div>
+          <p>Conectou sabedoria ancestral ao público moderno de todos os continentes.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Amplificador</div>
+          <p>Levou a mensagem a milhões ao redor do mundo através do livro <em>Zero Limits</em>.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">A Própria Jornada de Dor de Joe Vitale</h3>
+
+      <p class="body-text">A conexão de Joe com transformação não nasceu na abundância — <strong>nasceu na escassez.</strong> Antes de se tornar conhecido internacionalmente, Joe enfrentou dificuldades financeiras intensas, instabilidade e experiências profundas de limitação.</p>
+
+      <div class="step">
+        <span class="step-num">01</span>
+        <div>
+          <div class="step-title">O Início na Escassez</div>
+          <p class="step-text">Antes de se tornar conhecido internacionalmente, Joe enfrentou dificuldades financeiras intensas, instabilidade e experiências profundas de limitação.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div>
+          <div class="step-title">A Busca por Mudança</div>
+          <p class="step-text">Sua busca não era superficial — vinha da dor real. Ele conhecia a angústia da falta e o peso emocional da escassez.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div>
+          <div class="step-title">Estudos e Transformação</div>
+          <p class="step-text">Ao longo de sua jornada, estudou desenvolvimento pessoal, leis mentais, espiritualidade e transformação profunda.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <div>
+          <div class="step-title">O Encontro com a Limpeza</div>
+          <p class="step-text">Ao conhecer a profundidade da história de Dr. Hew Len, encontrou algo que transcendia motivação comum: <strong>limpeza interior.</strong></p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Zero Limits: Quando o Mundo Começou a Ouvir</h3>
+
+      <p class="body-text">A colaboração entre Joe Vitale e Dr. Hew Len resultou em uma das obras mais conhecidas ligadas à expansão moderna do Ho'oponopono. O livro <em>Zero Limits</em> apresentou ao mundo moderno conceitos como estado zero, limpeza de memórias, responsabilidade e purificação interior.</p>
+
+      <p class="body-text">Isso foi revolucionário porque trouxe espiritualidade prática para dores cotidianas — pessoas feridas, endividadas, desesperadas e em busca de paz.</p>
+
+      <div class="callout">
+        <p>Muitas pessoas estavam tentando desesperadamente controlar o externo… sem nunca limpar o interno. E se parte da mudança começar dentro?</p>
+      </div>
+
+      <h3 class="section-heading">O que Joe Ajudou Milhões a Entender</h3>
+
+      <p class="body-text">Você não precisa esperar o mundo mudar completamente para começar sua transformação. Essa ideia tocou milhões porque muitas pessoas vivem emocionalmente condicionadas a fatores externos:</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">"Quando eu tiver dinheiro…"</div>
+          <p>A espera pela abundância financeira como condição para agir.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">"Quando ele ou ela mudar…"</div>
+          <p>A dependência da mudança do outro para encontrar paz.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">"Quando minha ansiedade passar…"</div>
+          <p>A espera por condições perfeitas que nunca chegam.</p>
+        </div>
+      </div>
+
+      <div class="pbox">
+        <div class="pbox-label">Percepção Central</div>
+        <p>Ho'oponopono propõe outra direção: <strong>A limpeza pode começar agora.</strong> Mesmo em meio à dor, uma pessoa pode iniciar purificação.</p>
+      </div>
+
+      <h3 class="section-heading">Como Isso se Aplica à Sua Vida</h3>
+
+      <p class="body-text">A expansão moderna do Ho'oponopono significa que você não precisa estar no Havaí, nem em um ritual ancestral complexo, para começar. Você pode praticar agora.</p>
+
+      <div class="highlight-box">
+        <p><strong>Exemplo de Prática:</strong><br>"Divindade, limpe em mim a memória de escassez."<br>"Sinto muito. Me perdoe. Te amo. Sou grato."<br><br>Essa simplicidade foi parte do que tornou a mensagem tão poderosa globalmente. Não é necessário um ritual complexo — apenas presença e intenção verdadeira.</p>
+      </div>
+
+      <h3 class="section-heading">O Risco da Superficialidade</h3>
+
+      <p class="body-text">Com a popularização, muitas pessoas passaram a repetir frases mecanicamente, esperando resultados instantâneos sem profundidade real.</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Não basta pronunciar palavras</div>
+          <p>A repetição mecânica sem consciência não produz limpeza verdadeira.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">É preciso praticar consciência</div>
+          <p>Joe também reforçou que a transformação profunda exige presença real e intenção genuína.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Limpeza verdadeira, não performance</div>
+          <p>Sua dor não precisa de performance espiritual — precisa de limpeza verdadeira e comprometida.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">De Conhecimento à Transformação</h3>
+
+      <p class="body-text">Joe Vitale ajudou a levar Ho'oponopono ao mundo. Mas ouvir sobre cura não é o mesmo que praticá-la. A pergunta deixa de ser: "Essa sabedoria funciona?" — e passa a ser: <strong>"Eu vou aplicá-la à minha própria dor?"</strong></p>
+
+      <p class="body-text">A expansão mundial desta mensagem aconteceu porque milhões de pessoas estavam buscando algo mais profundo do que distração… Estavam buscando <strong>libertação.</strong></p>
+
+      <div class="big-quote">Joe Vitale ajudou o mundo a ouvir sobre Ho'oponopono — mas sua verdadeira transformação começa quando você decide praticá-lo.</div>
+
+      <!-- DOWNLOAD -->
+      <div class="download-section">
+        <span class="download-label">Material do Capítulo 03</span>
+        <p class="download-desc">Baixe o PDF completo sobre Joe Vitale e a Expansão Mundial do Ho'oponopono.</p>
+        <a class="btn-download" href="Joe-Vitale-e-a-Expansao-Mundial-do-Hooponopono.pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF — Capítulo 03
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPÍTULO 4: OS 4 GATILHOS -->
+    <div class="chapter dark" id="ch-4">
+      <span class="ch-eyebrow">Capítulo 04</span>
+      <h2 class="ch-title">Os 4 Gatilhos Sagrados</h2>
+      <p class="ch-sub">Sinto Muito · Me Perdoe · Te Amo · Sou Grato — As quatro chaves espirituais que podem iniciar a limpeza da dor, dissolver padrões e restaurar sua paz interior</p>
+      <div class="ch-divider"></div>
+
+      <div class="callout">
+        <p>"As quatro frases não apagam instantaneamente toda dor — mas podem iniciar a purificação que transforma sua relação com ela."</p>
+      </div>
+
+      <h3 class="section-heading">Quando Sua Dor Não Responde Mais a Soluções Superficiais</h3>
+
+      <p class="body-text">Há momentos em que conselhos comuns já não bastam. "Pense positivo." "Supere isso." "Esqueça." Quem está emocionalmente ferido sabe: algumas dores não desaparecem porque alguém mandou seguir em frente.</p>
+
+      <p class="body-text">Existem feridas que permanecem. Rejeição. Abandono. Escassez. Ansiedade. Culpa. Autossabotagem. Nesses momentos, muitas pessoas percebem que não precisam apenas de distração — precisam de <strong>purificação.</strong></p>
+
+      <div class="section-divider"></div>
+
+      <div class="phrase-item">
+        <div class="phrase-num">01</div>
+        <div>
+          <span class="phrase-main">Sinto Muito</span>
+          <span class="phrase-tag">O Despertar da Consciência</span>
+          <p class="phrase-desc">No Ho'oponopono, "Sinto muito" não é culpa — é consciência. É reconhecer que existe uma dor, uma memória ou um padrão em você pedindo cura. É interromper o automático.</p>
+          <p class="phrase-desc">Ao invés de perguntar "Por que isso está acontecendo comigo?", você abre espaço para: <strong style="color:var(--gold-light)">"O que em mim pode estar sendo ativado e precisa de limpeza?"</strong></p>
+          <div class="highlight-box" style="margin-top:16px;">
+            <p>Você vive rejeição constante. "Sinto muito" representa: "Reconheço que existe uma dor profunda em mim ligada a isso." Feridas ignoradas tendem a se repetir.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="phrase-item">
+        <div class="phrase-num">02</div>
+        <div>
+          <span class="phrase-main">Me Perdoe</span>
+          <span class="phrase-tag">Libertando o Peso que Aprisiona</span>
+          <p class="phrase-desc">Muitas pessoas carregam culpas silenciosas por anos. Culpa por escolhas. Por perdas. Por não ter percebido sinais. Por ter permanecido onde doía. Além disso, também carregam ressentimentos contra outras pessoas.</p>
+          <p class="phrase-desc">"Me perdoe" é um pedido de liberação. Não necessariamente submissão. Não negação da dor. Mas a <strong style="color:var(--gold-light)">escolha de não continuar emocionalmente acorrentado.</strong></p>
+          <div class="highlight-box" style="margin-top:16px;">
+            <p>"Me perdoe por manter viva em mim uma memória que continua me ferindo." Essa prática pode dissolver pesos invisíveis que drenam energia emocional.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="phrase-item">
+        <div class="phrase-num">03</div>
+        <div>
+          <span class="phrase-main">Te Amo</span>
+          <span class="phrase-tag">A Força que Reorganiza o Caos</span>
+          <p class="phrase-desc">Talvez esta seja a frase mais poderosa e, ao mesmo tempo, mais subestimada. No Ho'oponopono, amor não se limita a romance. <strong style="color:var(--gold-light)">Amor aqui pode ser energia restauradora.</strong></p>
+          <p class="phrase-desc">Quando você diz "Te amo", pode estar levando presença curativa à memória, à dor, à criança interior ferida ou ao próprio processo de limpeza.</p>
+          <div class="highlight-box" style="margin-top:16px;">
+            <p>Se você se sente insuficiente: "Te amo" pode começar a tocar justamente a parte sua que mais se rejeita. Isso não é fraqueza. É restauração.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="phrase-item">
+        <div class="phrase-num">04</div>
+        <div>
+          <span class="phrase-main">Sou Grato</span>
+          <span class="phrase-tag">Confiança Antes da Prova</span>
+          <p class="phrase-desc">A maioria das pessoas agradece apenas quando já vê resultado. Mas Ho'oponopono propõe uma postura mais profunda: <strong style="color:var(--gold-light)">gratidão como confiança durante o processo.</strong></p>
+          <p class="phrase-desc">"Sou grato" pode significar: "Confio que a limpeza está acontecendo, mesmo que eu ainda não veja tudo claramente." Essa prática pode reduzir desespero e resistência.</p>
+          <div class="highlight-box" style="margin-top:16px;">
+            <p>Você enfrenta medo financeiro. Ao invés de apenas pânico: "Sou grato pela limpeza das memórias que alimentam essa dor." A gratidão muda sua energia diante do problema.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Como Usar as 4 Frases Corretamente</h3>
+
+      <p class="body-text">Um erro comum é repetir mecanicamente, sem presença. A profundidade está na <strong>intenção.</strong></p>
+
+      <div class="step">
+        <span class="step-num">01</span>
+        <div>
+          <div class="step-title">Identifique a dor</div>
+          <p class="step-text">Ex.: medo de abandono, ansiedade, escassez financeira, rejeição em relacionamentos.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div>
+          <div class="step-title">Nomeie internamente</div>
+          <p class="step-text">"Estou limpando em mim essa memória." Dê nome ao que está sendo trabalhado.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div>
+          <div class="step-title">Repita conscientemente</div>
+          <p class="step-text">Sinto muito · Me perdoe · Te amo · Sou grato. Respire. Sinta. Permita. Não use como fuga. Use como purificação.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Aplicações Reais na Vida Cotidiana</h3>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Relacionamentos</div>
+          <p>Limpar rejeição, ciúme, dependência emocional, medo de abandono.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Finanças</div>
+          <p>Limpar escassez, culpa, medo de perder, autossabotagem financeira.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Ansiedade</div>
+          <p>Limpar excesso de controle, insegurança, memórias repetitivas de sofrimento.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Autovalorização</div>
+          <p>Limpar crenças de insuficiência, não merecimento e autorrejeição.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p>"O que em mim está pronto para ser limpo agora?" — Essa pergunta pode mudar sua relação com a dor.</p>
+      </div>
+
+      <h3 class="section-heading">Quatro Frases, Uma Nova Direção</h3>
+
+      <p class="body-text">Talvez sua dor hoje pareça grande demais. Mas grandes transformações frequentemente começam em práticas pequenas e constantes.</p>
+
+      <div class="pbox">
+        <div class="pbox-label">Síntese das 4 Frases</div>
+        <p><strong style="color:var(--gold-light)">Sinto Muito</strong> — Eu reconheço<br><strong style="color:var(--gold-light)">Me Perdoe</strong> — Eu libero<br><strong style="color:var(--gold-light)">Te Amo</strong> — Eu transformo<br><strong style="color:var(--gold-light)">Sou Grato</strong> — Eu confio</p>
+      </div>
+
+      <p class="body-text">Essas palavras podem parecer simples… mas, quando praticadas profundamente, podem se tornar um caminho diário de retorno à paz. Você não precisa resolver toda sua vida hoje. <strong>Mas pode começar a limpar hoje.</strong></p>
+
+      <!-- DOWNLOAD -->
+      <div class="download-section">
+        <span class="download-label">Material do Capítulo 04</span>
+        <p class="download-desc">Baixe o PDF completo sobre Os 4 Gatilhos Sagrados com todos os detalhes e práticas deste capítulo.</p>
+        <a class="btn-download" href="Untitled__1_.pdf" download="Os-4-Gatilhos-Sagrados.pdf">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF — Capítulo 04
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPÍTULO 5: RELACIONAMENTOS -->
+    <div class="chapter light" id="ch-5">
+      <span class="ch-eyebrow">Capítulo 05</span>
+      <h2 class="ch-title">Autocura nos Relacionamentos</h2>
+      <p class="ch-sub">Como aplicar Ho'oponopono para curar rejeição, abandono, traumas afetivos e padrões emocionais que sabotam sua paz</p>
+      <div class="ch-divider"></div>
+
+      <p class="body-text">Poucas dores atingem tão profundamente quanto as dores emocionais ligadas a relacionamentos. Rejeição pode quebrar a autoestima de forma silenciosa e duradoura. Traição pode destruir a confiança construída ao longo de anos. Abandono pode ativar feridas antigas que dormiam adormecidas.</p>
+
+      <div class="two-col">
+        <div>
+          <div class="step-title">O Ciclo Invisível</div>
+          <p class="body-text" style="font-size:17px; margin-top:12px;">Muitas pessoas seguem em frente por fora… mas permanecem emocionalmente presas por dentro. Mudam de parceiro. Mudam de cenário. Mudam de discurso. Mas <strong>repetem os mesmos padrões.</strong></p>
+          <p class="body-text" style="font-size:17px;">Porque frequentemente não trocaram memórias… Apenas trocaram personagens.</p>
+        </div>
+        <div>
+          <div class="step-title">O que pode acontecer</div>
+          <ul class="content-list" style="margin-top:12px;">
+            <li>Rejeição — quebra a autoestima silenciosamente</li>
+            <li>Traição — destrói a confiança construída</li>
+            <li>Abandono — ativa feridas adormecidas</li>
+            <li>Relação Tóxica — faz esquecer o próprio valor</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="section-heading">O Problema Nem Sempre É Apenas a Pessoa… Pode Ser a Ferida</h3>
+
+      <p class="body-text">É natural pensar: "Meu sofrimento existe por causa daquela pessoa." Em alguns casos, houve atitudes reais que causaram dor. Mas Ho'oponopono convida a uma investigação mais profunda:</p>
+
+      <div class="callout">
+        <p>"Que memória, ferida ou crença essa experiência ativou em mim?"</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Medo de Abandono</div>
+          <p>A sensação de que as pessoas sempre vão embora, não importa o que você faça.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Não Merecimento</div>
+          <p>A crença de que você não é digno de receber amor verdadeiro e duradouro.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Dependência Emocional</div>
+          <p>A necessidade de aprovação constante para se sentir inteiro e seguro.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Autodesvalorização</div>
+          <p>O hábito de minimizar o próprio valor diante dos outros.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p>Essa pergunta não serve para culpar você. Serve para <strong>devolver poder de cura.</strong> Porque quando você limpa a ferida… pode começar a quebrar o ciclo.</p>
+      </div>
+
+      <h3 class="section-heading">Passo 1: Identifique a Dor Real</h3>
+
+      <div class="step">
+        <span class="step-num">P·01</span>
+        <div>
+          <div class="step-title">Exercício de Autoconhecimento</div>
+          <p class="step-text">Complete a frase com honestidade e sem julgamento: <strong>"Essa relação desperta em mim o medo de ___________."</strong> Escreva a primeira resposta que surgir. Não filtre. Não edite.</p>
+          <p class="step-text" style="margin-top:12px;">Exemplos: Ser trocado por alguém melhor · Não ser amado de verdade · Ser insuficiente para o outro · Ficar sozinho para sempre · Não merecer felicidade.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Passo 2: Aplique Ho'oponopono à Memória Específica</h3>
+
+      <p class="body-text">Depois de identificar a ferida, direcione a prática diretamente a ela.</p>
+
+      <div class="pbox">
+        <div class="pbox-label">Exemplo de Intenção</div>
+        <p>"Divindade, limpe em mim a memória de rejeição e não merecimento."</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Sinto Muito</div>
+          <p>Pela dor e pelas memórias que carrego em mim, reconheço sua presença com compaixão.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Me Perdoe</div>
+          <p>Por carregar ou repetir esse padrão, por não ter percebido antes o que precisava ser curado.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Te Amo</div>
+          <p>Porque escolho restaurar essa parte ferida de mim com amor incondicional e gentileza.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Sou Grato</div>
+          <p>Porque a limpeza já começou e cada passo me aproxima da minha liberdade emocional.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p><strong>Importante:</strong> Pratique especialmente quando os gatilhos surgirem. Não apenas quando estiver bem. A cura acontece no momento da dor, não apenas na calmaria.</p>
+      </div>
+
+      <h3 class="section-heading">Passo 3: Pare de Controlar o Outro como Única Saída</h3>
+
+      <p class="body-text">Uma das maiores armadilhas é acreditar que sua paz depende exclusivamente da mudança de outra pessoa: "Se ele mudar…" "Se ela voltar…" "Se ele me valorizar…" Essa postura entrega seu poder interior para fora de você.</p>
+
+      <div class="callout">
+        <p>Ho'oponopono muda esse eixo. A prática começa por você. "O que esta dor ativa em mim que posso limpar agora?" Isso não significa aceitar desrespeito. Significa restaurar sua <strong>autonomia emocional.</strong></p>
+      </div>
+
+      <h3 class="section-heading">Passo 4: Ritual de 21 Dias — Curando Relações Passadas</h3>
+
+      <p class="body-text">Muitas pessoas dizem que seguiram em frente… mas ainda reagem com base em dores antigas. Sinais de memórias não limpas: desconfiança excessiva, carência extrema, medo de entrega, autoproteção exagerada.</p>
+
+      <div class="step">
+        <span class="step-num">P·04</span>
+        <div>
+          <div class="step-title">Ritual de Limpeza — 21 dias</div>
+          <p class="step-text">Escreva o nome da pessoa ou situação. Depois diga diariamente: <strong>"Limpo em mim todas as memórias de dor, apego, culpa ou ressentimento ligadas a esta experiência."</strong> Repita as quatro frases. O objetivo não é apagar o aprendizado — é dissolver a prisão emocional.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Passo 5: Restaurando o Relacionamento Mais Importante — o Seu com Você</h3>
+
+      <p class="body-text">Muitas vezes, após dores repetidas, a pessoa perde conexão consigo mesma. Aceita menos do que merece. Duvida do próprio valor. Se culpa constantemente.</p>
+
+      <div class="pbox">
+        <div class="pbox-label">Prática no Espelho</div>
+        <p>"Sinto muito por todas as vezes que me abandonei." · "Me perdoe por esquecer meu valor." · "Te amo por continuar aqui." · "Sou grato pela minha cura."</p>
+      </div>
+
+      <h3 class="section-heading">O Amor Pode Ser Mais Saudável Quando Há Menos Feridas Comandando</h3>
+
+      <p class="body-text">Muitas pessoas buscam desesperadamente "a pessoa certa"… sem antes limpar dores que contaminam qualquer relação. Sem cura interna, até relações promissoras podem ser sabotadas por medos antigos.</p>
+
+      <div class="cards-grid">
+        <div class="card"><div class="card-title">Rejeição</div><p>Limpe a memória de não ser escolhido e restaure sua autoestima.</p></div>
+        <div class="card"><div class="card-title">Abandono</div><p>Dissolva o medo de ser deixado e reconecte-se com sua completude.</p></div>
+        <div class="card"><div class="card-title">Ciúme</div><p>Limpe a insegurança que transforma amor em controle e sofrimento.</p></div>
+        <div class="card"><div class="card-title">Autossabotagem</div><p>Dissolva os padrões que impedem você de receber o que merece.</p></div>
+        <div class="card"><div class="card-title">Dependência</div><p>Restaure sua autonomia emocional e ame a partir da escolha, não da necessidade.</p></div>
+      </div>
+
+      <div class="big-quote">Você não precisa apenas encontrar o amor — muitas vezes, precisa primeiro limpar as feridas que impedem você de vivê-lo com paz.</div>
+
+      <!-- DOWNLOAD -->
+      <div class="download-section">
+        <span class="download-label">Material do Capítulo 05</span>
+        <p class="download-desc">Baixe o PDF completo de Autocura nos Relacionamentos com todos os detalhes e exercícios deste capítulo.</p>
+        <a class="btn-download" href="Autocura-nos-Relacionamentos.pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF — Capítulo 05
+        </a>
+      </div>
+    </div>
+
+    <!-- CAPÍTULO 6: PROSPERIDADE -->
+    <div class="chapter dark" id="ch-6">
+      <span class="ch-eyebrow">Capítulo 06</span>
+      <h2 class="ch-title">Prosperidade e Finanças</h2>
+      <p class="ch-sub">Como aplicar Ho'oponopono para limpar escassez, medo financeiro, autossabotagem e padrões invisíveis que bloqueiam sua abundância</p>
+      <div class="ch-divider"></div>
+
+      <h3 class="section-heading">Quando a Falta de Dinheiro Fere Mais do que as Contas</h3>
+
+      <p class="body-text">Para muitas pessoas, problemas financeiros não significam apenas números. Significam <strong>medo. Vergonha. Ansiedade. Discussões. Insônia. Sensação de fracasso.</strong></p>
+
+      <p class="body-text">A escassez pode ferir profundamente a autoestima e a esperança. Não é apenas sobre boletos… É sobre o peso emocional de sentir que nunca é suficiente.</p>
+
+      <div class="two-col">
+        <div>
+          <div class="step-title">O Ciclo Invisível</div>
+          <p class="body-text" style="font-size:17px; margin-top:12px;">Muitas pessoas vivem em estado constante de sobrevivência: trabalham, tentam, lutam — mas ainda sentem como se algo invisível as puxasse de volta para a falta.</p>
+        </div>
+        <div>
+          <div class="step-title">Pensamentos que Viram Programas</div>
+          <div class="tags" style="margin-top:14px;">
+            <span class="tag">"Dinheiro nunca fica comigo."</span>
+            <span class="tag">"Eu nasci para sofrer."</span>
+            <span class="tag">"Prosperidade não é para mim."</span>
+            <span class="tag">"Não importa o quanto eu tente."</span>
+          </div>
+          <p class="body-text" style="font-size:16px; margin-top:14px;">Com o tempo, esses pensamentos deixam de ser apenas frases e se tornam <strong>programas emocionais.</strong></p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Escassez Também Pode Ser uma Memória</h3>
+
+      <p class="body-text">Muitas crenças sobre dinheiro começam muito antes da vida adulta. Frases familiares, experiências difíceis ou medos repetidos podem moldar profundamente sua relação com prosperidade.</p>
+
+      <div class="cards-grid">
+        <div class="card"><div class="card-title">"Dinheiro é sofrimento."</div><p>Crença que associa prosperidade a dor e esforço interminável.</p></div>
+        <div class="card"><div class="card-title">"Rico é ganancioso."</div><p>Crença que cria conflito interno entre desejar e permitir abundância.</p></div>
+        <div class="card"><div class="card-title">"Nunca sobra."</div><p>Programa de escassez que se torna profecia autorrealizável.</p></div>
+        <div class="card"><div class="card-title">"Você precisa se sacrificar para merecer."</div><p>Crença que vincula merecimento ao sofrimento contínuo.</p></div>
+      </div>
+
+      <p class="body-text">Mesmo inconscientemente, essas ideias podem criar conflitos internos profundos. A pessoa quer prosperar… mas teme prosperidade. Deseja abundância… mas carrega culpa ou medo.</p>
+
+      <div class="cards-grid" style="max-width:680px;">
+        <div class="card">
+          <div class="card-title">Isso Pode Gerar Autossabotagem Financeira</div>
+          <p>Recebe uma oportunidade… mas <strong style="color:var(--gold-light)">paralisa</strong> · Ganha mais… mas <strong style="color:var(--gold-light)">perde rapidamente</strong> · Deseja crescer… mas se sente <strong style="color:var(--gold-light)">indigno</strong></p>
+        </div>
+        <div class="card">
+          <div class="card-title">A Proposta do Ho'oponopono</div>
+          <p>Ho'oponopono propõe limpar essas memórias internas — não apenas mudar comportamentos externos, mas dissolver os padrões emocionais que sustentam a escassez. A limpeza começa de dentro para fora.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Passo 1: Identifique Sua Ferida Financeira Real</h3>
+
+      <p class="body-text">Antes de limpar, seja profundamente honesto. O que mais dói em você quando o assunto é dinheiro?</p>
+
+      <div class="cards-grid">
+        <div class="card"><div class="card-title">Medo de Faltar</div><p>Ansiedade constante de que os recursos nunca serão suficientes.</p></div>
+        <div class="card"><div class="card-title">Dívidas</div><p>Peso emocional das obrigações financeiras acumuladas.</p></div>
+        <div class="card"><div class="card-title">Vergonha</div><p>Sentimento de que a situação financeira define seu valor.</p></div>
+        <div class="card"><div class="card-title">Incapacidade</div><p>Crença de que você não é capaz de mudar sua realidade.</p></div>
+        <div class="card"><div class="card-title">Culpa</div><p>Sentir-se errado por desejar prosperidade e abundância.</p></div>
+      </div>
+
+      <div class="step">
+        <span class="step-num">P·01</span>
+        <div>
+          <div class="step-title">Exercício Prático</div>
+          <p class="step-text">Complete a frase: <strong>"O dinheiro me faz sentir ______."</strong> — Inseguro? Pequeno? Ansioso? Desesperado? Indigno? Agora você começou a acessar a memória emocional por trás da escassez.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">Passo 2: Limpe a Crença, Não Apenas o Sintoma</h3>
+
+      <p class="body-text">Depois de identificar sua dor central, direcione a prática diretamente a ela.</p>
+
+      <div class="pbox">
+        <div class="pbox-label">Intenção de Limpeza Financeira</div>
+        <p>"Divindade, limpe em mim todas as memórias de escassez, medo e sofrimento ligadas ao dinheiro."</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-title">Sinto Muito</div>
+          <p>Pelas dores e crenças em mim que sustentam a escassez.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Me Perdoe</div>
+          <p>Por padrões conscientes ou inconscientes que limitam minha paz.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Te Amo</div>
+          <p>Porque escolho restaurar minha relação com prosperidade.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Sou Grato</div>
+          <p>Porque a limpeza já começou.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p><strong>Dica:</strong> Pratique especialmente quando abrir contas, sentir ansiedade financeira ou medo do futuro. Esses momentos de tensão são os mais poderosos para a limpeza.</p>
+      </div>
+
+      <h3 class="section-heading">Passo 3: Curando Dívidas Sem Alimentar Desespero</h3>
+
+      <p class="body-text">Dívidas frequentemente carregam não apenas obrigações… mas <strong>vergonha emocional.</strong> Muitas pessoas evitam olhar para sua realidade financeira porque internamente já estão em colapso. Mas ignorar frequentemente aumenta o sofrimento.</p>
+
+      <div class="two-col">
+        <div>
+          <div class="step-title">O Ritual de Clareza</div>
+          <p class="body-text" style="font-size:17px; margin-top:12px;">Ao olhar para sua situação financeira, pratique: "Sinto muito pelas memórias em mim ligadas a essa dor. Me perdoe. Te amo. Sou grato."</p>
+        </div>
+        <div>
+          <div class="step-title">O Que Isso Faz</div>
+          <p class="body-text" style="font-size:17px; margin-top:12px;">Isso não substitui ação prática. Mas pode <strong>reduzir o pânico</strong>, permitindo decisões mais conscientes e estratégicas. A paz emocional pode ajudar você a agir melhor — com mais clareza e menos reatividade.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p>Ho'oponopono restaura clareza emocional — mas a ação prática continua sendo essencial para transformar a realidade financeira.</p>
+      </div>
+
+      <h3 class="section-heading">Passo 4: Prosperidade Também Exige Alinhamento Externo</h3>
+
+      <p class="body-text">Ho'oponopono não significa apenas repetir frases esperando que riqueza apareça magicamente. A limpeza pode abrir espaço… mas <strong>ação também importa.</strong></p>
+
+      <div class="cards-grid">
+        <div class="card"><div class="card-title">Organize as Finanças</div><p>Mapeie receitas, despesas e dívidas com clareza e sem julgamento.</p></div>
+        <div class="card"><div class="card-title">Estude e Planeje</div><p>Busque conhecimento financeiro e construa um plano realista de ação.</p></div>
+        <div class="card"><div class="card-title">Observe a Autossabotagem</div><p>Fique atento aos padrões que surgem após a limpeza — eles revelam o que ainda precisa ser curado.</p></div>
+        <div class="card"><div class="card-title">Equilíbrio Transformador</div><p>Espiritualidade sem ação pode virar fuga. Ação sem limpeza pode repetir padrões. O equilíbrio entre ambos é profundamente transformador.</p></div>
+      </div>
+
+      <h3 class="section-heading">Passo 5: Restaure o Merecimento</h3>
+
+      <p class="body-text">Muitas pessoas não prosperam porque, no fundo, <strong>não se sentem merecedoras.</strong> Carregam vergonha, culpa, limitações familiares e autorrejeição que bloqueiam silenciosamente a abundância.</p>
+
+      <div class="pbox">
+        <div class="pbox-label">Prática no Espelho</div>
+        <p>"Sinto muito por todas as memórias em mim que rejeitam prosperidade. Me perdoe por acreditar que não mereço abundância. Te amo. Sou grato pela restauração da minha vida."</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card"><div class="card-title">Vergonha</div><p>Dissolva a crença de que sua situação financeira define seu valor como pessoa.</p></div>
+        <div class="card"><div class="card-title">Culpa</div><p>Libere o conflito interno entre desejar prosperidade e sentir que não é permitido tê-la.</p></div>
+        <div class="card"><div class="card-title">Limitações Familiares</div><p>Limpe os padrões herdados que foram transmitidos de geração em geração.</p></div>
+        <div class="card"><div class="card-title">Autorrejeição</div><p>Restaure a crença fundamental de que você merece viver com abundância e paz.</p></div>
+      </div>
+
+      <h3 class="section-heading">A Verdadeira Abundância Começa Dentro… Mas Não Termina Aí</h3>
+
+      <p class="body-text">Dinheiro não resolve automaticamente todas as dores… mas crenças de escassez podem intensificar o sofrimento. Ho'oponopono oferece a possibilidade de restaurar paz interior enquanto você reconstrói sua relação com prosperidade.</p>
+
+      <p class="body-text">Sua situação atual pode ser difícil… mas ela não precisa definir permanentemente sua identidade. Talvez sua vida financeira não precise apenas de mais esforço — talvez também precise de <strong>limpeza interior.</strong></p>
+
+      <div class="big-quote">Prosperidade não começa apenas quando entra mais dinheiro — muitas vezes, começa quando você limpa as memórias que o mantêm emocionalmente preso à escassez.</div>
+
+      <!-- DOWNLOAD -->
+      <div class="download-section">
+        <span class="download-label">Material do Capítulo 06</span>
+        <p class="download-desc">Baixe o PDF completo de Prosperidade e Finanças com todos os detalhes e exercícios deste capítulo.</p>
+        <a class="btn-download" href="Prosperidade-e-Financas.pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF — Capítulo 06
+        </a>
+      </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+      <button class="btn-nav" id="btn-prev" onclick="prev()" disabled>
+        <span class="arrow">←</span> Anterior
+      </button>
+      <span class="page-counter" id="page-counter">1 / 7</span>
+      <button class="btn-nav" id="btn-next" onclick="next()">
+        Próximo <span class="arrow">→</span>
+      </button>
+    </div>
+
+  </div><!-- /.content-area -->
+</div><!-- /.shell -->
+
+
+
+
+<script type="module">
+// ============================================================
+//  FIREBASE SETUP
+// ============================================================
+import { initializeApp }                        from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword,
+         createUserWithEmailAndPassword,
+         signOut, deleteUser as fbDeleteUser }  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc,
+         getDocs, deleteDoc, collection,
+         serverTimestamp }                       from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey:            "AIzaSyAaqZnuxmsGDVMaM59XPQNIb4LFtpJTygw",
+  authDomain:        "hooponopono-ed811.firebaseapp.com",
+  projectId:         "hooponopono-ed811",
+  storageBucket:     "hooponopono-ed811.firebasestorage.app",
+  messagingSenderId: "855776362918",
+  appId:             "1:855776362918:web:317a3a24e72819fe03cf67"
+};
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+// Admin email (você)
+const ADMIN_EMAIL = "admin@hooponopono.app";
+
+// ============================================================
+//  HELPERS
+// ============================================================
+function show(id) { document.getElementById(id).classList.remove('hidden'); }
+function hide(id) { document.getElementById(id).classList.add('hidden'); }
+
+function toEmail(username) {
+  return username.toLowerCase().replace(/\s+/g,'') + "@hooponopono.app";
+}
+
+// ============================================================
+//  VIEWS
+// ============================================================
+function setView(v) {
+  hide('auth-overlay');
+  hide('admin-panel');
+  const shell = document.querySelector('.shell');
+  if (shell) shell.style.display = 'none';
+
+  if (v === 'login')      { renderLogin();      show('auth-overlay'); }
+  if (v === 'changepass') { renderChangePass(); show('auth-overlay'); }
+  if (v === 'admin')      { renderAdmin();      show('admin-panel'); }
+  if (v === 'ebook')      { if (shell) shell.style.display = 'flex'; }
+}
+
+// ============================================================
+//  LOGIN
+// ============================================================
+function renderLogin() {
+  document.getElementById('auth-overlay').innerHTML = `
+    <div class="auth-card">
+      <div class="auth-logo">ʻOHANA</div>
+      <div class="auth-subtitle">Ho'oponopono</div>
+      <div class="auth-title">Acesso Restrito</div>
+      <div class="auth-field">
+        <label>Usuário</label>
+        <input id="inp-user" type="text" placeholder="seu usuário"
+               onkeydown="if(event.key==='Enter')window._doLogin()">
+      </div>
+      <div class="auth-field">
+        <label>Senha</label>
+        <input id="inp-pass" type="password" placeholder="••••••••"
+               onkeydown="if(event.key==='Enter')window._doLogin()">
+      </div>
+      <button class="auth-btn" onclick="window._doLogin()">Entrar</button>
+      <div class="auth-error" id="login-err"></div>
+    </div>
+  `;
+  setTimeout(() => { const el = document.getElementById('inp-user'); if(el) el.focus(); }, 50);
+}
+
+window._doLogin = async function() {
+  const username = document.getElementById('inp-user').value.trim();
+  const pass     = document.getElementById('inp-pass').value;
+  const err      = document.getElementById('login-err');
+  if (!username || !pass) { err.textContent = 'Preencha usuário e senha.'; return; }
+
+  err.textContent = '';
+  err.style.color = '#B8922A';
+  err.textContent = 'Entrando…';
+
+  try {
+    const email = toEmail(username);
+    const cred  = await signInWithEmailAndPassword(auth, email, pass);
+    const uid   = cred.user.uid;
+
+    // Check if admin
+    const adminDoc = await getDoc(doc(db, 'admins', uid));
+    if (adminDoc.exists()) { setView('admin'); return; }
+
+    // Check mustChange
+    const userDoc = await getDoc(doc(db, 'users', uid));
+    if (userDoc.exists() && userDoc.data().mustChange) {
+      window._currentUID = uid;
+      setView('changepass');
+    } else {
+      setView('ebook');
+    }
+  } catch(e) {
+    const errEl = document.getElementById('login-err');
+    if (errEl) {
+      errEl.style.color = '#c0392b';
+      errEl.textContent = 'Usuário ou senha incorretos.';
+    }
+  }
+};
+
+// ============================================================
+//  CHANGE PASSWORD
+// ============================================================
+function renderChangePass() {
+  document.getElementById('auth-overlay').innerHTML = `
+    <div class="auth-card">
+      <div class="auth-logo">ʻOHANA</div>
+      <div class="auth-subtitle">Ho'oponopono</div>
+      <div class="auth-title">Crie sua Nova Senha</div>
+      <div class="auth-info">Este é seu primeiro acesso.<br>Escolha uma senha pessoal para continuar.</div>
+      <div class="auth-field" style="margin-top:24px">
+        <label>Nova Senha</label>
+        <input id="new-pass" type="password" placeholder="mínimo 6 caracteres"
+               onkeydown="if(event.key==='Enter')window._doChangePass()">
+      </div>
+      <div class="auth-field">
+        <label>Confirmar Senha</label>
+        <input id="conf-pass" type="password" placeholder="repita a senha"
+               onkeydown="if(event.key==='Enter')window._doChangePass()">
+      </div>
+      <button class="auth-btn" onclick="window._doChangePass()">Salvar e Entrar</button>
+      <div class="auth-error" id="cp-err"></div>
+    </div>
+  `;
+  setTimeout(() => { const el = document.getElementById('new-pass'); if(el) el.focus(); }, 50);
+}
+
+window._doChangePass = async function() {
+  const np  = document.getElementById('new-pass').value;
+  const cp  = document.getElementById('conf-pass').value;
+  const err = document.getElementById('cp-err');
+  if (np.length < 6) { err.textContent = 'Mínimo 6 caracteres.'; return; }
+  if (np !== cp)      { err.textContent = 'As senhas não coincidem.'; return; }
+
+  err.style.color = '#B8922A';
+  err.textContent = 'Salvando…';
+
+  try {
+    await auth.currentUser.updatePassword(np);
+    await setDoc(doc(db, 'users', auth.currentUser.uid), { mustChange: false }, { merge: true });
+    setView('ebook');
+  } catch(e) {
+    const errEl = document.getElementById('cp-err');
+    if (errEl) { errEl.style.color='#c0392b'; errEl.textContent = 'Erro ao salvar. Tente novamente.'; }
+  }
+};
+
+// ============================================================
+//  ADMIN PANEL
+// ============================================================
+function renderAdmin() {
+  document.getElementById('admin-panel').innerHTML = `
+    <div class="admin-card">
+      <div class="admin-header">
+        <h1>Painel de Administrador</h1>
+        <button class="admin-logout" onclick="window._doLogout()">Sair</button>
+      </div>
+
+      <div class="admin-section">
+        <h2>Adicionar Usuário</h2>
+        <div class="add-user-form">
+          <input id="new-username" type="text"   placeholder="Nome de usuário" />
+          <input id="new-initpass" type="text"   placeholder="Senha inicial"   />
+          <button onclick="window._addUser()">+ Adicionar</button>
+        </div>
+        <div class="admin-msg" id="add-msg"></div>
+      </div>
+
+      <div class="admin-section">
+        <h2>Usuários Cadastrados</h2>
+        <div id="users-list"><em style="color:rgba(247,243,236,0.3);font-size:13px">Carregando…</em></div>
+      </div>
+
+      <div class="admin-section">
+        <button class="admin-enter-ebook" onclick="setView('ebook')">Acessar o E-book →</button>
+      </div>
+    </div>
+  `;
+  loadUsersList();
+}
+
+async function loadUsersList() {
+  const container = document.getElementById('users-list');
+  if (!container) return;
+
+  try {
+    const snap = await getDocs(collection(db, 'users'));
+    if (snap.empty) {
+      container.innerHTML = '<p style="color:rgba(247,243,236,0.3);font-size:13px">Nenhum usuário cadastrado.</p>';
+      return;
+    }
+
+    let html = `<table class="users-table">
+      <tr><th>Usuário</th><th>Status</th><th>Criado em</th><th>Ações</th></tr>`;
+
+    snap.forEach(d => {
+      const data   = d.data();
+      const status = data.mustChange ? 'Aguardando 1º acesso' : 'Ativo';
+      const cls    = data.mustChange ? 'status-pending' : 'status-active';
+      const date   = data.createdAt ? new Date(data.createdAt.seconds*1000).toLocaleDateString('pt-BR') : '—';
+      html += `<tr>
+        <td>${data.username}</td>
+        <td class="status ${cls}">${status}</td>
+        <td>${date}</td>
+        <td>
+          <button class="btn-reset" onclick="window._resetUser('${d.id}','${data.username}')">Resetar senha</button>
+          <button class="btn-del"   onclick="window._deleteUser('${d.id}','${data.username}')">Remover</button>
+        </td>
+      </tr>`;
+    });
+
+    html += '</table>';
+    container.innerHTML = html;
+  } catch(e) {
+    container.innerHTML = '<p style="color:#c0392b;font-size:13px">Erro ao carregar usuários.</p>';
+  }
+}
+
+window._addUser = async function() {
+  const username = document.getElementById('new-username').value.trim();
+  const initpass = document.getElementById('new-initpass').value.trim();
+  const msg      = document.getElementById('add-msg');
+
+  if (!username) { msg.style.color='#c0392b'; msg.textContent='Informe um nome de usuário.'; return; }
+  if (!initpass) { msg.style.color='#c0392b'; msg.textContent='Informe uma senha inicial.';  return; }
+  if (initpass.length < 6) { msg.style.color='#c0392b'; msg.textContent='Senha mínima: 6 caracteres.'; return; }
+
+  msg.style.color = '#B8922A'; msg.textContent = 'Criando…';
+
+  try {
+    const email = toEmail(username);
+    // Save current admin user before creating new one
+    const adminUser = auth.currentUser;
+
+    const cred = await createUserWithEmailAndPassword(auth, email, initpass);
+    const uid  = cred.user.uid;
+
+    await setDoc(doc(db, 'users', uid), {
+      username,
+      email,
+      mustChange: true,
+      createdAt: serverTimestamp()
+    });
+
+    // Sign back in as admin
+    await signOut(auth);
+    // Re-login admin (we need to store admin credentials)
+    // Instead, just reload the admin panel state
+    msg.style.color = '#2ecc71';
+    msg.textContent = `Usuário "${username}" criado com sucesso!`;
+    document.getElementById('new-username').value = '';
+    document.getElementById('new-initpass').value = '';
+    loadUsersList();
+
+    // Re-authenticate admin silently
+    setTimeout(async () => {
+      try {
+        await signInWithEmailAndPassword(auth, ADMIN_EMAIL, window._adminPass || '');
+      } catch(e) {}
+    }, 500);
+
+  } catch(e) {
+    const m = document.getElementById('add-msg');
+    if(m) { m.style.color='#c0392b'; m.textContent = e.code === 'auth/email-already-in-use' ? 'Usuário já existe.' : 'Erro: ' + e.message; }
+  }
+};
+
+window._deleteUser = async function(uid, username) {
+  if (!confirm(`Remover o usuário "${username}"?`)) return;
+  try {
+    await deleteDoc(doc(db, 'users', uid));
+    loadUsersList();
+  } catch(e) {
+    alert('Erro ao remover: ' + e.message);
+  }
+};
+
+window._resetUser = async function(uid, username) {
+  const newpass = prompt(`Nova senha inicial para "${username}" (mínimo 6 caracteres):`);
+  if (!newpass || newpass.length < 6) { alert('Senha inválida.'); return; }
+  try {
+    await setDoc(doc(db, 'users', uid), { mustChange: true, tempPass: newpass }, { merge: true });
+    alert(`Anote: a nova senha de "${username}" é: ${newpass}\nEle deverá criar uma nova senha no próximo acesso.`);
+    loadUsersList();
+  } catch(e) {
+    alert('Erro: ' + e.message);
+  }
+};
+
+window._doLogout = async function() {
+  await signOut(auth);
+  setView('login');
+};
+
+// ============================================================
+//  BOOT — create admin account on first run
+// ============================================================
+async function boot() {
+  // Try to create admin account (fails silently if already exists)
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, ADMIN_EMAIL, 'admin123');
+    await setDoc(doc(db, 'admins', cred.user.uid), { role: 'admin', createdAt: serverTimestamp() });
+    await signOut(auth);
+  } catch(e) {
+    // Already exists — that's fine
+    try { await signOut(auth); } catch(e2) {}
+  }
+  setView('login');
+}
+
+// Expose setView globally for admin panel button
+window.setView = setView;
+
+// Navigation functions (ebook)
+const TOTAL = 7;
+let current = 0;
+window.goTo = function(n) {
+  const prev = document.getElementById('ch-' + current);
+  if (prev) prev.classList.remove('active');
+  current = n;
+  const el = document.getElementById('ch-' + current);
+  if (el) { el.classList.add('active'); el.scrollTop = 0; }
+  document.querySelectorAll('.nav-list button').forEach((b, i) => {
+    b.classList.toggle('active', i === current);
+  });
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  if (btnPrev) btnPrev.disabled = current === 0;
+  if (btnNext) btnNext.disabled = current === TOTAL - 1;
+  const pc = document.getElementById('page-counter');
+  if (pc) pc.textContent = (current + 1) + ' / ' + TOTAL;
+  const prog = document.getElementById('prog');
+  if (prog) prog.style.width = (current / (TOTAL - 1) * 100) + '%';
+};
+window.prev = function() { if (current > 0) window.goTo(current - 1); };
+window.next = function() { if (current < TOTAL - 1) window.goTo(current + 1); };
+
+// Hamburger (mobile)
+window.toggleSidebar = function() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+};
+window.closeSidebar = function() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+};
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') window.next();
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   window.prev();
+});
+
+document.addEventListener('DOMContentLoaded', boot);
+</script>
+
+</body>
+</html>
