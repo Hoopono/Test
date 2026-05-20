@@ -497,36 +497,54 @@
 .auth-btn:disabled { opacity:0.5; cursor:default; }
 .auth-error { color:#c0392b; font-size:12px; margin-top:14px; min-height:18px; }
 .auth-info { color:rgba(184,146,42,0.5); font-size:12px; margin-top:14px; font-family:'Cormorant Garamond',serif; font-style:italic; line-height:1.6; }
-.admin-card { background:#1A1208; border:1px solid rgba(184,146,42,0.25); width:100%; max-width:720px; padding:40px; font-family:'Lato',sans-serif; }
-.admin-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; padding-bottom:20px; border-bottom:1px solid rgba(184,146,42,0.15); }
-.admin-header h1 { font-family:'Cinzel',serif; font-size:13px; letter-spacing:4px; color:#B8922A; text-transform:uppercase; }
-.admin-logout { font-family:'Cinzel',serif; font-size:9px; letter-spacing:2px; color:rgba(184,146,42,0.5); background:none; border:1px solid rgba(184,146,42,0.2); padding:8px 16px; cursor:pointer; text-transform:uppercase; }
-.admin-section { margin-bottom:36px; }
-.admin-section h2 { font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; color:rgba(184,146,42,0.6); text-transform:uppercase; margin-bottom:16px; }
-.add-user-form { display:flex; gap:10px; flex-wrap:wrap; }
-.add-user-form input { flex:1; min-width:120px; background:rgba(255,255,255,0.03); border:1px solid rgba(184,146,42,0.2); color:#F7F3EC; font-size:13px; padding:10px 12px; outline:none; font-family:'Lato',sans-serif; }
-.add-user-form button { background:#B8922A; color:#0E0A04; border:none; cursor:pointer; font-family:'Cinzel',serif; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:10px 20px; white-space:nowrap; }
-.type-toggle { display:flex; gap:0; border:1px solid rgba(184,146,42,0.2); overflow:hidden; }
-.type-toggle button { flex:1; background:none; border:none; color:rgba(184,146,42,0.5); font-family:'Cinzel',serif; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:10px 14px; cursor:pointer; transition:all 0.2s; white-space:nowrap; }
+#admin-panel { padding: 16px; box-sizing: border-box; }
+.admin-card { background:#1A1208; border:1px solid rgba(184,146,42,0.25); width:100%; max-width:720px; padding:24px 18px; font-family:'Lato',sans-serif; box-sizing:border-box; }
+.admin-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid rgba(184,146,42,0.15); flex-wrap:wrap; gap:10px; }
+.admin-header h1 { font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; color:#B8922A; text-transform:uppercase; }
+.admin-logout { font-family:'Cinzel',serif; font-size:9px; letter-spacing:2px; color:rgba(184,146,42,0.5); background:none; border:1px solid rgba(184,146,42,0.2); padding:8px 14px; cursor:pointer; text-transform:uppercase; }
+.admin-section { margin-bottom:28px; }
+.admin-section h2 { font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:rgba(184,146,42,0.6); text-transform:uppercase; margin-bottom:14px; }
+.add-user-form { display:flex; flex-direction:column; gap:10px; }
+.add-user-form input { width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(184,146,42,0.2); color:#F7F3EC; font-size:14px; padding:12px; outline:none; font-family:'Lato',sans-serif; box-sizing:border-box; }
+.add-user-form button { width:100%; background:#B8922A; color:#0E0A04; border:none; cursor:pointer; font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:13px; }
+.type-toggle { display:flex; border:1px solid rgba(184,146,42,0.2); overflow:hidden; margin-bottom:12px; }
+.type-toggle button { flex:1; background:none; border:none; color:rgba(184,146,42,0.5); font-family:'Cinzel',serif; font-size:9px; letter-spacing:1px; text-transform:uppercase; padding:12px 6px; cursor:pointer; transition:all 0.2s; }
 .type-toggle button.active { background:#B8922A; color:#0E0A04; }
 .badge-admin { display:inline-block; font-size:8px; letter-spacing:1px; color:#B8922A; border:1px solid rgba(184,146,42,0.4); padding:2px 7px; margin-left:6px; font-family:'Cinzel',serif; vertical-align:middle; }
 .badge-user  { display:inline-block; font-size:8px; letter-spacing:1px; color:rgba(247,243,236,0.4); border:1px solid rgba(247,243,236,0.15); padding:2px 7px; margin-left:6px; font-family:'Cinzel',serif; vertical-align:middle; }
 .users-table { width:100%; border-collapse:collapse; }
-.users-table th { font-family:'Cinzel',serif; font-size:8px; letter-spacing:2px; color:rgba(184,146,42,0.45); text-transform:uppercase; text-align:left; padding:8px 10px; border-bottom:1px solid rgba(184,146,42,0.12); }
-.users-table td { padding:10px; border-bottom:1px solid rgba(184,146,42,0.07); color:rgba(247,243,236,0.7); font-size:13px; }
-.status-pending { color:#e67e22; font-size:10px; }
-.status-active  { color:#2ecc71; font-size:10px; }
-.btn-del { background:none; border:1px solid rgba(192,57,43,0.3); color:rgba(192,57,43,0.6); cursor:pointer; font-size:10px; padding:4px 10px; font-family:'Cinzel',serif; }
-.btn-reset { background:none; border:1px solid rgba(184,146,42,0.25); color:rgba(184,146,42,0.5); cursor:pointer; font-size:10px; padding:4px 10px; margin-right:6px; font-family:'Cinzel',serif; }
+.users-table th { font-family:'Cinzel',serif; font-size:7px; letter-spacing:1px; color:rgba(184,146,42,0.45); text-transform:uppercase; text-align:left; padding:8px 6px; border-bottom:1px solid rgba(184,146,42,0.12); }
+.users-table td { padding:10px 6px; border-bottom:1px solid rgba(184,146,42,0.07); color:rgba(247,243,236,0.7); font-size:12px; vertical-align:middle; }
+.status-pending { color:#e67e22; font-size:10px; display:block; }
+.status-active  { color:#2ecc71; font-size:10px; display:block; }
+.user-actions { display:flex; flex-direction:column; gap:5px; }
+.btn-del   { background:none; border:1px solid rgba(192,57,43,0.3); color:rgba(192,57,43,0.7); cursor:pointer; font-size:9px; padding:5px 8px; font-family:'Cinzel',serif; width:100%; }
+.btn-reset { background:none; border:1px solid rgba(184,146,42,0.25); color:rgba(184,146,42,0.6); cursor:pointer; font-size:9px; padding:5px 8px; font-family:'Cinzel',serif; width:100%; }
 .admin-msg { font-size:12px; margin-top:10px; min-height:18px; }
-.admin-enter-ebook { display:inline-block; margin-top:8px; font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; padding:12px 24px; cursor:pointer; background:transparent; color:#B8922A; border:1px solid rgba(184,146,42,0.4); }
-.admin-badge { display:inline-block; font-size:8px; letter-spacing:1px; color:#B8922A; border:1px solid rgba(184,146,42,0.3); padding:2px 6px; margin-left:6px; font-family:'Cinzel',serif; vertical-align:middle; }
+.admin-enter-ebook { display:block; width:100%; text-align:center; margin-top:8px; font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; padding:14px; cursor:pointer; background:transparent; color:#B8922A; border:1px solid rgba(184,146,42,0.4); box-sizing:border-box; }
+/* Modal de confirmação */
+#confirm-modal { position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; padding:20px; }
+#confirm-modal.hidden { display:none; }
+.confirm-box { background:#1A1208; border:1px solid rgba(184,146,42,0.3); padding:32px 24px; width:100%; max-width:320px; text-align:center; }
+.confirm-box p { font-family:'Cormorant Garamond',serif; font-size:16px; color:#F7F3EC; margin-bottom:24px; line-height:1.5; }
+.confirm-actions { display:flex; gap:12px; }
+.confirm-yes { flex:1; background:#c0392b; color:#fff; border:none; cursor:pointer; font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:13px; }
+.confirm-no  { flex:1; background:none; color:rgba(184,146,42,0.7); border:1px solid rgba(184,146,42,0.3); cursor:pointer; font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:13px; }
 </style>
 </head>
 
 
 <div id='auth-overlay'></div>
 <div id='admin-panel' class='hidden'></div>
+<div id='confirm-modal' class='hidden'>
+  <div class='confirm-box'>
+    <p id='confirm-msg'>Tem certeza?</p>
+    <div class='confirm-actions'>
+      <button class='confirm-yes' id='confirm-yes'>Sim, remover</button>
+      <button class='confirm-no'  onclick="window._closeConfirm()">Não</button>
+    </div>
+  </div>
+</div>
 
 
 <div class="shell">
@@ -1680,10 +1698,10 @@ async function loadUsers() {
         <td>${data.isAdmin ? '⭐' : '👤'}</td>
         <td class="${cls}">${st}</td>
         <td>${dt}</td>
-        <td>
+        <td><div class="user-actions">
           <button class="btn-reset" onclick="window._reset('${d.id}','${data.username}')">Resetar</button>
-          <button class="btn-del"   onclick="window._del('${d.id}','${data.username}')">Remover</button>
-        </td></tr>`;
+          <button class="btn-del"   onclick="window._confirmDel('${d.id}','${data.username}')">Remover</button>
+        </div></td></tr>`;
     });
     h += '</table>';
     c.innerHTML = h;
@@ -1745,8 +1763,18 @@ window._addUser = async function() {
   }
 };
 
+window._closeConfirm = function() { $('confirm-modal').classList.add('hidden'); };
+
+window._confirmDel = function(uid, u) {
+  $('confirm-msg').textContent = `Remover o usuário "${u}"?`;
+  $('confirm-modal').classList.remove('hidden');
+  $('confirm-yes').onclick = async function() {
+    window._closeConfirm();
+    await window._del(uid, u);
+  };
+};
+
 window._del = async function(uid, u) {
-  if (!confirm(`Remover o usuário "${u}"?`)) return;
   try { await deleteDoc(doc(db,'users',uid)); loadUsers(); }
   catch(e) { alert('Erro: '+e.message); }
 };
