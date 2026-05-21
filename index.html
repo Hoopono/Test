@@ -1,3 +1,5 @@
+html
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -20,7 +22,6 @@
 
   .shell { display:flex; height:100vh; overflow:hidden; }
 
-  /* HAMBURGER BUTTON (mobile only) */
   .hamburger {
     display:none;
     position:fixed; top:14px; left:14px; z-index:200;
@@ -31,7 +32,6 @@
     font-size:20px; border-radius:4px;
   }
 
-  /* SIDEBAR OVERLAY (mobile) */
   .sidebar-overlay {
     display:none;
     position:fixed; inset:0; z-index:150;
@@ -39,7 +39,6 @@
   }
   .sidebar-overlay.open { display:block; }
 
-  /* SIDEBAR */
   .sidebar {
     width:260px; min-width:260px;
     background:#0E0A04;
@@ -100,41 +99,20 @@
   .progress-bar { height:2px; background:rgba(184,146,42,0.15); border-radius:2px; overflow:hidden; }
   .progress-fill { height:100%; background:var(--gold); transition:width 0.4s ease; }
 
-  /* MOBILE RESPONSIVE */
   @media (max-width: 700px) {
     .hamburger { display:flex; }
-
     .sidebar {
       position:fixed; top:0; left:0; height:100%;
       transform:translateX(-100%);
       z-index:160;
     }
-    .sidebar.open {
-      transform:translateX(0);
-    }
-
-    .chapter {
-      padding:70px 22px 140px !important;
-    }
-    .bottom-nav {
-      padding:14px 18px !important;
-    }
-    .two-col {
-      grid-template-columns:1fr !important;
-      gap:28px !important;
-    }
-    .cards-grid {
-      grid-template-columns:1fr !important;
-    }
-    .ch-title {
-      font-size:clamp(28px,8vw,42px) !important;
-    }
-    .ch-sub {
-      font-size:15px !important;
-      word-break:normal !important;
-      overflow-wrap:break-word !important;
-      white-space:normal !important;
-    }
+    .sidebar.open { transform:translateX(0); }
+    .chapter { padding:70px 22px 140px !important; }
+    .bottom-nav { padding:14px 18px !important; }
+    .two-col { grid-template-columns:1fr !important; gap:28px !important; }
+    .cards-grid { grid-template-columns:1fr !important; }
+    .ch-title { font-size:clamp(28px,8vw,42px) !important; }
+    .ch-sub { font-size:15px !important; word-break:normal !important; overflow-wrap:break-word !important; white-space:normal !important; }
     .body-text { font-size:17px !important; }
     .big-quote { font-size:18px !important; padding-left:24px !important; }
     .callout p { font-size:18px !important; }
@@ -142,7 +120,6 @@
     .btn-download { font-size:9px !important; padding:12px 18px !important; }
   }
 
-  /* CONTENT */
   .content-area { flex:1; display:flex; flex-direction:column; overflow:hidden; position:relative; }
 
   .chapter {
@@ -158,7 +135,6 @@
   .chapter.light { background:#FFFDF8; color:var(--text); }
   .chapter.dark  { background:#1A1208; color:var(--cream); }
 
-  /* TYPOGRAPHY */
   .ch-eyebrow {
     font-family:'Cinzel',serif; font-size:9.5px;
     letter-spacing:5px; color:var(--gold);
@@ -324,7 +300,6 @@
 
   .two-col { display:grid; grid-template-columns:1fr 1fr; gap:50px; max-width:860px; margin:28px 0; }
 
-  /* SECTION HEADINGS inside chapters */
   .section-heading {
     font-family:'Cormorant Garamond',serif;
     font-size:clamp(24px,2.8vw,34px); font-weight:500;
@@ -339,7 +314,6 @@
     margin:50px 0 40px;
   }
 
-  /* HIGHLIGHT BOX */
   .highlight-box {
     padding:22px 28px; margin:24px 0; max-width:680px;
     border:1px solid rgba(184,146,42,0.3);
@@ -353,7 +327,6 @@
   .light .highlight-box p { color:var(--text); }
   .dark  .highlight-box p { color:rgba(247,243,236,0.75); }
 
-  /* LIST */
   .content-list {
     list-style:none; padding:0; margin:20px 0; max-width:680px;
   }
@@ -371,7 +344,6 @@
   .light .content-list li { color:var(--text); }
   .dark  .content-list li { color:rgba(247,243,236,0.72); }
 
-  /* COVER */
   #ch-cover {
     background:radial-gradient(ellipse at 30% 50%,#2A1A06,#0E0A04);
     display:flex; align-items:center; justify-content:center; text-align:center;
@@ -400,7 +372,6 @@
     color:rgba(184,146,42,0.35); text-transform:uppercase;
   }
 
-  /* DOWNLOAD BUTTON */
   .download-section {
     margin:50px 0 20px; padding:32px 34px;
     max-width:680px;
@@ -437,7 +408,6 @@
   .btn-download:hover { background:var(--gold-light); transform:translateY(-2px); }
   .btn-download svg { flex-shrink:0; }
 
-  /* BOTTOM NAV */
   .bottom-nav {
     display:flex; align-items:center; justify-content:space-between;
     padding:16px 72px;
@@ -467,6 +437,7 @@
 </style>
 
 <style>
+/* ── AUTH / ADMIN STYLES ── */
 #auth-overlay {
   position: fixed; inset: 0; z-index: 9999;
   background: #0E0A04;
@@ -522,7 +493,8 @@
 .btn-reset { background:none; border:1px solid rgba(184,146,42,0.25); color:rgba(184,146,42,0.6); cursor:pointer; font-size:9px; padding:5px 8px; font-family:'Cinzel',serif; width:100%; }
 .admin-msg { font-size:12px; margin-top:10px; min-height:18px; }
 .admin-enter-ebook { display:block; width:100%; text-align:center; margin-top:8px; font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; padding:14px; cursor:pointer; background:transparent; color:#B8922A; border:1px solid rgba(184,146,42,0.4); box-sizing:border-box; }
-/* Modal de confirmação */
+
+/* ── CONFIRM MODAL ── */
 #confirm-modal { position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; padding:20px; }
 #confirm-modal.hidden { display:none; }
 .confirm-box { background:#1A1208; border:1px solid rgba(184,146,42,0.3); padding:32px 24px; width:100%; max-width:320px; text-align:center; }
@@ -530,10 +502,270 @@
 .confirm-actions { display:flex; gap:12px; }
 .confirm-yes { flex:1; background:#c0392b; color:#fff; border:none; cursor:pointer; font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:13px; }
 .confirm-no  { flex:1; background:none; color:rgba(184,146,42,0.7); border:1px solid rgba(184,146,42,0.3); cursor:pointer; font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:13px; }
+
+/* ── RESET MODAL ELEGANTE ── */
+#reset-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0,0,0,0);
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, backdrop-filter 0.3s ease, background 0.3s ease;
+}
+#reset-modal.open {
+  opacity: 1;
+  pointer-events: all;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(6px);
+}
+.reset-box {
+  background: linear-gradient(160deg, #1E160A, #150F05);
+  border: 1px solid rgba(184,146,42,0.35);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2);
+  overflow: hidden;
+}
+#reset-modal.open .reset-box {
+  transform: translateY(0) scale(1);
+}
+.reset-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #B8922A, transparent);
+}
+.reset-box::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(184,146,42,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.reset-header {
+  padding: 32px 32px 0;
+  text-align: center;
+}
+.reset-symbol {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: #B8922A;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+  opacity: 0.75;
+}
+.reset-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: #F7F3EC;
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+.reset-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(212,175,90,0.55);
+  margin: 0;
+}
+.reset-username-badge {
+  display: inline-block;
+  margin: 18px auto 0;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #D4AF5A;
+  background: rgba(184,146,42,0.1);
+  border: 1px solid rgba(184,146,42,0.25);
+  padding: 6px 16px;
+}
+.reset-divider {
+  width: 36px;
+  height: 1px;
+  background: rgba(184,146,42,0.3);
+  margin: 24px auto 0;
+}
+.reset-body {
+  padding: 24px 32px 32px;
+}
+.reset-field {
+  position: relative;
+  margin-bottom: 14px;
+}
+.reset-field label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: rgba(184,146,42,0.5);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.reset-field input {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(184,146,42,0.2);
+  color: #F7F3EC;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  padding: 13px 44px 13px 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.reset-field input:focus {
+  border-color: rgba(184,146,42,0.65);
+  background: rgba(184,146,42,0.04);
+}
+.reset-field input::placeholder {
+  color: rgba(247,243,236,0.18);
+}
+.reset-eye {
+  position: absolute;
+  right: 12px;
+  bottom: 13px;
+  cursor: pointer;
+  color: rgba(184,146,42,0.35);
+  font-size: 15px;
+  transition: color 0.2s;
+  user-select: none;
+  line-height: 1;
+}
+.reset-eye:hover { color: #B8922A; }
+.reset-strength {
+  display: flex;
+  gap: 5px;
+  margin: 10px 0 6px;
+}
+.reset-strength-bar {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+.reset-strength-bar.weak   { background: #c0392b; }
+.reset-strength-bar.medium { background: #e67e22; }
+.reset-strength-bar.strong { background: #27ae60; }
+.reset-strength-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  display: block;
+  min-height: 14px;
+}
+.reset-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+.reset-btn-cancel {
+  flex: 0 0 auto;
+  padding: 13px 20px;
+  background: transparent;
+  border: 1px solid rgba(184,146,42,0.2);
+  color: rgba(184,146,42,0.5);
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.reset-btn-cancel:hover {
+  border-color: rgba(184,146,42,0.45);
+  color: #B8922A;
+}
+.reset-btn-confirm {
+  flex: 1;
+  padding: 13px;
+  background: #B8922A;
+  border: none;
+  color: #0E0A04;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
+}
+.reset-btn-confirm:hover {
+  background: #D4AF5A;
+  transform: translateY(-1px);
+}
+.reset-btn-confirm:disabled {
+  opacity: 0.45;
+  cursor: default;
+  transform: none;
+}
+.reset-error {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: #c0392b;
+  margin-top: 12px;
+  min-height: 18px;
+  text-align: center;
+}
 </style>
 </head>
+<body>
 
+<!-- RESET MODAL ELEGANTE -->
+<div id="reset-modal">
+  <div class="reset-box">
+    <div class="reset-header">
+      <span class="reset-symbol">ʻOhana · Ho'oponopono</span>
+      <h2 class="reset-title">Redefinir Senha</h2>
+      <p class="reset-subtitle">Crie uma nova senha de acesso</p>
+      <div class="reset-username-badge" id="reset-badge">Usuário</div>
+      <div class="reset-divider"></div>
+    </div>
+    <div class="reset-body">
+      <div class="reset-field">
+        <label>Nova Senha</label>
+        <input id="reset-p1" type="password" placeholder="mínimo 6 caracteres"
+               oninput="window._resetStrength()"
+               onkeydown="if(event.key==='Enter')document.getElementById('reset-p2').focus()">
+        <span class="reset-eye" onclick="window._toggleResetEye('reset-p1',this)">👁</span>
+      </div>
+      <div class="reset-strength" id="reset-bars">
+        <div class="reset-strength-bar" id="rb1"></div>
+        <div class="reset-strength-bar" id="rb2"></div>
+        <div class="reset-strength-bar" id="rb3"></div>
+      </div>
+      <span class="reset-strength-label" id="reset-slabel" style="color:rgba(184,146,42,0.35)"></span>
+      <div class="reset-field">
+        <label>Confirmar Senha</label>
+        <input id="reset-p2" type="password" placeholder="repita a senha"
+               oninput="window._resetStrength()"
+               onkeydown="if(event.key==='Enter')window._submitReset()">
+        <span class="reset-eye" onclick="window._toggleResetEye('reset-p2',this)">👁</span>
+      </div>
+      <div class="reset-actions">
+        <button class="reset-btn-cancel" onclick="window._closeResetModal()">Cancelar</button>
+        <button class="reset-btn-confirm" id="reset-confirm-btn" onclick="window._submitReset()">Confirmar</button>
+      </div>
+      <div class="reset-error" id="reset-err"></div>
+    </div>
+  </div>
+</div>
 
+<!-- AUTH / ADMIN / CONFIRM MODALS -->
 <div id='auth-overlay'></div>
 <div id='admin-panel' class='hidden'></div>
 <div id='confirm-modal' class='hidden'>
@@ -541,19 +773,16 @@
     <p id='confirm-msg'>Tem certeza?</p>
     <div class='confirm-actions'>
       <button class='confirm-yes' id='confirm-yes'>Sim, remover</button>
-      <button class='confirm-no'  onclick="window._closeConfirm()">Não</button>
+      <button class='confirm-no' onclick="window._closeConfirm()">Não</button>
     </div>
   </div>
 </div>
 
-
 <div class="shell">
 
-  <!-- HAMBURGER -->
   <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Menu">☰</button>
   <div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <span class="sym">ʻOHANA</span>
@@ -581,10 +810,8 @@
     </div>
   </aside>
 
-  <!-- CONTENT -->
   <div class="content-area">
 
-    <!-- CAPA -->
     <div class="chapter dark active" id="ch-0">
       <div class="cover-inner">
         <p class="cover-eyebrow">Ebook Completo</p>
@@ -595,7 +822,6 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 1: A ALMA AFLITA -->
     <div class="chapter light" id="ch-1">
       <span class="ch-eyebrow">Capítulo 01</span>
       <h2 class="ch-title">O Grito Silencioso da Alma Aflita</h2>
@@ -631,7 +857,6 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 2: MORRNAH -->
     <div class="chapter dark" id="ch-2">
       <span class="ch-eyebrow">Capítulo 02</span>
       <h2 class="ch-title">Morrnah Nalamaku Simeona</h2>
@@ -664,7 +889,6 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 3: HEW LEN -->
     <div class="chapter light" id="ch-3">
       <span class="ch-eyebrow">Capítulo 03</span>
       <h2 class="ch-title">Dr. Ihaleakalá Hew Len</h2>
@@ -699,7 +923,6 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 4: JOE VITALE -->
     <div class="chapter dark" id="ch-4">
       <span class="ch-eyebrow">Capítulo 04</span>
       <h2 class="ch-title">Joe Vitale e a Expansão Mundial</h2>
@@ -733,7 +956,6 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 5: OS 4 GATILHOS -->
     <div class="chapter light" id="ch-5">
       <span class="ch-eyebrow">Capítulo 05</span>
       <h2 class="ch-title">Os 4 Gatilhos Sagrados</h2>
@@ -742,37 +964,10 @@
       <div class="callout"><p>"As quatro frases não apagam instantaneamente toda dor — mas podem iniciar a purificação que transforma sua relação com ela."</p></div>
       <h3 class="section-heading">Quando Sua Dor Não Responde Mais a Soluções Superficiais</h3>
       <p class="body-text">Há momentos em que conselhos comuns já não bastam. "Pense positivo." "Supere isso." "Esqueça." Quem está emocionalmente ferido sabe: algumas dores não desaparecem porque alguém mandou seguir em frente. Existem feridas que permanecem — Rejeição. Abandono. Escassez. Ansiedade. Culpa. Autossabotagem.</p>
-      <div class="phrase-item"><div class="phrase-num">01</div><div>
-        <span class="phrase-main">Sinto Muito</span><span class="phrase-tag">O Despertar da Consciência</span>
-        <p class="phrase-desc">No Ho'oponopono, "Sinto muito" não é culpa — é consciência. É reconhecer que existe uma dor, uma memória ou um padrão em você pedindo cura. É interromper o automático. Ao invés de apenas reagir, você começa a abrir espaço para outra pergunta: "O que em mim pode estar sendo ativado e precisa de limpeza?"</p>
-      </div></div>
-      <div class="phrase-item"><div class="phrase-num">02</div><div>
-        <span class="phrase-main">Me Perdoe</span><span class="phrase-tag">Libertando o Peso que Aprisiona</span>
-        <p class="phrase-desc">Muitas pessoas carregam culpas silenciosas por anos. "Me perdoe" é um pedido de liberação. Não necessariamente submissão. Não negação da dor. Mas a <strong>escolha de não continuar emocionalmente acorrentado.</strong> "Me perdoe por manter viva em mim uma memória que continua me ferindo."</p>
-      </div></div>
-      <div class="phrase-item"><div class="phrase-num">03</div><div>
-        <span class="phrase-main">Te Amo</span><span class="phrase-tag">A Força que Reorganiza o Caos</span>
-        <p class="phrase-desc">No Ho'oponopono, amor não se limita a romance. Amor aqui pode ser energia restauradora — uma presença curativa levada à memória, à dor, à criança interior ferida ou ao próprio processo de limpeza. Amor pode reorganizar partes internas em conflito, trazendo coerência onde havia fragmentação.</p>
-      </div></div>
-      <div class="phrase-item"><div class="phrase-num">04</div><div>
-        <span class="phrase-main">Sou Grato</span><span class="phrase-tag">Confiança Antes da Prova</span>
-        <p class="phrase-desc">A maioria das pessoas agradece apenas quando já vê resultado. Mas Ho'oponopono propõe uma postura mais profunda: gratidão como confiança durante o processo. "Sou grato" pode significar: "Confio que a limpeza está acontecendo, mesmo que eu ainda não veja tudo claramente."</p>
-      </div></div>
-      <h3 class="section-heading">Como Usar as 4 Frases Corretamente</h3>
-      <p class="body-text">Um erro comum é repetir mecanicamente, sem presença. A profundidade está na intenção. Não use as frases como fuga. Use como purificação. Respire. Sinta. Permita que cada palavra carregue intenção genuína.</p>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">1 — Identificar Dor</div><p>Reconheça o medo ou a ferida que deseja trabalhar. Nomeie internamente: "Estou limpando em mim essa memória."</p></div>
-        <div class="card"><div class="card-title">2 — Nomear Internamente</div><p>Declare com presença o que você está limpando. Seja específico e gentil consigo mesmo.</p></div>
-        <div class="card"><div class="card-title">3 — Repetir as Frases</div><p>Diga as quatro frases com presença e intenção verdadeira, 108 vezes se possível.</p></div>
-        <div class="card"><div class="card-title">4 — Respirar e Permitir</div><p>Sinta, permita a purificação. O silêncio ao final é parte essencial da prática.</p></div>
-      </div>
-      <h3 class="section-heading">Aplicações Reais na Vida Cotidiana</h3>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Relacionamentos</div><p>Limpar rejeição, ciúme e dependência emocional. Restaurar conexões e dissolver padrões que sabotam vínculos saudáveis.</p></div>
-        <div class="card"><div class="card-title">Finanças</div><p>Limpar escassez, culpa e medo de perder. Transformar a relação energética com abundância e prosperidade.</p></div>
-        <div class="card"><div class="card-title">Ansiedade</div><p>Limpar excesso de controle, insegurança e memórias repetitivas que alimentam o ciclo de preocupação constante.</p></div>
-        <div class="card"><div class="card-title">Autovalorização</div><p>Limpar crenças de insuficiência e restaurar a percepção do próprio valor, dignidade e merecimento.</p></div>
-      </div>
+      <div class="phrase-item"><div class="phrase-num">01</div><div><span class="phrase-main">Sinto Muito</span><span class="phrase-tag">O Despertar da Consciência</span><p class="phrase-desc">No Ho'oponopono, "Sinto muito" não é culpa — é consciência. É reconhecer que existe uma dor, uma memória ou um padrão em você pedindo cura.</p></div></div>
+      <div class="phrase-item"><div class="phrase-num">02</div><div><span class="phrase-main">Me Perdoe</span><span class="phrase-tag">Libertando o Peso que Aprisiona</span><p class="phrase-desc">Muitas pessoas carregam culpas silenciosas por anos. "Me perdoe" é um pedido de liberação. Não necessariamente submissão. Mas a <strong>escolha de não continuar emocionalmente acorrentado.</strong></p></div></div>
+      <div class="phrase-item"><div class="phrase-num">03</div><div><span class="phrase-main">Te Amo</span><span class="phrase-tag">A Força que Reorganiza o Caos</span><p class="phrase-desc">No Ho'oponopono, amor não se limita a romance. Amor aqui pode ser energia restauradora — uma presença curativa levada à memória, à dor, à criança interior ferida.</p></div></div>
+      <div class="phrase-item"><div class="phrase-num">04</div><div><span class="phrase-main">Sou Grato</span><span class="phrase-tag">Confiança Antes da Prova</span><p class="phrase-desc">A maioria das pessoas agradece apenas quando já vê resultado. Mas Ho'oponopono propõe uma postura mais profunda: gratidão como confiança durante o processo.</p></div></div>
       <div class="big-quote">Essas palavras podem parecer simples… Mas, quando praticadas profundamente, podem se tornar um caminho diário de retorno à paz.</div>
       <div class="download-section">
         <span class="download-label">Material do Capítulo 05</span>
@@ -781,13 +976,12 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 6: RELACIONAMENTOS -->
     <div class="chapter dark" id="ch-6">
       <span class="ch-eyebrow">Capítulo 06</span>
       <h2 class="ch-title">Autocura nos Relacionamentos</h2>
       <p class="ch-sub">Como aplicar Ho'oponopono para curar rejeição, abandono, traumas afetivos e padrões emocionais que sabotam sua paz</p>
       <div class="ch-divider"></div>
-      <p class="body-text">Poucas dores atingem tão profundamente quanto as dores emocionais ligadas a relacionamentos. E muitas pessoas seguem em frente por fora… mas permanecem emocionalmente presas por dentro. Mudam de parceiro. Mudam de cenário. Mudam de discurso. Mas repetem os mesmos padrões — porque não trocaram memórias… Apenas trocaram personagens.</p>
+      <p class="body-text">Poucas dores atingem tão profundamente quanto as dores emocionais ligadas a relacionamentos. E muitas pessoas seguem em frente por fora… mas permanecem emocionalmente presas por dentro.</p>
       <div class="cards-grid">
         <div class="card"><div class="card-title">Rejeição</div><p>Pode quebrar a autoestima de forma silenciosa e duradoura, deixando feridas que se repetem em novos relacionamentos.</p></div>
         <div class="card"><div class="card-title">Traição</div><p>Pode destruir a confiança construída ao longo de anos, tornando difícil abrir o coração novamente.</p></div>
@@ -795,10 +989,10 @@
         <div class="card"><div class="card-title">Relação Tóxica</div><p>Pode fazer alguém esquecer completamente o próprio valor e aceitar menos do que merece.</p></div>
       </div>
       <h3 class="section-heading">Como Aplicar Ho'oponopono nos Relacionamentos</h3>
-      <div class="step"><span class="step-num">01</span><div><div class="step-title">Identifique a Dor Real</div><p class="step-text">Seja honesto. O que realmente dói? A perda? A rejeição? O ciúme? A sensação de não ser suficiente? Complete: "Essa relação desperta em mim o medo de ___."</p></div></div>
+      <div class="step"><span class="step-num">01</span><div><div class="step-title">Identifique a Dor Real</div><p class="step-text">Seja honesto. O que realmente dói? A perda? A rejeição? O ciúme? A sensação de não ser suficiente?</p></div></div>
       <div class="step"><span class="step-num">02</span><div><div class="step-title">Aplique Ho'oponopono à Memória Específica</div><p class="step-text">"Divindade, limpe em mim a memória de rejeição e não merecimento." Depois repita as quatro frases com presença e intenção.</p></div></div>
-      <div class="step"><span class="step-num">03</span><div><div class="step-title">Pare de Tentar Controlar o Outro</div><p class="step-text">Uma das maiores armadilhas é acreditar que sua paz depende exclusivamente da mudança de outra pessoa. Ho'oponopono muda esse eixo — a prática começa por você.</p></div></div>
-      <div class="step"><span class="step-num">04</span><div><div class="step-title">Cure Relações Passadas que Ainda Vivem em Você</div><p class="step-text">Ritual de 21 dias: Escreva o nome da pessoa ou situação e diga diariamente: "Limpo em mim todas as memórias de dor, apego, culpa ou ressentimento ligadas a esta experiência."</p></div></div>
+      <div class="step"><span class="step-num">03</span><div><div class="step-title">Pare de Tentar Controlar o Outro</div><p class="step-text">Uma das maiores armadilhas é acreditar que sua paz depende exclusivamente da mudança de outra pessoa.</p></div></div>
+      <div class="step"><span class="step-num">04</span><div><div class="step-title">Cure Relações Passadas que Ainda Vivem em Você</div><p class="step-text">Ritual de 21 dias: Escreva o nome da pessoa ou situação e diga diariamente as quatro frases sagradas com intenção plena.</p></div></div>
       <div class="step"><span class="step-num">05</span><div><div class="step-title">Restaure o Relacionamento Mais Importante — Consigo Mesmo</div><p class="step-text">Olhe para si mesmo e diga: "Sinto muito por todas as vezes que me abandonei. Me perdoe por esquecer meu valor. Te amo por continuar aqui. Sou grato pela minha cura."</p></div></div>
       <div class="callout"><p>"Você não precisa apenas encontrar o amor — muitas vezes, precisa primeiro limpar as feridas que impedem você de vivê-lo com paz."</p></div>
       <div class="download-section">
@@ -808,13 +1002,12 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 7: PROSPERIDADE -->
     <div class="chapter light" id="ch-7">
       <span class="ch-eyebrow">Capítulo 07</span>
       <h2 class="ch-title">Prosperidade e Finanças</h2>
       <p class="ch-sub">Como aplicar Ho'oponopono para limpar escassez, medo financeiro, autossabotagem e padrões invisíveis que bloqueiam sua abundância</p>
       <div class="ch-divider"></div>
-      <p class="body-text">Para muitas pessoas, problemas financeiros não significam apenas números. Significam <strong>medo. Vergonha. Ansiedade. Discussões. Insônia. Sensação de fracasso.</strong> A escassez pode ferir profundamente a autoestima e a esperança. Não é apenas sobre boletos… É sobre o peso emocional de sentir que nunca é suficiente.</p>
+      <p class="body-text">Para muitas pessoas, problemas financeiros não significam apenas números. Significam <strong>medo. Vergonha. Ansiedade. Discussões. Insônia. Sensação de fracasso.</strong></p>
       <div class="cards-grid">
         <div class="card"><div class="card-title">"Dinheiro é sofrimento."</div><p>Crenças familiares herdadas que moldam profundamente sua relação com prosperidade desde a infância.</p></div>
         <div class="card"><div class="card-title">"Rico é ganancioso."</div><p>Conflitos internos que fazem a pessoa querer prosperar… mas temer a prosperidade ao mesmo tempo.</p></div>
@@ -822,10 +1015,10 @@
         <div class="card"><div class="card-title">"Não mereço abundância."</div><p>Autorrejeição que bloqueia silenciosamente as possibilidades de prosperidade na vida.</p></div>
       </div>
       <h3 class="section-heading">Como Aplicar Ho'oponopono nas Finanças</h3>
-      <div class="step"><span class="step-num">01</span><div><div class="step-title">Identifique Sua Ferida Financeira Real</div><p class="step-text">Complete a frase: "O dinheiro me faz sentir ___." Inseguro? Pequeno? Ansioso? Desesperado? Indigno? Agora você começou a acessar a memória emocional por trás da escassez.</p></div></div>
+      <div class="step"><span class="step-num">01</span><div><div class="step-title">Identifique Sua Ferida Financeira Real</div><p class="step-text">Complete a frase: "O dinheiro me faz sentir ___." Inseguro? Pequeno? Ansioso? Desesperado? Indigno?</p></div></div>
       <div class="step"><span class="step-num">02</span><div><div class="step-title">Limpe a Crença, Não Apenas o Sintoma</div><p class="step-text">"Divindade, limpe em mim todas as memórias de escassez, medo e sofrimento ligadas ao dinheiro." Sinto muito. Me perdoe. Te amo. Sou grato.</p></div></div>
-      <div class="step"><span class="step-num">03</span><div><div class="step-title">Cure Dívidas Sem Alimentar Desespero</div><p class="step-text">Ao olhar para sua situação financeira, pratique: "Sinto muito pelas memórias em mim ligadas a essa dor. Me perdoe. Te amo. Sou grato." Isso pode reduzir o pânico, permitindo decisões mais conscientes.</p></div></div>
-      <div class="step"><span class="step-num">04</span><div><div class="step-title">Prosperidade Também Exige Alinhamento Externo</div><p class="step-text">Ho'oponopono não significa apenas repetir frases. A limpeza pode abrir espaço… mas ação também importa. Organize as finanças, estude, planeje e observe a autossabotagem.</p></div></div>
+      <div class="step"><span class="step-num">03</span><div><div class="step-title">Cure Dívidas Sem Alimentar Desespero</div><p class="step-text">Ao olhar para sua situação financeira, pratique: "Sinto muito pelas memórias em mim ligadas a essa dor. Me perdoe. Te amo. Sou grato."</p></div></div>
+      <div class="step"><span class="step-num">04</span><div><div class="step-title">Prosperidade Também Exige Alinhamento Externo</div><p class="step-text">Ho'oponopono não significa apenas repetir frases. A limpeza pode abrir espaço… mas ação também importa.</p></div></div>
       <div class="step"><span class="step-num">05</span><div><div class="step-title">Restaure o Merecimento</div><p class="step-text">"Sinto muito por todas as memórias em mim que rejeitam prosperidade. Me perdoe por acreditar que não mereço abundância. Te amo. Sou grato pela restauração da minha vida."</p></div></div>
       <div class="callout"><p>"Prosperidade não começa apenas quando entra mais dinheiro — muitas vezes, começa quando você limpa as memórias que o mantêm emocionalmente preso à escassez."</p></div>
       <div class="download-section">
@@ -835,38 +1028,21 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 8: PRÁTICA DIÁRIA -->
     <div class="chapter dark" id="ch-8">
       <span class="ch-eyebrow">Capítulo 08</span>
       <h2 class="ch-title">Exercício Diário + Japamala + Oração Original</h2>
       <p class="ch-sub">Como transformar Ho'oponopono em prática profunda, disciplinada e emocionalmente restauradora para curar dores específicas</p>
       <div class="ch-divider"></div>
-      <div class="callout"><p>Ler sobre cura pode inspirar. Praticar cura pode reprogramar. É na repetição consciente que padrões começam a ser observados, emoções podem ser suavizadas e sua relação com a dor pode mudar.</p></div>
+      <div class="callout"><p>Ler sobre cura pode inspirar. Praticar cura pode reprogramar. É na repetição consciente que padrões começam a ser observados.</p></div>
       <h3 class="section-heading">Sua Prática Diária Poderosa</h3>
-      <div class="step"><span class="step-num">01</span><div><div class="step-title">Escolha Sua Dor Central</div><p class="step-text">Não tente limpar tudo de uma vez. Comece por aquilo que mais pesa agora. "O que mais está roubando minha paz hoje?" Ansiedade, rejeição, escassez, culpa, medo ou relacionamento.</p></div></div>
-      <div class="step"><span class="step-num">02</span><div><div class="step-title">Nomeie Sua Dor</div><p class="step-text">Dar nome à dor é o primeiro ato de responsabilidade emocional. Use a estrutura: "Estou limpando em mim a memória de ___." Preencha com honestidade. Não julgue o que surgir.</p></div></div>
-      <div class="step"><span class="step-num">03</span><div><div class="step-title">Repita com Presença</div><p class="step-text">108 vezes, se possível. Cada repetição é uma oportunidade de aprofundar a intenção. Sinto muito — Me perdoe — Te amo — Sou grato. O número 108 é espiritualmente simbólico em diversas tradições.</p></div></div>
-      <div class="step"><span class="step-num">04</span><div><div class="step-title">Faça Silêncio</div><p class="step-text">Após a prática, permaneça alguns minutos em silêncio. O silêncio não é vazio — é o espaço onde a cura se instala. Permita que sua mente desacelere e não force respostas.</p></div></div>
-      <h3 class="section-heading">O Japamala: Ferramenta de Foco e Presença</h3>
-      <p class="body-text">O Japamala é um cordão de contas utilizado em práticas meditativas e espirituais para auxiliar foco, repetição e presença. Normalmente possui <strong>108 contas</strong> — número espiritualmente simbólico em diversas tradições.</p>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Reduzir Distração</div><p>O toque físico das contas ancora a mente no momento presente durante a prática.</p></div>
-        <div class="card"><div class="card-title">Fortalecer Disciplina</div><p>Criar ritual fortalece constância e profundidade na prática de limpeza interior.</p></div>
-        <div class="card"><div class="card-title">Aprofundar Presença</div><p>Cada conta é uma repetição consciente das quatro frases sagradas com intenção plena.</p></div>
-      </div>
-      <p class="body-text">Como usar: Segure o Japamala, defina sua intenção e, a cada conta, repita: Sinto muito — Me perdoe — Te amo — Sou grato. Manhã para alinhamento, noite para limpeza emocional.</p>
+      <div class="step"><span class="step-num">01</span><div><div class="step-title">Escolha Sua Dor Central</div><p class="step-text">Não tente limpar tudo de uma vez. Comece por aquilo que mais pesa agora.</p></div></div>
+      <div class="step"><span class="step-num">02</span><div><div class="step-title">Nomeie Sua Dor</div><p class="step-text">Use a estrutura: "Estou limpando em mim a memória de ___." Preencha com honestidade.</p></div></div>
+      <div class="step"><span class="step-num">03</span><div><div class="step-title">Repita com Presença</div><p class="step-text">108 vezes, se possível. Sinto muito — Me perdoe — Te amo — Sou grato.</p></div></div>
+      <div class="step"><span class="step-num">04</span><div><div class="step-title">Faça Silêncio</div><p class="step-text">Após a prática, permaneça alguns minutos em silêncio. O silêncio não é vazio — é o espaço onde a cura se instala.</p></div></div>
       <h3 class="section-heading">A Oração Original Completa do Ho'oponopono</h3>
       <div class="pbox">
         <div class="pbox-label">Utilize com reverência, presença e verdade</div>
         <p><em>Divino criador, pai, mãe, filho – todos em um. Se eu, minha família, meus parentes e antepassados ofendemos Sua família, parentes e antepassados em pensamentos, fatos ou ações, desde o início de nossa criação até o presente, pedimos o Seu perdão. Deixe que isto se limpe, purifique, libere e corte todas as memórias, bloqueios, energias e vibrações negativas. Transmute essas energias indesejáveis em pura Luz. E assim é.</em></p>
-        <p style="margin-top:16px"><em>Para limpar o meu subconsciente de toda a carga emocional armazenada nele, digo uma e outra vez durante o meu dia as palavras-chave do Ho'oponopono: EU SINTO MUITO, ME PERDOE, EU TE AMO, SOU GRATO.</em></p>
-        <p style="margin-top:16px"><em>Se meu corpo físico experimenta ansiedade, preocupação, culpa, medo, tristeza, dor, pronuncio e penso: Minhas memórias, eu te amo! Estou agradecido pela oportunidade de libertar vocês e a mim. SINTO MUITO, ME PERDOE, EU TE AMO, SOU GRATO.</em></p>
-      </div>
-      <h3 class="section-heading">Estrutura Recomendada de Prática</h3>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Prática Diária</div><p>4 frases sagradas com Japamala (opcional) e silêncio ao final. Manhã para alinhamento, noite para limpeza.</p></div>
-        <div class="card"><div class="card-title">Prática Semanal</div><p>Oração completa com presença, sentindo onde dói, pausando após trechos importantes.</p></div>
-        <div class="card"><div class="card-title">Prática Mensal</div><p>Calendário de acompanhamento e revisão de padrões observados ao longo do período.</p></div>
       </div>
       <div class="big-quote">"Quando sua cura se torna prática diária, Ho'oponopono deixa de ser apenas esperança… e pode se tornar transformação vivida."</div>
       <div class="download-section">
@@ -876,31 +1052,18 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 9: CALENDÁRIO 30 DIAS -->
     <div class="chapter light" id="ch-9">
       <span class="ch-eyebrow">Capítulo 09</span>
       <h2 class="ch-title">Calendário de 30 Dias de Ho'oponopono</h2>
       <p class="ch-sub">Um desafio de limpeza emocional e espiritual para transformar sua prática em disciplina, constância e reconexão interior</p>
       <div class="ch-divider"></div>
       <div class="callout"><p>A transformação não acontece apenas quando você entende… mas quando você <strong>permanece.</strong></p></div>
-      <p class="body-text">Muitas pessoas começam processos de cura movidas pela dor. Quando tudo parece desmoronar, elas procuram respostas. Praticam por alguns dias. Sentem alívio momentâneo. Mas depois param — e frequentemente retornam aos mesmos ciclos emocionais. Ho'oponopono se fortalece na constância. Este calendário foi criado para transformar intenção em compromisso.</p>
-      <h3 class="section-heading">Sua Missão Diária</h3>
       <div class="cards-grid">
         <div class="card"><div class="card-title">01 — Identificar a dor do dia</div><p>Observe o que está ativado emocionalmente naquele momento, sem julgamento.</p></div>
         <div class="card"><div class="card-title">02 — Fazer sua prática</div><p>Reserve um momento de silêncio e intenção consciente para a limpeza.</p></div>
         <div class="card"><div class="card-title">03 — Repetir as 4 frases</div><p>Sinto muito. Me perdoe. Te amo. Sou grato. Com presença e intenção.</p></div>
-        <div class="card"><div class="card-title">04 — Utilizar o Japamala</div><p>Opcional — para aprofundar a repetição meditativa com foco e constância.</p></div>
-        <div class="card"><div class="card-title">05 — Fazer silêncio</div><p>Conclua com presença e registre internamente sua experiência do dia.</p></div>
+        <div class="card"><div class="card-title">04 — Fazer silêncio</div><p>Conclua com presença e registre internamente sua experiência do dia.</p></div>
       </div>
-      <h3 class="section-heading">Regras Espirituais do Desafio</h3>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Regra 1 — Não Busque Perfeição</div><p>Você não precisa praticar perfeitamente. Precisa praticar honestamente. A honestidade com suas emoções vale mais do que qualquer técnica executada sem falhas.</p></div>
-        <div class="card"><div class="card-title">Regra 2 — Pratique nos Dias Difíceis</div><p>Às vezes, os dias mais pesados são justamente os dias em que sua limpeza mais importa. A resistência que você sente pode ser exatamente o que precisa ser liberado.</p></div>
-        <div class="card"><div class="card-title">Regra 3 — Observe Padrões</div><p>O que mais me ativa emocionalmente? Quais memórias mais retornam? O que mudou desde o início? Cada mudança sutil é evidência de cura em andamento.</p></div>
-        <div class="card"><div class="card-title">Regra 4 — Permita o Processo</div><p>Algumas emoções podem surgir antes de se dissolver. Isso não significa fracasso. Pode significar consciência emergindo.</p></div>
-      </div>
-      <h3 class="section-heading">Quando Você Falhar… Recomece</h3>
-      <div class="highlight-box"><p>Uma das maiores armadilhas emocionais é transformar uma falha momentânea em desistência total. Se perder um dia: não se culpe, não se ataque, não abandone o processo. <strong>Apenas volte.</strong></p></div>
       <div class="pbox"><div class="pbox-label">Se você interrompeu sua constância, diga</div><p>"Sinto muito por interromper minha constância. Me perdoe. Te amo. Sou grato por recomeçar." Recomeçar também faz parte da cura.</p></div>
       <div class="big-quote">A repetição criou muitas das dores que você carrega — e a prática consciente pode ajudar a criar sua libertação.</div>
       <div class="download-section">
@@ -910,43 +1073,21 @@
       </div>
     </div>
 
-    <!-- CAPÍTULO 10: PAZ INTERIOR -->
     <div class="chapter dark" id="ch-10">
       <span class="ch-eyebrow">Capítulo 10</span>
       <h2 class="ch-title">O Reencontro com Sua Paz Interior</h2>
       <p class="ch-sub">Quando sua maior transformação deixa de ser apenas sobreviver… e passa a ser retornar para si mesmo</p>
       <div class="ch-divider"></div>
       <div class="callout"><p>Depois de tanta dor… quem você escolhe ser agora?</p></div>
-      <p class="body-text">Se você chegou até aqui, talvez tenha percebido que este livro nunca foi apenas sobre técnicas. Foi sobre dor. Consciência. Limpeza. Reconstrução. Porque ninguém busca profundamente por cura sem carregar algum nível de sofrimento dentro de si.</p>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Relacionamentos quebrados</div><p>Dores que vêm de vínculos rompidos e afetos perdidos ao longo da vida.</p></div>
-        <div class="card"><div class="card-title">Ansiedade e medo</div><p>O peso invisível que aperta o peito e paralisa o avanço interior.</p></div>
-        <div class="card"><div class="card-title">Escassez e culpa</div><p>A sensação de nunca ser suficiente — financeira, emocional ou espiritualmente.</p></div>
-        <div class="card"><div class="card-title">Sobrecarga emocional</div><p>O cansaço silencioso de viver sempre reagindo, nunca descansando de verdade.</p></div>
-      </div>
-      <h3 class="section-heading">Sua Vida Não Precisa Estar Perfeita para Sua Cura Começar</h3>
-      <p class="body-text">Muitas pessoas acreditam que só poderão sentir paz quando tudo estiver resolvido. Mas Ho'oponopono revela algo profundamente libertador: <strong>a paz pode começar antes da perfeição externa.</strong> Isso não significa ignorar problemas. Significa não entregar completamente sua identidade a eles.</p>
       <div class="cards-grid">
         <div class="card"><div class="card-title">Você pode retornar à prática</div><p>As quatro frases estão sempre disponíveis, em qualquer momento e lugar.</p></div>
         <div class="card"><div class="card-title">Você pode retornar à consciência</div><p>Observar sem ser engolido — testemunhar sem se perder na dor.</p></div>
         <div class="card"><div class="card-title">Você pode retornar à limpeza</div><p>Cada momento difícil é uma nova oportunidade de purificação.</p></div>
         <div class="card"><div class="card-title">Você pode retornar ao amor</div><p>Sinto muito. Me perdoe. Te amo. Sou grato. Sua ponte de volta para si mesmo.</p></div>
       </div>
-      <h3 class="section-heading">O que Fazer a Partir de Agora</h3>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Sugestão Diária</div><p>Use as 4 frases · Faça silêncio · Observe seus gatilhos · Utilize o Japamala · Faça sua limpeza emocional.</p></div>
-        <div class="card"><div class="card-title">Sugestão Semanal</div><p>Leia a oração completa · Reflita sobre seus padrões · Avalie mudanças internas.</p></div>
-        <div class="card"><div class="card-title">Sugestão Mensal</div><p>Refaça o calendário de 30 dias · Escolha uma nova área para limpar.</p></div>
-      </div>
-      <h3 class="section-heading">Oração Final de Entrega e Purificação</h3>
       <div class="pbox">
         <div class="pbox-label">Respire profundamente. E, se desejar, leia lentamente</div>
-        <p>"Divindade… Limpa em mim tudo aquilo que limita minha paz. Purifica minhas memórias de dor, medo e escassez. Restaura meu coração. Fortalece minha consciência. Que eu escolha amor onde antes havia medo. Que eu escolha limpeza onde antes havia repetição. Que eu escolha paz. Sinto muito. Me perdoe. Te amo. Sou grato."</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Que sua prática continue</div><p>Mantenha as quatro frases vivas no seu cotidiano, como uma âncora de retorno.</p></div>
-        <div class="card"><div class="card-title">Que sua paz se fortaleça</div><p>Cada limpeza realizada aprofunda sua capacidade de viver com mais leveza.</p></div>
-        <div class="card"><div class="card-title">Que sua cura se aprofunde</div><p>Você pode retornar. Você pode limpar. Você pode recomeçar — sempre.</p></div>
+        <p>"Divindade… Limpa em mim tudo aquilo que limita minha paz. Purifica minhas memórias de dor, medo e escassez. Restaura meu coração. Fortalece minha consciência. Que eu escolha amor onde antes havia medo. Sinto muito. Me perdoe. Te amo. Sou grato."</p>
       </div>
       <div class="big-quote">Sua dor pode ter marcado sua história… mas sua limpeza interior pode transformar seu destino.</div>
       <div class="download-section">
@@ -956,22 +1097,12 @@
       </div>
     </div>
 
-    <!-- BÔNUS 1: 21 DIAS DE AFIRMAÇÕES PODEROSAS -->
     <div class="chapter light" id="ch-11">
       <span class="ch-eyebrow" style="color:#B8922A;letter-spacing:5px;">✦ Bônus Exclusivo 01</span>
       <h2 class="ch-title">21 Dias de Afirmações Poderosas com Ho'oponopono</h2>
-      <p class="ch-sub">Reprogramando sua mente emocional e espiritual diariamente — prática de limpeza para os 21 dias da sua transformação</p>
+      <p class="ch-sub">Reprogramando sua mente emocional e espiritual diariamente</p>
       <div class="ch-divider"></div>
       <div class="callout"><p>"Aquilo que você repete diariamente também ajuda a construir sua nova realidade emocional."</p></div>
-      <p class="body-text">Durante 21 dias, leia as afirmações lentamente <strong>pela manhã e antes de dormir.</strong> Depois, repita as quatro frases sagradas do Ho'oponopono: <strong>Sinto muito · Me perdoe · Te amo · Sou grato.</strong></p>
-      <h3 class="section-heading">Essas afirmações ajudam a</h3>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Fortalecer paz interior</div><p>Criar um estado interno de maior equilíbrio emocional e serenidade no cotidiano.</p></div>
-        <div class="card"><div class="card-title">Reduzir autossabotagem</div><p>Identificar e limpar padrões que impedem seu crescimento e realização pessoal.</p></div>
-        <div class="card"><div class="card-title">Reprogramar crenças negativas</div><p>Substituir programas limitantes por novas percepções de merecimento e possibilidade.</p></div>
-        <div class="card"><div class="card-title">Aumentar consciência emocional</div><p>Desenvolver a capacidade de observar suas emoções sem ser dominado por elas.</p></div>
-        <div class="card"><div class="card-title">Fortalecer merecimento e cura</div><p>Restaurar a crença profunda de que você merece paz, amor e prosperidade.</p></div>
-      </div>
       <h3 class="section-heading">Semana 1 — Dias 1 a 7</h3>
       <div class="phrase-item"><div class="phrase-num">01</div><div><span class="phrase-main">Dia 1</span><span class="phrase-tag">Purificação</span><p class="phrase-desc">"Eu permito que minha dor seja purificada."</p></div></div>
       <div class="phrase-item"><div class="phrase-num">02</div><div><span class="phrase-main">Dia 2</span><span class="phrase-tag">Limpeza</span><p class="phrase-desc">"Estou limpando memórias de medo e sofrimento."</p></div></div>
@@ -996,119 +1127,65 @@
       <div class="phrase-item"><div class="phrase-num">19</div><div><span class="phrase-main">Dia 19</span><span class="phrase-tag">Transformação</span><p class="phrase-desc">"A limpeza interior está transformando minha vida."</p></div></div>
       <div class="phrase-item"><div class="phrase-num">20</div><div><span class="phrase-main">Dia 20</span><span class="phrase-tag">Gratidão</span><p class="phrase-desc">"Sou grato pela minha jornada de cura."</p></div></div>
       <div class="phrase-item"><div class="phrase-num">21</div><div><span class="phrase-main">Dia 21</span><span class="phrase-tag">Integração</span><p class="phrase-desc">"Eu escolho viver com mais paz, consciência e amor."</p></div></div>
-      <div class="callout"><p>Cada afirmação que você repete com intenção planta uma semente de transformação. Ao longo de 21 dias, essas sementes se tornam raízes profundas de uma nova realidade emocional — mais leve, mais consciente e cheia de amor.</p></div>
-      <div class="pbox">
-        <div class="pbox-label">Lembre-se</div>
-        <p>A consistência é o segredo. Mesmo nos dias difíceis, repita as afirmações. É exatamente nesses momentos que a limpeza interior mais precisa acontecer.</p>
-      </div>
-      <div class="big-quote">"Aquilo que você repete diariamente também ajuda a construir sua nova realidade emocional."</div>
       <div class="download-section">
         <span class="download-label">✦ Bônus Exclusivo 01 — PDF Completo</span>
-        <p class="download-desc">Baixe o bônus completo "21 Dias de Afirmações Poderosas com Ho'oponopono" em PDF e tenha todas as afirmações organizadas para sua prática diária.</p>
+        <p class="download-desc">Baixe o bônus completo "21 Dias de Afirmações Poderosas com Ho'oponopono" em PDF.</p>
         <a class="btn-download" href="Bonus_1_-_21-Dias-de-Afirmacoes-Poderosas-com-Hooponopono.pdf" download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar Bônus 01 em PDF</a>
       </div>
     </div>
 
-    <!-- BÔNUS 2: RITUAL NOTURNO PARA DORMIR EM PAZ -->
     <div class="chapter dark" id="ch-12">
       <span class="ch-eyebrow" style="color:#D4AF5A;letter-spacing:5px;">✦ Bônus Exclusivo 02</span>
       <h2 class="ch-title">Ritual Poderoso de Ho'oponopono Para Dormir em Paz</h2>
       <p class="ch-sub">Um processo noturno de limpeza emocional para reduzir ansiedade, acalmar a mente e restaurar sua energia espiritual</p>
       <div class="ch-divider"></div>
       <div class="callout"><p>"Muitas vezes, a paz que você procura durante o dia começa na forma como você entrega sua mente antes de dormir."</p></div>
-      <p class="body-text">Muitas pessoas dormem carregando emoções não resolvidas — e frequentemente acordam emocionalmente esgotadas porque nunca realmente desaceleraram internamente. Criar um ritual noturno pode ajudar sua mente e emoções a entrarem em estado de maior relaxamento e purificação.</p>
-      <h3 class="section-heading">Por Que a Noite É Tão Importante?</h3>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Ansiedade</div><p>Preocupações que não param de girar na mente, impedindo o descanso real do corpo e da alma.</p></div>
-        <div class="card"><div class="card-title">Medos</div><p>Inseguranças que se intensificam no silêncio da noite, amplificando o peso emocional acumulado.</p></div>
-        <div class="card"><div class="card-title">Culpa</div><p>Situações do dia que ficam pesando no coração, impedindo a entrega plena ao sono restaurador.</p></div>
-        <div class="card"><div class="card-title">Pensamentos Acelerados</div><p>A mente que não consegue desligar e descansar, mantendo o sistema nervoso em estado de alerta.</p></div>
-      </div>
       <h3 class="section-heading">O Ritual Noturno Passo a Passo</h3>
-      <p class="body-text">Cada passo foi pensado para conduzir sua mente e seu coração a um estado progressivo de calma, presença e purificação emocional antes do sono.</p>
-      <div class="step"><span class="step-num">01</span><div><div class="step-title">Desligue os Estímulos</div><p class="step-text">Evite o excesso de telas e notícias negativas antes de dormir. O ambiente externo influencia diretamente o estado interno — ao reduzir estímulos, você prepara o terreno para a limpeza emocional acontecer com mais profundidade. Desligue notificações, reduza a luminosidade e crie um ambiente de silêncio e acolhimento ao redor de você.</p></div></div>
-      <div class="step"><span class="step-num">02</span><div><div class="step-title">Respiração Profunda</div><p class="step-text">Respire profundamente 4 vezes, de forma lenta e consciente. A cada expiração, imagine a tensão acumulada durante o dia saindo do seu corpo — como névoa se dissipando no ar. A respiração é a ponte entre o corpo e a mente. Quando você desacelera o ritmo da respiração, você sinaliza ao sistema nervoso que é seguro relaxar. Inspire pelo nariz contando até 4. Segure por 2 segundos. Expire lentamente pela boca contando até 6.</p></div></div>
-      <div class="step"><span class="step-num">03</span><div><div class="step-title">Identifique o Peso do Dia</div><p class="step-text">Com a mente mais calma, faça a si mesmo uma pergunta simples e poderosa: "O que mais pesou emocionalmente hoje?" Não julgue o que surgir. Não tente resolver. Apenas observe com gentileza e compaixão. O simples ato de reconhecer o que você carrega já inicia o processo de liberação. Observe sem julgamento — deixe a emoção aparecer sem resistência ou análise. Nomeie o sentimento — dar nome à emoção reduz seu poder sobre você. Aceite com compaixão — você é humano. Sentir é parte do processo de cura.</p></div></div>
-      <div class="step"><span class="step-num">04</span><div><div class="step-title">Prática de Limpeza Ho'oponopono</div><p class="step-text">Direcione sua atenção à emoção mais forte do dia e repita lentamente, com intenção e sentimento: "Sinto muito" — Reconheço a dor e o peso que carrego. "Me perdoe" — Abro espaço para o perdão fluir em mim. "Te amo" — Envio amor à parte de mim que sofreu. "Sou grato" — Agradeço pela oportunidade de curar.</p></div></div>
-      <h3 class="section-heading">Limpeza Para Ansiedade Noturna</h3>
-      <p class="body-text">Se sua mente acelerar à noite, pratique esta invocação com voz suave ou mentalmente:</p>
-      <div class="pbox">
-        <div class="pbox-label">Invocação para a Ansiedade</div>
-        <p>"Divindade, limpa em mim todas as memórias de medo, ansiedade e excesso de controle."</p>
-        <p style="margin-top:14px">Depois repita as quatro frases sagradas. Imagine uma luz dourada e suave envolvendo sua mente e seu coração, dissolvendo toda tensão acumulada.</p>
-      </div>
-      <h3 class="section-heading">Oração Final Para Dormir em Paz</h3>
+      <div class="step"><span class="step-num">01</span><div><div class="step-title">Desligue os Estímulos</div><p class="step-text">Evite o excesso de telas e notícias negativas antes de dormir. Desligue notificações, reduza a luminosidade.</p></div></div>
+      <div class="step"><span class="step-num">02</span><div><div class="step-title">Respiração Profunda</div><p class="step-text">Respire profundamente 4 vezes. Inspire pelo nariz contando até 4. Segure por 2 segundos. Expire lentamente pela boca contando até 6.</p></div></div>
+      <div class="step"><span class="step-num">03</span><div><div class="step-title">Identifique o Peso do Dia</div><p class="step-text">"O que mais pesou emocionalmente hoje?" Observe sem julgamento. Nomeie o sentimento.</p></div></div>
+      <div class="step"><span class="step-num">04</span><div><div class="step-title">Prática de Limpeza Ho'oponopono</div><p class="step-text">Repita lentamente: "Sinto muito" — "Me perdoe" — "Te amo" — "Sou grato". Com presença e intenção genuína.</p></div></div>
       <div class="pbox">
         <div class="pbox-label">Respire fundo. Leia com calma.</div>
-        <p>"Divindade… Entrego minhas preocupações. Limpa em mim todo medo acumulado hoje. Purifica minhas emoções. Restaura minha paz. Acalma minha mente. Que meu descanso também seja cura.</p>
-        <p style="margin-top:12px"><em>Sinto muito. Me perdoe. Te amo. Sou grato."</em></p>
+        <p>"Divindade… Entrego minhas preocupações. Limpa em mim todo medo acumulado hoje. Purifica minhas emoções. Restaura minha paz. Acalma minha mente. Que meu descanso também seja cura. Sinto muito. Me perdoe. Te amo. Sou grato."</p>
       </div>
       <div class="big-quote">Que cada noite seja uma oportunidade de renovação. Que você acorde mais leve, mais inteiro e mais conectado à sua essência.</div>
       <div class="download-section">
         <span class="download-label">✦ Bônus Exclusivo 02 — PDF Completo</span>
-        <p class="download-desc">Baixe o bônus completo "Ritual Poderoso de Ho'oponopono Para Dormir em Paz" em PDF e tenha o passo a passo sempre disponível para suas noites.</p>
+        <p class="download-desc">Baixe o bônus completo "Ritual Poderoso de Ho'oponopono Para Dormir em Paz" em PDF.</p>
         <a class="btn-download" href="Bonus_-_2_-_Ritual-Poderoso-de-Hooponopono-Para-Dormir-em-Paz.pdf" download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar Bônus 02 em PDF</a>
       </div>
     </div>
 
-    <!-- BÔNUS 3: PLAYLIST DA CURA + FILMES -->
     <div class="chapter light" id="ch-13">
       <span class="ch-eyebrow" style="color:#B8922A;letter-spacing:5px;">✦ Bônus Exclusivo 03</span>
       <h2 class="ch-title">Playlist da Cura + Filmes de Transformação Interior</h2>
-      <p class="ch-sub">Músicas e filmes para fortalecer sua prática de Ho'oponopono, aprofundar sua conexão emocional e alimentar sua paz interior</p>
+      <p class="ch-sub">Músicas e filmes para fortalecer sua prática de Ho'oponopono e alimentar sua paz interior</p>
       <div class="ch-divider"></div>
       <div class="callout"><p>"Sua cura também é influenciada pelo que você escolhe ouvir, assistir, sentir e alimentar dentro de si todos os dias."</p></div>
-      <p class="body-text">Tudo o que você escuta, assiste e absorve emocionalmente pode impactar sua mente, suas emoções e sua energia interior. Muitas pessoas tentam encontrar paz… mas passam o dia inteiro alimentando ansiedade, medo, excesso de informação e emoções negativas. Sua cura também pode ser fortalecida pelo ambiente emocional que você cria ao seu redor.</p>
       <h3 class="section-heading">Playlist para Momentos de Limpeza e Meditação</h3>
-      <p class="body-text">Músicas instrumentais e espirituais recomendadas para sua prática de Ho'oponopono, uso do Japamala, meditação, relaxamento e ansiedade.</p>
       <div class="cards-grid">
-        <div class="card"><div class="card-title">Sons do Oceano Havaiano</div><p>Sons naturais havaianos que conectam com a origem ancestral do Ho'oponopono e aprofundam a presença.</p></div>
-        <div class="card"><div class="card-title">Tibetan Healing Sounds</div><p>Frequências tibetanas de cura que auxiliam no relaxamento profundo e na limpeza emocional.</p></div>
-        <div class="card"><div class="card-title">Deep Healing Meditation</div><p>Músicas especialmente compostas para estados meditativos de limpeza e restauração interior.</p></div>
-        <div class="card"><div class="card-title">Hawaiian Healing Music</div><p>Música havaiana de cura que fortalece a conexão espiritual durante a prática das 4 frases sagradas.</p></div>
-        <div class="card"><div class="card-title">Frequência 432Hz Relaxamento</div><p>Frequência natural de relaxamento que harmoniza mente e corpo durante a prática meditativa.</p></div>
-        <div class="card"><div class="card-title">Frequência 528Hz Cura Emocional</div><p>Conhecida como a frequência do amor, potencializa processos de cura emocional e transformação.</p></div>
-        <div class="card"><div class="card-title">Piano Calmante para Meditação</div><p>Melodias suaves de piano que desaceleram a mente e criam espaço para limpeza profunda.</p></div>
-        <div class="card"><div class="card-title">Sons da Natureza e Chuva</div><p>Ambiente sonoro natural que reduz a ansiedade e induz estados de calma e receptividade.</p></div>
-        <div class="card"><div class="card-title">Native Hawaiian Meditation Music</div><p>Música meditativa nativa havaiana para fortalecer a conexão com a prática original do Ho'oponopono.</p></div>
-        <div class="card"><div class="card-title">Música Instrumental Zen</div><p>Melodias zen instrumentais para criar o ambiente ideal de silêncio ativo e presença plena.</p></div>
+        <div class="card"><div class="card-title">Sons do Oceano Havaiano</div><p>Sons naturais havaianos que conectam com a origem ancestral do Ho'oponopono.</p></div>
+        <div class="card"><div class="card-title">Tibetan Healing Sounds</div><p>Frequências tibetanas de cura que auxiliam no relaxamento profundo.</p></div>
+        <div class="card"><div class="card-title">Deep Healing Meditation</div><p>Músicas compostas para estados meditativos de limpeza e restauração.</p></div>
+        <div class="card"><div class="card-title">Frequência 432Hz</div><p>Frequência natural de relaxamento que harmoniza mente e corpo.</p></div>
+        <div class="card"><div class="card-title">Frequência 528Hz</div><p>Conhecida como a frequência do amor, potencializa processos de cura emocional.</p></div>
+        <div class="card"><div class="card-title">Sons da Natureza e Chuva</div><p>Ambiente sonoro natural que reduz ansiedade e induz estados de calma.</p></div>
       </div>
-      <div class="pbox">
-        <div class="pbox-label">Dica: Enquanto Ouvir</div>
-        <p>Respire lentamente · Repita as 4 frases · Faça silêncio entre as repetições · Permita desacelerar. A música não substitui sua prática. Mas pode ajudar sua mente a entrar em estado de maior presença.</p>
-      </div>
-      <h3 class="section-heading">Filmes que Despertam Consciência, Cura e Transformação</h3>
+      <h3 class="section-heading">Filmes que Despertam Consciência e Transformação</h3>
       <div class="cards-grid">
-        <div class="card"><div class="card-title">À Procura da Felicidade</div><p>Um lembrete poderoso sobre esperança, persistência e superação emocional mesmo diante da escassez.</p></div>
-        <div class="card"><div class="card-title">Comer, Rezar, Amar</div><p>Uma jornada profunda de autoconhecimento, cura emocional e reconexão interior com a própria essência.</p></div>
-        <div class="card"><div class="card-title">O Poder Além da Vida</div><p>Reflexões sobre presença, consciência e transformação pessoal que tocam diretamente os temas do Ho'oponopono.</p></div>
-        <div class="card"><div class="card-title">A Cabana</div><p>Um filme emocionalmente profundo sobre dor, perdão e cura espiritual — ressoa fortemente com a prática de limpeza interior.</p></div>
-        <div class="card"><div class="card-title">Quem Somos Nós?</div><p>Reflexões sobre mente, emoções e realidade interior. Aprofunda a compreensão do poder da consciência na criação da realidade.</p></div>
-        <div class="card"><div class="card-title">O Segredo</div><p>Ajuda a despertar consciência sobre pensamentos, energia e transformação pessoal como complemento à prática espiritual.</p></div>
-        <div class="card"><div class="card-title">Milagre na Cela 7</div><p>Um filme profundamente emocional sobre amor, compaixão e humanidade que toca as camadas mais profundas do coração.</p></div>
-        <div class="card"><div class="card-title">Soul</div><p>Uma animação poderosa sobre propósito, presença e significado da vida — convida à reflexão sobre o que realmente importa.</p></div>
+        <div class="card"><div class="card-title">À Procura da Felicidade</div><p>Esperança, persistência e superação emocional mesmo diante da escassez.</p></div>
+        <div class="card"><div class="card-title">Comer, Rezar, Amar</div><p>Jornada profunda de autoconhecimento, cura emocional e reconexão interior.</p></div>
+        <div class="card"><div class="card-title">A Cabana</div><p>Filme emocionalmente profundo sobre dor, perdão e cura espiritual.</p></div>
+        <div class="card"><div class="card-title">Soul</div><p>Animação poderosa sobre propósito, presença e o que realmente importa na vida.</p></div>
       </div>
-      <h3 class="section-heading">Como Usar Este Bônus para Fortalecer sua Transformação</h3>
-      <p class="body-text">Você pode criar pequenos rituais emocionais de cura que preparam sua mente e seu coração para a limpeza interior.</p>
-      <div class="step"><span class="step-num">♪</span><div><div class="step-title">Música Suave</div><p class="step-text">Coloque uma das músicas da playlist para criar o ambiente ideal de receptividade emocional e espiritual.</p></div></div>
-      <div class="step"><span class="step-num">◎</span><div><div class="step-title">Luz Baixa</div><p class="step-text">Reduza a iluminação para sinalizar ao seu sistema nervoso que é hora de descansar e receber a limpeza.</p></div></div>
-      <div class="step"><span class="step-num">∿</span><div><div class="step-title">Respiração Profunda</div><p class="step-text">Inspire e expire lentamente, deixando o corpo relaxar completamente antes de iniciar a prática.</p></div></div>
-      <div class="step"><span class="step-num">✦</span><div><div class="step-title">Japamala + Ho'oponopono</div><p class="step-text">Use o japamala enquanto repete as 4 frases sagradas da prática com intenção e presença plena.</p></div></div>
-      <div class="step"><span class="step-num">▷</span><div><div class="step-title">Filme Inspirador</div><p class="step-text">Nos fins de semana, escolha um dos filmes recomendados para nutrir sua consciência e aprofundar a reflexão interior.</p></div></div>
-      <div class="cards-grid">
-        <div class="card"><div class="card-title">Se deseja paz</div><p>Alimente <strong>mais paz</strong> ao seu redor — nas músicas, nas conversas, nos conteúdos que consome diariamente.</p></div>
-        <div class="card"><div class="card-title">Se deseja cura</div><p>Alimente <strong>mais consciência</strong> — escolha filmes, músicas e práticas que elevam sua vibração e fortalecem o processo de limpeza.</p></div>
-        <div class="card"><div class="card-title">Se deseja transformação</div><p>Alimente <strong>conteúdos que fortaleçam</strong> sua mente e sua espiritualidade todos os dias sem exceção.</p></div>
-      </div>
-      <div class="big-quote">Isso ajuda sua mente a sair do excesso de tensão e entrar em um estado mais receptivo à limpeza interior.</div>
       <div class="download-section">
         <span class="download-label">✦ Bônus Exclusivo 03 — PDF Completo</span>
-        <p class="download-desc">Baixe o bônus completo "Playlist da Cura + Filmes de Transformação Interior" em PDF e tenha toda a curadoria disponível para fortalecer sua prática.</p>
+        <p class="download-desc">Baixe o bônus completo "Playlist da Cura + Filmes de Transformação Interior" em PDF.</p>
         <a class="btn-download" href="Bonus_-_3_-Playlist-da-Cura-Filmes-de-Transformacao-Interior.pdf" download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar Bônus 03 em PDF</a>
       </div>
     </div>
 
-    <!-- BOTTOM NAV -->
     <div class="bottom-nav">
       <button class="btn-nav" id="btn-prev" onclick="prev()" disabled>
         <span class="arrow">←</span> Anterior
@@ -1119,11 +1196,8 @@
       </button>
     </div>
 
-  </div><!-- /.content-area -->
-</div><!-- /.shell -->
-
-
-
+  </div>
+</div>
 
 <script type="module">
 import { initializeApp }   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -1134,15 +1208,10 @@ import { getFirestore, doc, setDoc, getDoc, getDocs,
          deleteDoc, collection, serverTimestamp }
                             from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ================================================================
-//  ★ CONFIGURAÇÃO DE ADMINISTRADORES
-//  Coloque aqui os emails dos admins. Eles entram com email + senha.
-// ================================================================
 const ADMINS = [
-  "Albertojosemarinmarin@gmail.com",   // Admin 1
-  "COLOQUE_AQUI_O_EMAIL_DO_ADMIN_2",   // Admin 2 — substitua pelo email real
+  "Albertojosemarinmarin@gmail.com",
+  "COLOQUE_AQUI_O_EMAIL_DO_ADMIN_2",
 ];
-// ================================================================
 
 const firebaseConfig = {
   apiKey:            "AIzaSyAaqZnuxmsGDVMaM59XPQNIb4LFtpJTygw",
@@ -1161,7 +1230,6 @@ function isAdmin(email) {
   return ADMINS.map(e => e.toLowerCase()).includes((email||'').toLowerCase());
 }
 
-// ── helpers ──────────────────────────────────────────────────────
 const $    = id => document.getElementById(id);
 const show = id => $(id).classList.remove('hidden');
 const hide = id => $(id).classList.add('hidden');
@@ -1178,7 +1246,6 @@ function setView(v) {
 }
 window.setView = setView;
 
-// ── LOGIN ────────────────────────────────────────────────────────
 function renderLogin() {
   $('auth-overlay').innerHTML = `
     <div class="auth-card">
@@ -1203,21 +1270,16 @@ window._login = async function() {
   const err  = $('lerr');
   const btn  = $('lbtn');
   if (!raw || !pass) { err.textContent = 'Preencha todos os campos.'; return; }
-
   btn.disabled = true; btn.textContent = 'Entrando…'; err.textContent = '';
-
   try {
-    // Se parece email usa direto, senão converte para @hooponopono.app
     const email = raw.includes('@') ? raw : toEmail(raw);
     const cred  = await signInWithEmailAndPassword(auth, email, pass);
-
     if (isAdmin(cred.user.email)) {
       window.__adminEmail = cred.user.email;
       window.__adminPass  = pass;
       setView('admin');
       return;
     }
-
     const snap = await getDoc(doc(db, 'users', cred.user.uid));
     if (snap.exists() && snap.data().mustChange) {
       setView('changepass');
@@ -1236,7 +1298,6 @@ window._login = async function() {
   }
 };
 
-// ── TROCAR SENHA ─────────────────────────────────────────────────
 function renderChangePass() {
   $('auth-overlay').innerHTML = `
     <div class="auth-card">
@@ -1274,7 +1335,6 @@ window._changePass = async function() {
   }
 };
 
-// ── ADMIN PANEL ──────────────────────────────────────────────────
 function renderAdmin() {
   $('admin-panel').innerHTML = `
     <div class="admin-card">
@@ -1282,7 +1342,6 @@ function renderAdmin() {
         <h1>Painel de Administrador</h1>
         <button class="admin-logout" onclick="window._logout()">Sair</button>
       </div>
-
       <div class="admin-section">
         <h2>Adicionar Conta</h2>
         <div class="type-toggle" style="margin-bottom:12px">
@@ -1296,12 +1355,10 @@ function renderAdmin() {
         </div>
         <div class="admin-msg" id="amsg"></div>
       </div>
-
       <div class="admin-section">
         <h2>Usuários Cadastrados</h2>
         <div id="ulist"><em style="color:rgba(247,243,236,0.3);font-size:13px">Carregando…</em></div>
       </div>
-
       <div class="admin-section">
         <button class="admin-enter-ebook" onclick="setView('ebook')">Acessar o E-book →</button>
       </div>
@@ -1344,7 +1401,6 @@ async function loadUsers() {
   }
 }
 
-// Controla qual tipo está selecionado
 window.__tipoSelecionado = 'usuario';
 window._setTipo = function(tipo) {
   window.__tipoSelecionado = tipo;
@@ -1356,35 +1412,26 @@ window._addUser = async function() {
   const u    = $('nu').value.trim(), p = $('ni').value.trim();
   const msg  = $('amsg');
   const tipo = window.__tipoSelecionado || 'usuario';
-
   if (!u) { msg.style.color='#c0392b'; msg.textContent='Informe um nome de usuário.'; return; }
   if (p.length < 6) { msg.style.color='#c0392b'; msg.textContent='Senha mínima: 6 caracteres.'; return; }
   msg.style.color='#B8922A'; msg.textContent='Criando…';
-
   const adminEmail = window.__adminEmail;
   const adminPass  = window.__adminPass;
-
   try {
     const email   = toEmail(u);
     const cred    = await createUserWithEmailAndPassword(auth, email, p);
-    const isAdmin = tipo === 'admin';
-
+    const isAdm   = tipo === 'admin';
     await setDoc(doc(db,'users',cred.user.uid), {
       username: u, email, mustChange: true,
-      isAdmin, createdAt: serverTimestamp()
+      isAdmin: isAdm, createdAt: serverTimestamp()
     });
-
-    // Se for admin, adiciona também na lista ADMINS do Firestore
-    if (isAdmin) {
+    if (isAdm) {
       await setDoc(doc(db,'admins',cred.user.uid), { email, username: u, createdAt: serverTimestamp() });
     }
-
-    // Volta a logar como admin
     await signOut(auth);
     await signInWithEmailAndPassword(auth, adminEmail, adminPass);
-
     msg.style.color = '#2ecc71';
-    msg.textContent = `${isAdmin ? 'Admin' : 'Usuário'} "${u}" criado com sucesso!`;
+    msg.textContent = `${isAdm ? 'Admin' : 'Usuário'} "${u}" criado com sucesso!`;
     $('nu').value = ''; $('ni').value = '';
     window.__tipoSelecionado = 'usuario';
     $('tipo-usuario').classList.add('active');
@@ -1413,24 +1460,106 @@ window._del = async function(uid, u) {
   catch(e) { alert('Erro: '+e.message); }
 };
 
-window._reset = async function(uid, u) {
-  const p = prompt(`Nova senha inicial para "${u}" (mín. 6 caracteres):`);
-  if (!p || p.length < 6) { if(p!==null) alert('Senha inválida.'); return; }
+// ── RESET MODAL — funções ────────────────────────────────────────
+document.getElementById('reset-modal').addEventListener('click', function(e) {
+  if (e.target === this) window._closeResetModal();
+});
 
-  const adminEmail = window.__adminEmail;
-  const adminPass  = window.__adminPass;
+window.__resetTarget = null;
 
-  try {
-    // Login como o usuário para trocar senha
-    const usnap = await getDoc(doc(db,'users',uid));
-    const uemail = usnap.data().email;
-    const oldpass = usnap.data().tempPass || '';
-
-    await setDoc(doc(db,'users',uid), { mustChange:true, tempPass: p }, { merge:true });
-    alert(`Anote! Nova senha inicial de "${u}": ${p}\nEle precisará criar uma senha nova no próximo acesso.`);
-    loadUsers();
-  } catch(e) { alert('Erro: '+e.message); }
+window._reset = function(uid, username) {
+  window.__resetTarget = { uid, username };
+  const badge = document.getElementById('reset-badge');
+  if (badge) badge.textContent = username;
+  ['reset-p1','reset-p2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; el.type = 'password'; }
+  });
+  ['rb1','rb2','rb3'].forEach(id => {
+    const b = document.getElementById(id);
+    if (b) b.className = 'reset-strength-bar';
+  });
+  const sl = document.getElementById('reset-slabel');
+  if (sl) { sl.textContent = ''; sl.style.color = 'rgba(184,146,42,0.35)'; }
+  const err = document.getElementById('reset-err');
+  if (err) err.textContent = '';
+  const btn = document.getElementById('reset-confirm-btn');
+  if (btn) { btn.disabled = false; btn.textContent = 'Confirmar'; }
+  const modal = document.getElementById('reset-modal');
+  if (modal) {
+    modal.classList.add('open');
+    setTimeout(() => { const p1 = document.getElementById('reset-p1'); if (p1) p1.focus(); }, 100);
+  }
 };
+
+window._closeResetModal = function() {
+  const modal = document.getElementById('reset-modal');
+  if (modal) modal.classList.remove('open');
+  window.__resetTarget = null;
+};
+
+window._toggleResetEye = function(inputId, icon) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.style.color = '#B8922A';
+  } else {
+    input.type = 'password';
+    icon.style.color = 'rgba(184,146,42,0.35)';
+  }
+};
+
+window._resetStrength = function() {
+  const p1 = document.getElementById('reset-p1').value;
+  const p2 = document.getElementById('reset-p2').value;
+  const bars = ['rb1','rb2','rb3'].map(id => document.getElementById(id));
+  const label = document.getElementById('reset-slabel');
+  const err = document.getElementById('reset-err');
+  bars.forEach(b => { if(b) b.className = 'reset-strength-bar'; });
+  if (label) label.textContent = '';
+  if (p1.length === 0) return;
+  let score = 0;
+  if (p1.length >= 6) score++;
+  if (p1.length >= 10) score++;
+  if (/[A-Z]/.test(p1) && /[0-9!@#$%^&*]/.test(p1)) score++;
+  const configs = [
+    { cls: 'weak',   label: 'Fraca',  color: '#c0392b', bars: 1 },
+    { cls: 'medium', label: 'Média',  color: '#e67e22', bars: 2 },
+    { cls: 'strong', label: 'Forte',  color: '#27ae60', bars: 3 },
+  ];
+  const cfg = configs[score > 0 ? score - 1 : 0];
+  for (let i = 0; i < cfg.bars; i++) {
+    if (bars[i]) bars[i].classList.add(cfg.cls);
+  }
+  if (label) { label.textContent = 'Força: ' + cfg.label; label.style.color = cfg.color; }
+  if (p2.length > 0 && err) {
+    err.textContent = p1 !== p2 ? 'As senhas não coincidem.' : '';
+  }
+};
+
+window._submitReset = async function() {
+  const p  = document.getElementById('reset-p1').value;
+  const p2 = document.getElementById('reset-p2').value;
+  const err = document.getElementById('reset-err');
+  const btn = document.getElementById('reset-confirm-btn');
+  if (!window.__resetTarget) return;
+  if (p.length < 6) { if(err) err.textContent = 'Mínimo 6 caracteres.'; return; }
+  if (p !== p2)     { if(err) err.textContent = 'As senhas não coincidem.'; return; }
+  if (btn) { btn.disabled = true; btn.textContent = 'Salvando…'; }
+  if (err) err.textContent = '';
+  const { uid, username } = window.__resetTarget;
+  try {
+    await setDoc(doc(db,'users', uid), { mustChange: true, tempPass: p }, { merge: true });
+    window._closeResetModal();
+    alert(`Anote! Nova senha inicial de "${username}": ${p}\nEle precisará criar uma senha nova no próximo acesso.`);
+    loadUsers();
+  } catch(e) {
+    if (err) err.textContent = 'Erro ao salvar: ' + e.message;
+    if (btn) { btn.disabled = false; btn.textContent = 'Confirmar'; }
+  }
+};
+// ── FIM RESET MODAL ──────────────────────────────────────────────
 
 window._logout = async function() { await signOut(auth); setView('login'); };
 
@@ -1463,7 +1592,6 @@ document.addEventListener('keydown', e=>{
   if(e.key==='ArrowLeft' ||e.key==='ArrowUp')   window.prev();
 });
 
-// ── BOOT ─────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', ()=> setView('login'));
 </script>
 
