@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ho'oponopono — Ativar Acesso</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+:root {
+  --cream: #F7F3EC;
+  --deep:  #1A1208;
+  --gold:  #B8922A;
+  --gold-light: #D4AF5A;
+  --brown: #5C3D1E;
+  --warm:  #E8DCC8;
+  --text:  #2D1F0E;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  min-height: 100vh;
+  background: var(--deep);
+  font-family: 'Lato', sans-serif;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Fundo decorativo */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(184,146,42,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(92,61,30,0.12) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* ─── Partículas decorativas ─── */
+.particles { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+.p {
+  position:absolute;
+  width:1px; height:1px;
+  background: var(--gold);
+  border-radius:50%;
+  opacity:0;
+  animation: float var(--dur) var(--delay) infinite ease-in-out;
+}
+@keyframes float {
+  0%   { opacity:0;    transform: translateY(0) scale(1); }
+  20%  { opacity:0.4; }
+  80%  { opacity:0.2; }
+  100% { opacity:0;    transform: translateY(-120px) scale(0.5); }
+}
+
+/* ─── Card principal ─── */
+.card {
+  position: relative; z-index: 1;
+  background: #0E0A04;
+  border: 1px solid rgba(184,146,42,0.22);
+  max-width: 500px; width: 100%;
+  padding: 52px 48px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(184,146,42,0.06);
+  animation: fadeUp 0.65s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(22px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ─── Cabeçalho ─── */
+.card-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 13px; letter-spacing: 6px;
+  color: var(--gold); text-align: center;
+  margin-bottom: 4px;
+}
+.card-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-style: italic;
+  color: rgba(184,146,42,0.5);
+  text-align: center; letter-spacing: 2px;
+  margin-bottom: 36px;
+}
+.gold-line {
+  width: 40px; height: 1px;
+  background: var(--gold); opacity: 0.4;
+  margin: 0 auto 32px;
+}
+
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 400; line-height: 1.15;
+  color: var(--cream); margin-bottom: 10px;
+}
+.card-title em { color: var(--gold-light); font-style: italic; }
+
+.card-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic;
+  color: rgba(212,175,90,0.65);
+  line-height: 1.6; margin-bottom: 36px;
+}
+
+.divider {
+  width: 100%; height: 1px;
+  background: rgba(184,146,42,0.15);
+  margin-bottom: 32px;
+}
+
+/* ─── Formulário ─── */
+.field { margin-bottom: 20px; }
+
+.field label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 9px; letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(184,146,42,0.55);
+  margin-bottom: 9px;
+}
+
+.field input {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(247,243,236,0.04);
+  border: 1px solid rgba(184,146,42,0.2);
+  color: var(--cream);
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.field input::placeholder { color: rgba(247,243,236,0.2); }
+.field input:focus {
+  border-color: rgba(184,146,42,0.55);
+  background: rgba(247,243,236,0.07);
+  box-shadow: 0 0 0 3px rgba(184,146,42,0.07);
+}
+
+/* Aviso */
+.notice {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: rgba(184,146,42,0.07);
+  border-left: 2px solid rgba(184,146,42,0.4);
+  padding: 13px 16px;
+  margin-bottom: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; line-height: 1.5;
+  color: rgba(212,175,90,0.75);
+}
+.notice-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+
+/* Erro */
+#error-box {
+  display: none;
+  gap: 8px; align-items: flex-start;
+  background: rgba(192,57,43,0.1);
+  border-left: 2px solid rgba(192,57,43,0.5);
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #e88070;
+  line-height: 1.5;
+}
+
+/* Botão */
+.btn-ativar {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #B8922A, #8A6A18);
+  border: none;
+  color: var(--cream);
+  font-family: 'Cinzel', serif;
+  font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(184,146,42,0.3);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-ativar:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(184,146,42,0.4);
+}
+.btn-ativar:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.spinner {
+  display: none;
+  width: 18px; height: 18px;
+  border: 2px solid rgba(247,243,236,0.3);
+  border-top-color: var(--cream);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── Seção de sucesso ─── */
+#success-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: fadeUp 0.5s ease both;
+}
+
+.success-sym {
+  font-family: 'Cinzel', serif;
+  font-size: 36px; color: var(--gold);
+  margin-bottom: 16px;
+  letter-spacing: 4px;
+}
+
+#success-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 400;
+  color: var(--cream); margin-bottom: 8px;
+}
+#success-section .s-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic;
+  color: rgba(212,175,90,0.65);
+  line-height: 1.6; margin-bottom: 32px;
+}
+
+/* Caixa de credenciais */
+.cred-box {
+  width: 100%;
+  border: 1px solid rgba(184,146,42,0.2);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.cred-row {
+  display: flex; align-items: center;
+  padding: 14px 18px;
+  gap: 12px;
+}
+.cred-row + .cred-row {
+  border-top: 1px solid rgba(184,146,42,0.15);
+}
+.cred-lbl {
+  font-family: 'Cinzel', serif;
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(184,146,42,0.5);
+  width: 65px; flex-shrink: 0;
+}
+.cred-val {
+  font-family: 'Courier New', monospace;
+  font-size: 14px; color: var(--cream);
+  flex: 1; text-align: left; word-break: break-all;
+}
+.copy-btn {
+  background: rgba(184,146,42,0.1);
+  border: 1px solid rgba(184,146,42,0.25);
+  color: rgba(184,146,42,0.6);
+  width: 30px; height: 30px;
+  cursor: pointer; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.copy-btn:hover { background: rgba(184,146,42,0.2); color: var(--gold); }
+
+/* Email enviado badge */
+.email-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(46,204,113,0.08);
+  border: 1px solid rgba(46,204,113,0.2);
+  padding: 10px 16px;
+  margin-bottom: 24px;
+  font-size: 13px; color: #5dbb7e;
+  font-family: 'Lato', sans-serif;
+  width: 100%;
+}
+
+.btn-login {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%;
+  padding: 14px;
+  background: none;
+  border: 1px solid rgba(184,146,42,0.35);
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-login:hover { background: rgba(184,146,42,0.08); }
+
+/* Rodapé */
+.card-footer {
+  margin-top: 28px;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-style: italic;
+  color: rgba(184,146,42,0.25);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 540px) {
+  .card { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Partículas -->
+<div class="particles" id="ptcl"></div>
+
+<!-- ─── CARD ─── -->
+<div class="card">
+
+  <!-- CABEÇALHO -->
+  <div class="card-logo">ʻOHANA</div>
+  <div class="card-sub">Ho'oponopono</div>
+  <div class="gold-line"></div>
+
+  <!-- ── FORMULÁRIO ── -->
+  <div id="form-section">
+    <h1 class="card-title">Ativar seu <em>acesso</em></h1>
+    <p class="card-desc">Parabéns pela sua compra. Preencha abaixo para receber seu login e senha por e-mail.</p>
+    <div class="divider"></div>
+
+    <div class="field">
+      <label>Seu nome completo</label>
+      <input type="text" id="inp-nome" placeholder="Ex: Maria Silva" autocomplete="name"/>
+    </div>
+
+    <div class="field">
+      <label>E-mail da compra</label>
+      <input type="email" id="inp-email" placeholder="seuemail@gmail.com" autocomplete="email"/>
+    </div>
+
+    <div class="notice">
+      <span class="notice-icon">✦</span>
+      Use o mesmo e-mail do pagamento na Kiwify. Suas credenciais serão enviadas automaticamente para ele.
+    </div>
+
+    <div id="error-box">⚠ <span id="error-txt"></span></div>
+
+    <button class="btn-ativar" id="btn-main" onclick="ativar()">
+      <span id="btn-txt">✦ &nbsp; Gerar meu acesso</span>
+      <div class="spinner" id="btn-spin"></div>
+    </button>
+  </div>
+
+  <!-- ── SUCESSO ── -->
+  <div id="success-section">
+    <div class="success-sym">✦</div>
+    <h2>Acesso criado!</h2>
+    <p class="s-desc">Suas credenciais foram geradas e enviadas para o seu e-mail. Guarde-as com segurança.</p>
+
+    <div class="email-badge">
+      ✓ &nbsp; Credenciais enviadas para <strong id="sent-to" style="margin-left:4px"></strong>
+    </div>
+
+    <div class="cred-box">
+      <div class="cred-row">
+        <span class="cred-lbl">Login</span>
+        <span class="cred-val" id="cred-login">—</span>
+        <button class="copy-btn" onclick="copiar('cred-login',this)" title="Copiar">⧉</button>
+      </div>
+      <div class="cred-row">
+        <span class="cred-lbl">Senha</span>
+        <span class="cred-val" id="cred-senha">—</span>
+        <button class="copy-btn" onclick="copiar('cred-senha',this)" title="Copiar">⧉</button>
+      </div>
+    </div>
+
+    <!-- 🔧 Troque o href pelo link do seu index.html hospedado -->
+    <a class="btn-login" href="index.html">Acessar o e-book →</a>
+  </div>
+
+</div><!-- /card -->
+
+<div class="card-footer">Sinto Muito · Me Perdoe · Te Amo · Sou Grato</div>
+
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ================================================================
+// 🔥 FIREBASE — mesma config do seu index.html
+// ================================================================
+const firebaseConfig = {
+  apiKey:            "AIzaSyAaqZnuxmsGDVMaM59XPQNIb4LFtpJTygw",
+  authDomain:        "hooponopono-ed811.firebaseapp.com",
+  projectId:         "hooponopono-ed811",
+  storageBucket:     "hooponopono-ed811.firebasestorage.app",
+  messagingSenderId: "855776362918",
+  appId:             "1:855776362918:web:317a3a24e72819fe03cf67"
+};
+
+// ================================================================
+// 📧 EMAILJS — preencha com seus dados
+//   1. Crie conta em https://www.emailjs.com (grátis)
+//   2. Adicione um serviço Gmail → copie o Service ID
+//   3. Crie um Template com as variáveis abaixo → copie o Template ID
+//   4. Copie sua Public Key (Dashboard → Account)
+// ================================================================
+const EJS_PUBLIC_KEY  = "SUA_PUBLIC_KEY_AQUI";   // ← sua Public Key
+const EJS_SERVICE_ID  = "SUA_SERVICE_ID_AQUI";   // ← ID do serviço Gmail
+const EJS_TEMPLATE_ID = "SEU_TEMPLATE_ID_AQUI";  // ← ID do template
+
+/*  TEMPLATE EmailJS — cole isso no corpo do seu template:
+    ──────────────────────────────────────────────────────
+    Assunto: Seu acesso ao Ho'oponopono foi criado ✦
+
+    Olá, {{nome}}!
+
+    Seu acesso ao Ebook Ho'oponopono está pronto. 🎉
+
+    ✦ LOGIN:  {{login}}
+    ✦ SENHA:  {{senha}}
+
+    Acesse aqui: {{link_acesso}}
+
+    Na primeira entrada, você será solicitado a criar
+    uma senha pessoal.
+
+    Sinto Muito · Me Perdoe · Te Amo · Sou Grato
+    ──────────────────────────────────────────────────────
+    Variáveis usadas: {{nome}} {{login}} {{senha}} {{link_acesso}}
+*/
+
+// ================================================================
+// 🔗 Link do seu index.html hospedado (Vercel, Netlify, etc.)
+// ================================================================
+const LINK_ACESSO = "https://SEU_SITE.com/index.html"; // ← troque aqui
+
+// ================================================================
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+// Gera login único a partir do nome + timestamp
+function gerarLogin(nome) {
+  const base = nome.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]/g,'').slice(0,14);
+  const sufixo = Math.random().toString(36).slice(2,6);
+  return base + sufixo;
+}
+
+// Gera senha forte aleatória
+function gerarSenha(len = 10) {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#";
+  return Array.from(crypto.getRandomValues(new Uint8Array(len)))
+    .map(b => chars[b % chars.length]).join('');
+}
+
+// Converte login para e-mail interno Firebase
+function toEmail(login) {
+  return login + '@hooponopono.app';
+}
+
+function $ (id) { return document.getElementById(id); }
+
+function setLoading(on) {
+  $('btn-main').disabled = on;
+  $('btn-txt').style.display  = on ? 'none' : 'flex';
+  $('btn-spin').style.display = on ? 'block' : 'none';
+}
+
+function mostrarErro(msg) {
+  const box = $('error-box');
+  $('error-txt').textContent = msg;
+  box.style.display = 'flex';
+}
+function limparErro() {
+  $('error-box').style.display = 'none';
+}
+
+function mostrarSucesso(email, login, senha) {
+  $('form-section').style.display = 'none';
+  const s = $('success-section');
+  s.style.display = 'flex';
+  $('sent-to').textContent = email;
+  $('cred-login').textContent = login;
+  $('cred-senha').textContent  = senha;
+}
+
+window.ativar = async function() {
+  limparErro();
+  const nome  = $('inp-nome').value.trim();
+  const email = $('inp-email').value.trim();
+
+  if (!nome)  { mostrarErro('Por favor, informe seu nome.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    mostrarErro('Informe um e-mail válido.'); return;
+  }
+
+  setLoading(true);
+
+  const login = gerarLogin(nome);
+  const senha = gerarSenha();
+  const fbEmail = toEmail(login);
+
+  try {
+    // 1️⃣ Cria usuário no Firebase Auth
+    const cred = await createUserWithEmailAndPassword(auth, fbEmail, senha);
+
+    // 2️⃣ Salva dados no Firestore (coleção "users")
+    await setDoc(doc(db, 'users', cred.user.uid), {
+      username:   login,
+      email:      fbEmail,
+      emailReal:  email,
+      nome:       nome,
+      mustChange: true,
+      isAdmin:    false,
+      createdAt:  serverTimestamp()
+    });
+
+    // 3️⃣ Envia e-mail com EmailJS
+    emailjs.init(EJS_PUBLIC_KEY);
+    await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
+      nome:         nome,
+      login:        login,
+      senha:        senha,
+      link_acesso:  LINK_ACESSO,
+      to_email:     email    // EmailJS usa "to_email" para destino
+    });
+
+    // 4️⃣ Mostra sucesso
+    mostrarSucesso(email, login, senha);
+
+  } catch(err) {
+    console.error(err);
+    if (err.code === 'auth/email-already-in-use') {
+      mostrarErro('Este e-mail já possui um acesso ativo. Use a página de login.');
+    } else if (err.name === 'EmailJSResponseStatus') {
+      // Firebase OK mas e-mail falhou — mostra credenciais mesmo assim
+      mostrarSucesso(email, login, senha);
+    } else {
+      mostrarErro('Erro ao criar acesso. Tente novamente ou entre em contato.');
+    }
+    setLoading(false);
+  }
+};
+
+window.copiar = function(id, btn) {
+  const txt = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(txt).then(() => {
+    btn.textContent = '✓';
+    setTimeout(() => btn.textContent = '⧉', 1600);
+  });
+};
+
+// ─── Partículas decorativas ───────────────────────────────────────
+const ptcl = document.getElementById('ptcl');
+for (let i = 0; i < 22; i++) {
+  const p = document.createElement('div');
+  p.className = 'p';
+  p.style.cssText = `
+    left:${Math.random()*100}%;
+    top:${Math.random()*100}%;
+    --dur:${4+Math.random()*6}s;
+    --delay:-${Math.random()*8}s;
+    width:${1+Math.random()*2}px;
+    height:${1+Math.random()*2}px;
+  `;
+  ptcl.appendChild(p);
+}
+</script>
+
+</body>
+</html>
