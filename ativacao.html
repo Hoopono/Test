@@ -5,36 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ho'oponopono — Ativar Acesso</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
-
-<!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <style>
 :root {
   --cream: #F7F3EC;
   --deep:  #1A1208;
   --gold:  #B8922A;
   --gold-light: #D4AF5A;
-  --brown: #5C3D1E;
-  --warm:  #E8DCC8;
-  --text:  #2D1F0E;
 }
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-html, body {
+html {
+  min-height: 100%;
+}
+
+body {
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--deep);
   font-family: 'Lato', sans-serif;
   color: var(--cream);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 16px;
-  position: relative;
+  padding: 40px 20px;
   overflow-x: hidden;
 }
 
-/* Fundo decorativo */
+/* fundo decorativo — sem texto vazando */
 body::before {
   content: '';
   position: fixed; inset: 0;
@@ -42,64 +41,64 @@ body::before {
     radial-gradient(ellipse at 15% 10%, rgba(184,146,42,0.09) 0%, transparent 55%),
     radial-gradient(ellipse at 85% 90%, rgba(92,61,30,0.12) 0%, transparent 55%);
   pointer-events: none;
+  z-index: 0;
 }
 
-/* ─── Partículas decorativas ─── */
-.particles { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0; }
+/* partículas só no fundo, sem interferir no layout */
+.particles {
+  position: fixed; inset: 0;
+  pointer-events: none; overflow: hidden;
+  z-index: 0;
+}
 .p {
-  position:absolute;
-  width:1px; height:1px;
+  position: absolute; border-radius: 50%; opacity: 0;
   background: var(--gold);
-  border-radius:50%;
-  opacity:0;
   animation: float var(--dur) var(--delay) infinite ease-in-out;
 }
 @keyframes float {
-  0%   { opacity:0;    transform: translateY(0) scale(1); }
-  20%  { opacity:0.4; }
-  80%  { opacity:0.2; }
-  100% { opacity:0;    transform: translateY(-120px) scale(0.5); }
+  0%   { opacity: 0;   transform: translateY(0) scale(1); }
+  20%  { opacity: 0.35; }
+  80%  { opacity: 0.15; }
+  100% { opacity: 0;   transform: translateY(-100px) scale(0.4); }
 }
 
-/* ─── Card principal ─── */
+/* CARD — ocupa a tela toda no mobile */
 .card {
   position: relative; z-index: 1;
   background: #0E0A04;
   border: 1px solid rgba(184,146,42,0.22);
-  max-width: 500px; width: 100%;
-  padding: 52px 48px;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(184,146,42,0.06);
-  animation: fadeUp 0.65s ease both;
+  width: 100%;
+  max-width: 480px;
+  padding: 48px 40px;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.7);
+  animation: fadeUp 0.6s ease both;
 }
-
 @keyframes fadeUp {
-  from { opacity:0; transform:translateY(22px); }
+  from { opacity:0; transform:translateY(20px); }
   to   { opacity:1; transform:translateY(0); }
 }
 
-/* ─── Cabeçalho ─── */
+/* cabeçalho */
 .card-logo {
   font-family: 'Cinzel', serif;
   font-size: 13px; letter-spacing: 6px;
-  color: var(--gold); text-align: center;
-  margin-bottom: 4px;
+  color: var(--gold); text-align: center; margin-bottom: 4px;
 }
 .card-sub {
   font-family: 'Cormorant Garamond', serif;
   font-size: 13px; font-style: italic;
   color: rgba(184,146,42,0.5);
-  text-align: center; letter-spacing: 2px;
-  margin-bottom: 36px;
+  text-align: center; letter-spacing: 2px; margin-bottom: 32px;
 }
 .gold-line {
   width: 40px; height: 1px;
   background: var(--gold); opacity: 0.4;
-  margin: 0 auto 32px;
+  margin: 0 auto 28px;
 }
 
 .card-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(28px, 5vw, 38px);
+  font-size: clamp(30px, 7vw, 40px);
   font-weight: 400; line-height: 1.15;
   color: var(--cream); margin-bottom: 10px;
 }
@@ -108,227 +107,185 @@ body::before {
 .card-desc {
   font-family: 'Cormorant Garamond', serif;
   font-size: 17px; font-style: italic;
-  color: rgba(212,175,90,0.65);
-  line-height: 1.6; margin-bottom: 36px;
+  color: rgba(212,175,90,0.65); line-height: 1.6; margin-bottom: 32px;
 }
-
 .divider {
   width: 100%; height: 1px;
-  background: rgba(184,146,42,0.15);
-  margin-bottom: 32px;
+  background: rgba(184,146,42,0.15); margin-bottom: 28px;
 }
 
-/* ─── Formulário ─── */
-.field { margin-bottom: 20px; }
-
+/* campos */
+.field { margin-bottom: 18px; }
 .field label {
   display: block;
   font-family: 'Cinzel', serif;
-  font-size: 9px; letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(184,146,42,0.55);
-  margin-bottom: 9px;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(184,146,42,0.55); margin-bottom: 8px;
 }
-
 .field input {
-  width: 100%;
-  padding: 13px 16px;
+  width: 100%; padding: 13px 14px;
   background: rgba(247,243,236,0.04);
   border: 1px solid rgba(184,146,42,0.2);
   color: var(--cream);
-  font-family: 'Lato', sans-serif;
-  font-size: 15px;
+  font-family: 'Lato', sans-serif; font-size: 15px;
   outline: none;
+  -webkit-appearance: none;
+  border-radius: 0;
   transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
 }
 .field input::placeholder { color: rgba(247,243,236,0.2); }
 .field input:focus {
   border-color: rgba(184,146,42,0.55);
-  background: rgba(247,243,236,0.07);
+  background: rgba(247,243,236,0.06);
   box-shadow: 0 0 0 3px rgba(184,146,42,0.07);
 }
 
-/* Aviso */
+/* aviso */
 .notice {
   display: flex; gap: 10px; align-items: flex-start;
   background: rgba(184,146,42,0.07);
   border-left: 2px solid rgba(184,146,42,0.4);
-  padding: 13px 16px;
-  margin-bottom: 28px;
+  padding: 12px 14px; margin-bottom: 24px;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 16px; line-height: 1.5;
+  font-size: 15px; line-height: 1.55;
   color: rgba(212,175,90,0.75);
 }
-.notice-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.notice-icon { font-size: 14px; flex-shrink: 0; margin-top: 3px; }
 
-/* Erro */
+/* erro */
 #error-box {
-  display: none;
-  gap: 8px; align-items: flex-start;
+  display: none; gap: 8px; align-items: flex-start;
   background: rgba(192,57,43,0.1);
   border-left: 2px solid rgba(192,57,43,0.5);
-  padding: 12px 15px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: #e88070;
-  line-height: 1.5;
+  padding: 11px 14px; margin-bottom: 18px;
+  font-size: 14px; color: #e88070; line-height: 1.5;
 }
 
-/* Botão */
+/* botão */
 .btn-ativar {
-  width: 100%;
-  padding: 15px;
+  width: 100%; padding: 16px;
   background: linear-gradient(135deg, #B8922A, #8A6A18);
-  border: none;
-  color: var(--cream);
+  border: none; color: var(--cream);
   font-family: 'Cinzel', serif;
-  font-size: 11px; letter-spacing: 3px;
-  text-transform: uppercase;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
   cursor: pointer;
+  -webkit-appearance: none;
   transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 4px 24px rgba(184,146,42,0.3);
   display: flex; align-items: center; justify-content: center; gap: 10px;
+  touch-action: manipulation;
 }
 .btn-ativar:hover:not(:disabled) {
-  opacity: 0.88;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(184,146,42,0.4);
+  opacity: 0.88; transform: translateY(-2px);
 }
-.btn-ativar:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+.btn-ativar:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .spinner {
-  display: none;
-  width: 18px; height: 18px;
+  display: none; width: 18px; height: 18px;
   border: 2px solid rgba(247,243,236,0.3);
   border-top-color: var(--cream);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
+  border-radius: 50%; animation: spin 0.7s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ─── Seção de sucesso ─── */
+/* SUCESSO */
 #success-section {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  display: none; flex-direction: column;
+  align-items: center; text-align: center;
   animation: fadeUp 0.5s ease both;
 }
-
 .success-sym {
-  font-family: 'Cinzel', serif;
-  font-size: 36px; color: var(--gold);
-  margin-bottom: 16px;
-  letter-spacing: 4px;
+  font-family: 'Cinzel', serif; font-size: 34px;
+  color: var(--gold); margin-bottom: 14px; letter-spacing: 4px;
 }
-
 #success-section h2 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 32px; font-weight: 400;
+  font-size: 30px; font-weight: 400;
   color: var(--cream); margin-bottom: 8px;
 }
-#success-section .s-desc {
+.s-desc {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 17px; font-style: italic;
-  color: rgba(212,175,90,0.65);
-  line-height: 1.6; margin-bottom: 32px;
+  font-size: 16px; font-style: italic;
+  color: rgba(212,175,90,0.65); line-height: 1.6; margin-bottom: 28px;
 }
-
-/* Caixa de credenciais */
-.cred-box {
-  width: 100%;
-  border: 1px solid rgba(184,146,42,0.2);
-  margin-bottom: 24px;
-  overflow: hidden;
-}
-.cred-row {
-  display: flex; align-items: center;
-  padding: 14px 18px;
-  gap: 12px;
-}
-.cred-row + .cred-row {
-  border-top: 1px solid rgba(184,146,42,0.15);
-}
-.cred-lbl {
-  font-family: 'Cinzel', serif;
-  font-size: 9px; letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(184,146,42,0.5);
-  width: 65px; flex-shrink: 0;
-}
-.cred-val {
-  font-family: 'Courier New', monospace;
-  font-size: 14px; color: var(--cream);
-  flex: 1; text-align: left; word-break: break-all;
-}
-.copy-btn {
-  background: rgba(184,146,42,0.1);
-  border: 1px solid rgba(184,146,42,0.25);
-  color: rgba(184,146,42,0.6);
-  width: 30px; height: 30px;
-  cursor: pointer; font-size: 13px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.2s, color 0.2s;
-}
-.copy-btn:hover { background: rgba(184,146,42,0.2); color: var(--gold); }
-
-/* Email enviado badge */
 .email-badge {
   display: flex; align-items: center; gap: 8px;
   background: rgba(46,204,113,0.08);
   border: 1px solid rgba(46,204,113,0.2);
-  padding: 10px 16px;
-  margin-bottom: 24px;
+  padding: 10px 14px; margin-bottom: 20px;
   font-size: 13px; color: #5dbb7e;
-  font-family: 'Lato', sans-serif;
-  width: 100%;
+  width: 100%; text-align: left; flex-wrap: wrap;
+  word-break: break-all;
 }
+.cred-box {
+  width: 100%; border: 1px solid rgba(184,146,42,0.2);
+  margin-bottom: 20px; overflow: hidden;
+}
+.cred-row {
+  display: flex; align-items: center;
+  padding: 13px 16px; gap: 10px;
+}
+.cred-row + .cred-row { border-top: 1px solid rgba(184,146,42,0.15); }
+.cred-lbl {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(184,146,42,0.5);
+  width: 55px; flex-shrink: 0;
+}
+.cred-val {
+  font-family: 'Courier New', monospace; font-size: 13px;
+  color: var(--cream); flex: 1; text-align: left; word-break: break-all;
+}
+.copy-btn {
+  background: rgba(184,146,42,0.1); border: 1px solid rgba(184,146,42,0.25);
+  color: rgba(184,146,42,0.6); width: 30px; height: 30px;
+  cursor: pointer; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background 0.2s, color 0.2s;
+  touch-action: manipulation;
+}
+.copy-btn:hover { background: rgba(184,146,42,0.2); color: var(--gold); }
 
 .btn-login {
   display: flex; align-items: center; justify-content: center; gap: 8px;
-  width: 100%;
-  padding: 14px;
-  background: none;
-  border: 1px solid rgba(184,146,42,0.35);
-  color: var(--gold-light);
-  font-family: 'Cinzel', serif;
-  font-size: 10px; letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer; text-decoration: none;
-  transition: background 0.2s;
+  width: 100%; padding: 14px; background: none;
+  border: 1px solid rgba(184,146,42,0.35); color: var(--gold-light);
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s; touch-action: manipulation;
 }
 .btn-login:hover { background: rgba(184,146,42,0.08); }
 
-/* Rodapé */
+/* rodapé — z-index acima do fundo, abaixo do card */
 .card-footer {
-  margin-top: 28px;
-  text-align: center;
+  position: relative; z-index: 1;
+  margin-top: 24px; text-align: center;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 13px; font-style: italic;
-  color: rgba(184,146,42,0.25);
-  letter-spacing: 1px;
+  font-size: 12px; font-style: italic;
+  color: rgba(184,146,42,0.2); letter-spacing: 1px;
 }
 
-@media (max-width: 540px) {
-  .card { padding: 36px 24px; }
+/* ── MOBILE ── */
+@media (max-width: 520px) {
+  body { padding: 24px 16px; justify-content: flex-start; padding-top: 32px; }
+  .card { padding: 36px 22px; }
+  .card-title { font-size: 28px; }
+  .card-desc  { font-size: 16px; }
+  .notice     { font-size: 14px; }
+  /* rodapé some no mobile para não poluir */
+  .card-footer { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- Partículas -->
 <div class="particles" id="ptcl"></div>
 
-<!-- ─── CARD ─── -->
 <div class="card">
-
-  <!-- CABEÇALHO -->
   <div class="card-logo">ʻOHANA</div>
   <div class="card-sub">Ho'oponopono</div>
   <div class="gold-line"></div>
 
-  <!-- ── FORMULÁRIO ── -->
+  <!-- FORMULÁRIO -->
   <div id="form-section">
     <h1 class="card-title">Ativar seu <em>acesso</em></h1>
     <p class="card-desc">Parabéns pela sua compra. Preencha abaixo para receber seu login e senha por e-mail.</p>
@@ -338,7 +295,6 @@ body::before {
       <label>Seu nome completo</label>
       <input type="text" id="inp-nome" placeholder="Ex: Maria Silva" autocomplete="name"/>
     </div>
-
     <div class="field">
       <label>E-mail da compra</label>
       <input type="email" id="inp-email" placeholder="seuemail@gmail.com" autocomplete="email"/>
@@ -357,39 +313,35 @@ body::before {
     </button>
   </div>
 
-  <!-- ── SUCESSO ── -->
+  <!-- SUCESSO -->
   <div id="success-section">
     <div class="success-sym">✦</div>
     <h2>Acesso criado!</h2>
     <p class="s-desc">Suas credenciais foram geradas e enviadas para o seu e-mail. Guarde-as com segurança.</p>
 
     <div class="email-badge">
-      ✓ &nbsp; Credenciais enviadas para <strong id="sent-to" style="margin-left:4px"></strong>
+      ✓ &nbsp; Enviado para: <strong id="sent-to" style="margin-left:4px"></strong>
     </div>
 
     <div class="cred-box">
       <div class="cred-row">
         <span class="cred-lbl">Login</span>
         <span class="cred-val" id="cred-login">—</span>
-        <button class="copy-btn" onclick="copiar('cred-login',this)" title="Copiar">⧉</button>
+        <button class="copy-btn" onclick="copiar('cred-login',this)">⧉</button>
       </div>
       <div class="cred-row">
         <span class="cred-lbl">Senha</span>
         <span class="cred-val" id="cred-senha">—</span>
-        <button class="copy-btn" onclick="copiar('cred-senha',this)" title="Copiar">⧉</button>
+        <button class="copy-btn" onclick="copiar('cred-senha',this)">⧉</button>
       </div>
     </div>
 
-    <!-- 🔧 Troque o href pelo link do seu index.html hospedado -->
-    <a class="btn-login" href="index.html">Acessar o e-book →</a>
+    <a class="btn-login" href="https://hoopono.github.io/Ebook/index.html">Acessar o e-book →</a>
   </div>
-
-</div><!-- /card -->
+</div>
 
 <div class="card-footer">Sinto Muito · Me Perdoe · Te Amo · Sou Grato</div>
 
-
-<!-- Firebase -->
 <script type="module">
 import { initializeApp }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -398,9 +350,6 @@ import { getAuth, createUserWithEmailAndPassword }
 import { getFirestore, doc, setDoc, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ================================================================
-// 🔥 FIREBASE — mesma config do seu index.html
-// ================================================================
 const firebaseConfig = {
   apiKey:            "AIzaSyAaqZnuxmsGDVMaM59XPQNIb4LFtpJTygw",
   authDomain:        "hooponopono-ed811.firebaseapp.com",
@@ -410,92 +359,41 @@ const firebaseConfig = {
   appId:             "1:855776362918:web:317a3a24e72819fe03cf67"
 };
 
-// ================================================================
-// 📧 EMAILJS — preencha com seus dados
-//   1. Crie conta em https://www.emailjs.com (grátis)
-//   2. Adicione um serviço Gmail → copie o Service ID
-//   3. Crie um Template com as variáveis abaixo → copie o Template ID
-//   4. Copie sua Public Key (Dashboard → Account)
-// ================================================================
-const EJS_PUBLIC_KEY  = "SUA_PUBLIC_KEY_AQUI";   // ← sua Public Key
-const EJS_SERVICE_ID  = "SUA_SERVICE_ID_AQUI";   // ← ID do serviço Gmail
-const EJS_TEMPLATE_ID = "SEU_TEMPLATE_ID_AQUI";  // ← ID do template
-
-/*  TEMPLATE EmailJS — cole isso no corpo do seu template:
-    ──────────────────────────────────────────────────────
-    Assunto: Seu acesso ao Ho'oponopono foi criado ✦
-
-    Olá, {{nome}}!
-
-    Seu acesso ao Ebook Ho'oponopono está pronto. 🎉
-
-    ✦ LOGIN:  {{login}}
-    ✦ SENHA:  {{senha}}
-
-    Acesse aqui: {{link_acesso}}
-
-    Na primeira entrada, você será solicitado a criar
-    uma senha pessoal.
-
-    Sinto Muito · Me Perdoe · Te Amo · Sou Grato
-    ──────────────────────────────────────────────────────
-    Variáveis usadas: {{nome}} {{login}} {{senha}} {{link_acesso}}
-*/
-
-// ================================================================
-// 🔗 Link do seu index.html hospedado (Vercel, Netlify, etc.)
-// ================================================================
-const LINK_ACESSO = "https://SEU_SITE.com/index.html"; // ← troque aqui
-
-// ================================================================
-
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db   = getFirestore(app);
 
-// Gera login único a partir do nome + timestamp
+emailjs.init("_n4rGYnDpECBVlMNf");
+
 function gerarLogin(nome) {
   const base = nome.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .replace(/[^a-z0-9]/g,'').slice(0,14);
-  const sufixo = Math.random().toString(36).slice(2,6);
-  return base + sufixo;
+    .replace(/[^a-z0-9]/g,'').slice(0,12);
+  return base + Math.random().toString(36).slice(2,5);
 }
-
-// Gera senha forte aleatória
 function gerarSenha(len = 10) {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#";
   return Array.from(crypto.getRandomValues(new Uint8Array(len)))
     .map(b => chars[b % chars.length]).join('');
 }
-
-// Converte login para e-mail interno Firebase
-function toEmail(login) {
-  return login + '@hooponopono.app';
-}
-
-function $ (id) { return document.getElementById(id); }
+function toEmail(login) { return login + '@hooponopono.app'; }
+const $ = id => document.getElementById(id);
 
 function setLoading(on) {
-  $('btn-main').disabled = on;
-  $('btn-txt').style.display  = on ? 'none' : 'flex';
+  $('btn-main').disabled      = on;
+  $('btn-txt').style.display  = on ? 'none'  : 'flex';
   $('btn-spin').style.display = on ? 'block' : 'none';
 }
-
 function mostrarErro(msg) {
-  const box = $('error-box');
-  $('error-txt').textContent = msg;
-  box.style.display = 'flex';
+  $('error-txt').textContent   = msg;
+  $('error-box').style.display = 'flex';
 }
-function limparErro() {
-  $('error-box').style.display = 'none';
-}
+function limparErro() { $('error-box').style.display = 'none'; }
 
 function mostrarSucesso(email, login, senha) {
-  $('form-section').style.display = 'none';
-  const s = $('success-section');
-  s.style.display = 'flex';
-  $('sent-to').textContent = email;
+  $('form-section').style.display  = 'none';
+  $('success-section').style.display = 'flex';
+  $('sent-to').textContent    = email;
   $('cred-login').textContent = login;
   $('cred-senha').textContent  = senha;
 }
@@ -512,15 +410,13 @@ window.ativar = async function() {
 
   setLoading(true);
 
-  const login = gerarLogin(nome);
-  const senha = gerarSenha();
+  const login   = gerarLogin(nome);
+  const senha   = gerarSenha();
   const fbEmail = toEmail(login);
 
   try {
-    // 1️⃣ Cria usuário no Firebase Auth
     const cred = await createUserWithEmailAndPassword(auth, fbEmail, senha);
 
-    // 2️⃣ Salva dados no Firestore (coleção "users")
     await setDoc(doc(db, 'users', cred.user.uid), {
       username:   login,
       email:      fbEmail,
@@ -531,57 +427,54 @@ window.ativar = async function() {
       createdAt:  serverTimestamp()
     });
 
-    // 3️⃣ Envia e-mail com EmailJS
-    emailjs.init(EJS_PUBLIC_KEY);
-    await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
-      nome:         nome,
-      login:        login,
-      senha:        senha,
-      link_acesso:  LINK_ACESSO,
-      to_email:     email    // EmailJS usa "to_email" para destino
+    await emailjs.send("service_qxuz3v9", "template_qbdkq8d", {
+      name:        nome,
+      login:       login,
+      senha:       senha,
+      link_acesso: "https://hoopono.github.io/Ebook/index.html",
+      to_email:    email,
+      email:       email,
+      title:       "Seu acesso ao Ho'oponopono",
+      message:     `LOGIN: ${login}\nSENHA: ${senha}\nACESSE: https://hoopono.github.io/Ebook/index.html`
     });
 
-    // 4️⃣ Mostra sucesso
     mostrarSucesso(email, login, senha);
 
   } catch(err) {
     console.error(err);
     if (err.code === 'auth/email-already-in-use') {
-      mostrarErro('Este e-mail já possui um acesso ativo. Use a página de login.');
-    } else if (err.name === 'EmailJSResponseStatus') {
-      // Firebase OK mas e-mail falhou — mostra credenciais mesmo assim
+      mostrarErro('Este e-mail já possui acesso. Use a página de login.');
+    } else if (typeof err.status !== 'undefined') {
       mostrarSucesso(email, login, senha);
     } else {
-      mostrarErro('Erro ao criar acesso. Tente novamente ou entre em contato.');
+      mostrarErro('Erro ao criar acesso. Tente novamente.');
+      setLoading(false);
     }
-    setLoading(false);
   }
 };
 
 window.copiar = function(id, btn) {
-  const txt = document.getElementById(id).textContent;
-  navigator.clipboard.writeText(txt).then(() => {
+  navigator.clipboard.writeText(document.getElementById(id).textContent).then(() => {
     btn.textContent = '✓';
     setTimeout(() => btn.textContent = '⧉', 1600);
   });
 };
 
-// ─── Partículas decorativas ───────────────────────────────────────
+// Partículas — tamanho pequeno para não poluir mobile
 const ptcl = document.getElementById('ptcl');
-for (let i = 0; i < 22; i++) {
+for (let i = 0; i < 18; i++) {
   const p = document.createElement('div');
   p.className = 'p';
   p.style.cssText = `
     left:${Math.random()*100}%;
     top:${Math.random()*100}%;
-    --dur:${4+Math.random()*6}s;
+    --dur:${5+Math.random()*6}s;
     --delay:-${Math.random()*8}s;
-    width:${1+Math.random()*2}px;
-    height:${1+Math.random()*2}px;
+    width:${1+Math.random()*1.5}px;
+    height:${1+Math.random()*1.5}px;
   `;
   ptcl.appendChild(p);
 }
 </script>
-
 </body>
 </html>
